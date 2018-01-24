@@ -1,0 +1,25 @@
+!!=============================================================================
+!! RXVT-unicode setting
+!!=============================================================================
+!设置字体分辨率
+Xft.dpi:112
+!设置字体
+URxvt.font:xft:WenQuanYi Micro Hei Mono:regular:size=11:minspace=true
+!颜色
+Rxvt.background:black
+Rxvt.foreground:white
+Rxvt.colorBD:yellow
+Rxvt.colorUL:green
+!滚动条
+Rxvt.scrollBar:True
+Rxvt.scrollBar_right:True
+Rxvt.scrollBar_floating: False
+Rxvt.scrollstyle:plain
+!屏幕缓冲
+Rxvt.saveLines:10000
+Rxvt.color12:DodgerBlue
+Rxvt.menu:/etc/X11/rxvt.menu
+Rxvt.preeditType:Root
+!输入法设置
+!inputMethod:xim  
+

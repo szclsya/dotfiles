@@ -1,0 +1,8 @@
+[Unit]
+Description=MPRIS V2.1 support for mpd 
+
+[Service]
+ExecStart=/usr/bin/mpDris2
+
+[Install]
+WantedBy=default.target

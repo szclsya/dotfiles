@@ -1,0 +1,8 @@
+[Unit]
+Description=KDE Connect daemon
+
+[Service]
+ExecStart=/usr/lib/kdeconnectd
+
+[Install]
+WantedBy=default.target

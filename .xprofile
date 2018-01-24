@@ -1,0 +1,11 @@
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+
+xgamma -quiet -rgamma 0.75 -ggamma 0.75 -bgamma 0.98
+fcitx
+
+( (~/.feh) > /dev/null) &
+
+export LC_ALL=zh_CN.UTF-8 
+
