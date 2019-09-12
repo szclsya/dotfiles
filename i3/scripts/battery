@@ -1,0 +1,30 @@
+#!/bin/bash
+
+BAT_NAME=BAT0
+
+PERCENT=$(cat /sys/class/power_supply/$BAT_NAME/capacity)
+STATUS=$(cat /sys/class/power_supply/$BAT_NAME/status)
+
+
+if [[ $STATUS = "Charging" ]]; then
+    LABEL=
+    COLOR="#FFA500"
+elif [[ $PERCENT -ge 90 ]]; then
+    LABEL=
+    COLOR="#00FF00"
+elif ([[ $PERCENT -ge 60 ]] && [[ $PERCENT -le 90 ]]); then
+    LABEL=
+    COLOR="#FFFFFF"
+elif ([[ $PERCENT -ge 20 ]] && [[ $PERCENT -le 60 ]]); then
+    LABEL=
+    COLOR="#FFFFFF"
+elif ([[ $PERCENT -ge 0 ]] && [[ $PERCENT -le 20 ]]); then
+    LABEL=
+    COLOR="#FF0000"
+fi
+
+# Full && short
+echo $LABEL $PERCENT%
+echo $LABEL $PERCENT%
+# Color
+echo $COLOR
