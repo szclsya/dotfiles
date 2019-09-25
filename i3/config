@@ -186,7 +186,7 @@ bindsym XF86MonBrightnessUp exec light -A 5 && pkill -SIGRTMIN+12 i3blocks
 bindsym XF86MonBrightnessDown exec light -U 5 && pkill -SIGRTMIN+11 i3blocks
 
 # Start compton
-exec compton
+exec compton -C
 
 # Set keyboard map
 exec setxkbmap -option ctrl:swapcaps
