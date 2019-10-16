@@ -4,7 +4,7 @@ BAT_NAME=BAT0
 
 PERCENT=$(cat /sys/class/power_supply/$BAT_NAME/capacity)
 STATUS=$(cat /sys/class/power_supply/$BAT_NAME/status)
-
+TIME=$(acpi -b | awk '{ print $5 }')
 
 if [[ $STATUS = "Charging" ]]; then
     LABEL=
@@ -24,7 +24,7 @@ elif ([[ $PERCENT -ge 0 ]] && [[ $PERCENT -le 20 ]]); then
 fi
 
 # Full && short
-echo $LABEL $PERCENT%
-echo $LABEL $PERCENT%
+echo $LABEL $PERCENT% $TIME
+echo $LABEL $PERCENT% $TIME
 # Color
 echo $COLOR

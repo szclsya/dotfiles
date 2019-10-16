@@ -183,7 +183,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 
 # Brightness control via light
 bindsym XF86MonBrightnessUp exec light -A 5 && pkill -SIGRTMIN+12 i3blocks
-bindsym XF86MonBrightnessDown exec light -U 5 && pkill -SIGRTMIN+11 i3blocks
+bindsym XF86MonBrightnessDown exec light -U 5 && pkill -SIGRTMIN+12 i3blocks
 
 # Start compton
 exec compton -C
@@ -193,7 +193,7 @@ exec setxkbmap -option ctrl:swapcaps
 
 # Start programs
 exec fcitx
-exec export QT_QPA_PLATFORMTHEME=qt5ct
 exec lxqt-notificationd
 exec /usr/lib/kdeconnectd
 exec indicator-kdeconnect
+exec nextcloud
