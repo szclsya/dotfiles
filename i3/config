@@ -23,7 +23,7 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec i3-dmenu-desktop
 
 # change focus
 bindsym $mod+h focus left
@@ -166,7 +166,7 @@ bar {
 for_window [class=".*"] border pixel 0
 
 # Gaps
-gaps inner 10 
+#gaps inner 3
 
 # Wallpaper
 exec feh --randomize --bg-scale ~/Pictures/Wallpaper/*
