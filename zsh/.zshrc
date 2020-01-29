@@ -1,6 +1,7 @@
-# antigen needs to be set up separately.
-# curl -L git.io/antigen > ~/.zsh/antigen.zsh
-source ~/.zsh/antigen.zsh
+# Use internal antigen executable
+# What about updates? Do it manually! 
+# (Until I found a better way to do this)
+source ~/.dotfiles/zsh/antigen.zsh
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
