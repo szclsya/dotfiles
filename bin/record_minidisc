@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# If nice level <0, root permission is required.
+NICE_LEVEL=-10
+
+amixer -c 0 set 'IEC958',0 mute
+sleep 5s
+
+normal_record () {
+	while read file
+	do
+		amixer -c 0 set 'IEC958',0 unmute
+		sleep 1.1s
+		nice -n $NICE_LEVEL ~/Code/vorbis/vorbis-tools-1.4.0/ogg123/ogg123 -d alsa --device-option dev:hw:0,1 "$file"
+		rm temp.flac
+		sleep 1s
+	done <$1
+}
+
+resample_record () {
+	rm temp.flac
+	while read file
+	do
+		#echo "[script] Recording $file\n\n\n"
+
+		ffmpeg -nostdin -i "$file" -sample_fmt s16 -af aresample=resampler=soxr -ar 48000 temp.flac
+		#sox ""$file"" -r 48k temp.wav -b 16
+		amixer -c 0 set 'IEC958',0 unmute
+		sleep 1.3s
+		nice -n $NICE_LEVEL ~/Code/vorbis/vorbis-tools-1.4.0/ogg123/ogg123 -d alsa --device-option dev:hw:0,1 temp.flac
+		rm temp.flac
+		sleep 1s
+	done <$1
+}
+
+if [ "$2" == "resample" ]; then
+    echo "[script] Will resample files"
+	resample_record "$1"
+else
+	normal_record "$1"
+fi
