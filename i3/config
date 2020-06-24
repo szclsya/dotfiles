@@ -23,7 +23,8 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec i3-dmenu-desktop
+bindsym $mod+d exec rofi -show run
+bindsym $mod+p exec rofi -modi "fb:~/.config/i3/scripts/rofi-file-browser.sh" -show fb
 
 # change focus
 bindsym $mod+h focus left
@@ -189,10 +190,13 @@ bindsym XF86MonBrightnessDown exec light -U 5 && pkill -SIGRTMIN+12 i3blocks
 exec compton -C
 
 # Set keyboard map
-exec setxkbmap -option ctrl:swapcaps
+#exec setxkbmap -option ctrl:swapcaps
+
+# Set the defaults
+xdg-mime default org.pwmt.zathura.desktop application/pdf
 
 # Start programs
-exec fcitx
+exec fcitx5
 exec lxqt-notificationd
 exec /usr/lib/kdeconnectd
 exec indicator-kdeconnect
