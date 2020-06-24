@@ -193,7 +193,7 @@ exec compton -C
 #exec setxkbmap -option ctrl:swapcaps
 
 # Set the defaults
-xdg-mime default org.pwmt.zathura.desktop application/pdf
+exec xdg-mime default org.pwmt.zathura.desktop application/pdf
 
 # Start programs
 exec fcitx5
