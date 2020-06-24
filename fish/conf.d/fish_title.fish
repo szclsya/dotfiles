@@ -32,7 +32,7 @@ end
 
 function __user --description 'Print user name'
 	if test "$USER" = "root"
-		echo -n -s (set_color --bold blue) (set_color --background yellow) "$USER" $normal
+		echo -n -s (set_color --bold 01579b) (set_color --background yellow) "$USER" $normal
 	else
 		echo -n -s (set_color --bold cyan) "$USER" $normal
 	end
@@ -58,9 +58,11 @@ function fish_prompt --description 'Write out the prompt'
     set -l pretty_pwd (string replace -r '^'"$realhome"'($|/)' '~$1' $PWD)
 
     # If we're running via SSH, change the host color.
-    set -l color_host black 
+    set -l bg_color_host black 
+	set -l color_host green
     if set -q SSH_TTY
-        set color_host yellow
+        set bg_color_host yellow
+		set color_host 004d40 
     end
 
 	# Add a newline first
@@ -70,7 +72,7 @@ function fish_prompt --description 'Write out the prompt'
 		(set_color --bold blue) "#" $normal " " \
 		(__user) $normal " " \
 		(set_color white) "@" $normal " " \
-		(set_color green) (set_color --background $color_host) $hostname $normal " " \
+		(set_color $color_host) (set_color --background $bg_color_host) $hostname $normal " " \
 		(set_color white) "in" $normal " " \
 		(set_color --bold yellow) $pretty_pwd $normal " " \
 		(__git_prompt) \
