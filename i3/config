@@ -197,7 +197,7 @@ exec xdg-mime default org.pwmt.zathura.desktop application/pdf
 
 # Start programs
 exec fcitx5
-exec lxqt-notificationd
+exec dunst
 exec /usr/lib/kdeconnectd
 exec indicator-kdeconnect
 exec nextcloud
