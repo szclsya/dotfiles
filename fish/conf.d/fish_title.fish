@@ -15,7 +15,7 @@ function __git_prompt --description 'Our own git prompt'
 
 	# Fun starts here
 	if test $inside_worktree
-		set -l branch (command git rev-parse --symbolic-full-name --abbrev-ref HEAD)
+		set -l branch (git branch ^/dev/null | grep \* | sed 's/* //')
 		set -l git_status (command git status --porcelain)
 
 		echo -n -s \
@@ -40,7 +40,7 @@ end
 
 function __return_code
 	if test $argv[1] -ne 0
-		echo -n -s (set_color white) "C:" (set_color --bold red) $argv[1]
+		echo -n -s (set_color white) " C:" (set_color --bold red) $argv[1]
 	end
 end
 
