@@ -170,11 +170,13 @@ bar {
 for_window [class=".*"] border pixel 0
 
 # Gaps
-#gaps inner 3
+gaps inner 7
+## Only enable gaps on a workspace when there is at least one container
+smart_gaps on
 
 # Wallpaper
-exec feh --randomize --bg-scale ~/Pictures/Wallpaper/*
-bindsym $mod+Shift+w exec  feh --randomize --bg-scale ~/Pictures/Wallpaper/*
+exec feh --randomize --bg-scale ~/Images/Wallpaper/*
+bindsym $mod+Shift+w exec  feh --randomize --bg-scale ~/Images/Wallpaper/*
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -190,10 +192,10 @@ bindsym XF86MonBrightnessUp exec light -A 5 && pkill -SIGRTMIN+12 i3blocks
 bindsym XF86MonBrightnessDown exec light -U 5 && pkill -SIGRTMIN+12 i3blocks
 
 # Start compton
-exec compton -C
+exec picom --config ~/.config/i3/picom.conf --experimental-backends
 
 # Set keyboard map
-#exec setxkbmap -option ctrl:swapcaps
+exec setxkbmap -option ctrl:swapcaps
 
 # Set the defaults
 exec xdg-mime default org.pwmt.zathura.desktop application/pdf
