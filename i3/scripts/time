@@ -1,0 +1,19 @@
+#!/bin/bash
+
+CUR_TIME=$(date '+%Y-%m-%d %a %H:%M:%S')
+CUR_MINUTE=$(date +%M)
+COLOR="#FFFFFF"
+
+LABEL=
+
+if [[ $CUR_MINUTE -ge 25 ]] && [[ $CUR_MINUTE -le 30 ]]; then
+    COLOR="#FFA500"
+elif [[ $CUR_MINUTE -ge 55 ]]; then
+    COLOR="#FFA500"
+fi
+
+# Full && short
+echo $LABEL $CUR_TIME
+echo $LABEL $CUR_TIME
+# Color
+echo $COLOR
