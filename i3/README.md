@@ -10,7 +10,7 @@ You will need to install:
 + acpi (for battery information)
 
 # Machine-specific adjustments
-Change `wireless_interface` in `~/.config/i3/i3blocks.conf` to your wireless interface name.
+By default, i3blocks will use `BAT0`. If your main battery doesn't share this name, you may want to change the `BAT_NAME` setting in `scripts/battery`.
 
 # Key bindings
 + Mod key is Alt
