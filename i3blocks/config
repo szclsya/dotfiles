@@ -1,4 +1,4 @@
-command=~/.config/i3/scripts/$BLOCK_NAME
+command=~/.config/i3blocks/scripts/$BLOCK_NAME
 color=#FFFFFF
 separator=false
 separator_block_width=7
