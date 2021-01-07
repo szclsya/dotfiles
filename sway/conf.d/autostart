@@ -1,0 +1,3 @@
+exec fcitx5
+exec mako
+exec notify-send "Welcome Back!"
