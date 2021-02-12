@@ -3,6 +3,8 @@
 CURRENT=$(mpc current)
 TITLE=$(mpc -f '%title%' current)
 ARTIST=$(mpc -f '%artist%' current)
+TOTAL_TIME=$(mpc status | awk 'NR==2 { split($3, a, "/"); print a[2]}')
+PLAYED_TIME=$(mpc status | awk 'NR==2 { split($3, a, "/"); print a[1]}')
 
 if [[${#TITLE} -eq 0 ]] || [[ ${#ARTIST} -eq 0 ]]; then
     MSG=$CURRENT
@@ -12,4 +14,4 @@ else
     MSG=$CURRENT
 fi
 
-echo $MSG
+echo $MSG "($PLAYED_TIME/$TOTAL_TIME)"
