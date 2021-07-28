@@ -12,4 +12,10 @@ export XMODIFIERS=@im=fcitx5
 
 # Qt5
 export QT_QPA_PLATFORMTHEME=qt5ct
+
+# GPG
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+
 sway

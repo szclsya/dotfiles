@@ -1,0 +1,50 @@
+[theme]
+name = "plain"
+[theme.overrides]
+idle_bg = "#00000000"
+idle_fg = "#ffffffff"
+separator = ""
+separator_bg = "#00000000"
+separator_fg = "#00000000"
+good_bg = "#00000000"
+good_fg = "#00FF00"
+warning_bg = "#00000000"
+warning_fg = "#fce100"
+critical_bg = "#00000000"
+critical_fg = "#ff0000"
+info_bg = "#00000000"
+info_fg = "#00ffff"
+
+[icons]
+name = "awesome"
+
+[[block]]
+block = "sound"
+
+[[block]]
+block = "backlight"
+
+[[block]]
+block = "net"
+device = "wlan0"
+format = "{ssid} {ip}"
+format_alt = "{signal_strength} {speed_up} {speed_down}"
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{mem_total_used_percents}"
+format_swap = "{swap_used_percents}"
+
+[[block]]
+block = "cpu"
+interval = 1
+
+[[block]]
+block = "battery"
+format = "{percentage} {time}"
+
+[[block]]
+block = "time"
+interval = 60
+format = "%Y-%m-%d %a %H:%M:%S"

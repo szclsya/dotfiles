@@ -15,7 +15,7 @@ function __git_prompt --description 'Our own git prompt'
 
 	# Fun starts here
 	if test $inside_worktree
-		set -l branch (git branch ^/dev/null | grep \* | sed 's/* //')
+		set -l branch (git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 		set -l git_status (command git status --porcelain)
 
 		echo -n -s \

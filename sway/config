@@ -18,7 +18,7 @@ set $term alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
+set $menu bemenu-run | xargs swaymsg exec --
 
 ### Output configuration
 #
@@ -180,7 +180,7 @@ bar {
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
     separator_symbol " "
-    status_command i3blocks -c ~/.config/i3blocks/config
+    status_command i3status-rs
 
     colors {
         background #00000000
