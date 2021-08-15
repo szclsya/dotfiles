@@ -1,3 +1,6 @@
-exec fcitx5
+exec /usr/lib/polkit-kde-authentication-agent-1
 exec mako
 exec notify-send "Welcome Back!"
+
+exec fcitx5
+exec keepassxc

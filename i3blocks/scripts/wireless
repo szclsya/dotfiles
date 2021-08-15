@@ -1,7 +1,0 @@
-#!/bin/bash
-
-INTERFACES=$(iw dev | awk '$1=="Interface"{print $2}')
-
-for interface in $INTERFACES; do
-    echo "$(iw dev $interface link | grep SSID | cut -d " " -f 2-)" $(ip -br addr show | grep $interface | awk '{print $3}')
-done
