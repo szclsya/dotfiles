@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Enforce Wayland!
+export QT_QPA_PLATFORM=wayland
+export GDK_BACKEND=wayland
+export CLUTTER_BACKEND=wayland
+
+# Firefox
+export MOZ_ENABLE_WAYLAND=1
+export MOZ_DISABLE_RDD_SANDBOX=1
+export MOZ_USE_XINPUT2=1
+
+# Fcitx5
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+
