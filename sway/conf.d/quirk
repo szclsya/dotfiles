@@ -1,0 +1,5 @@
+# Dolphin copy window
+for_window [title="Copying — Dolphin"] floating enable
+for_window [title="File Already Exists — Dolphin"] floating enable
+# Pinentry (used by GnuPG)
+for_window [app_id="pinentry-qt"] floating enable

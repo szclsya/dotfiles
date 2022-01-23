@@ -200,4 +200,7 @@ default_border none
 # title bar theme
 #for_window [class=".*"] title_format "<span background='#ffffff'>%title</span>"
 
+# Default broswer
+exec xdg-settings set default-web-browser firefox-developer-edition.desktop
+
 include ~/.config/sway/conf.d/*
