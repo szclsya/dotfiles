@@ -1,5 +1,8 @@
-exec /usr/lib/polkit-kde-authentication-agent-1
-exec notify-send "Welcome Back!"
+# Set DISPLAY/WAYLAND_DISPLAY in the systemd user environment
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+# Activate sway-session.target
+exec systemctl --user start sway-session.target
 
-exec fcitx5
 exec keepassxc
+# Send a warm welcome message
+exec notify-send "Welcome Back!"

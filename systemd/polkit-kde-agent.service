@@ -1,0 +1,13 @@
+[Unit]
+Description=Polkit authentication UI from KDE
+PartOf=graphical-session.target
+After=graphical-session.target
+# ConditionEnvironment requires systemd v247 to work correctly
+ConditionEnvironment=WAYLAND_DISPLAY
+
+[Service]
+Type=simple
+ExecStart=/usr/lib/polkit-kde-authentication-agent-1
+
+[Install]
+WantedBy=graphical-session.target
