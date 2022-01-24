@@ -32,4 +32,5 @@ ln -s $DOTFILES_PATH/fish ~/.config/
 ln -s $DOTFILES_PATH/tmux ~/.config/
 ln -s $DOTFILES_PATH/mpd ~/.config/
 ln -s $DOTFILES_PATH/mpv ~/.config/
+ln -s $DOTFILES_PATH/ncmpcpp ~/.config/
 ```
