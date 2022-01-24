@@ -183,11 +183,11 @@ bar {
     status_command i3status-rs
 
     colors {
-        background #00000000
+    background #00000000
 	statusline #00000000
 	separator #00000000
-	# Workspace theme  border background text
-	focused_workspace #cfd8dc #cfd8dc #263238
+    # Workspace theme  border background text
+    focused_workspace #cfd8dc #cfd8dc #263238
         active_workspace   #00000000 #00000000 #eceff1
         inactive_workspace #00000000 #00000000 #eceff1
     }
@@ -195,10 +195,6 @@ bar {
 
 # No border plz
 default_border none
-#hide_edge_borders both
-
-# title bar theme
-#for_window [class=".*"] title_format "<span background='#ffffff'>%title</span>"
 
 # Default broswer
 exec xdg-settings set default-web-browser firefox-developer-edition.desktop
