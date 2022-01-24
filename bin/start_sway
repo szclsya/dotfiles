@@ -5,5 +5,18 @@ source ~/.dotfiles/bin/wayland_prelude
 # Qt5
 export QT_QPA_PLATFORMTHEME=qt5ct
 
+# NVIDIA hack
+#export WLR_NO_HARDWARE_CURSORS=1
+#export LIBVA_DRIVER_NAME=nvidia
+#export MOZ_DISABLE_RDD_SANDBOX=1
+
+# i3status-rust
+export OPENWEATHERMAP_API_KEY='YOUR_OWM_API_KEY'
+export OPENWEATHERMAP_CITY_ID='YOUR_CITY_ID'
+
 # Run sway
+# If running on NVIDIA proprietary driver, add --unsupported-gpu flag
 sway
+
+# Tell systemd Sway has exited
+systemctl --user stop sway-session.target

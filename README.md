@@ -24,9 +24,12 @@ ln -s $DOTFILES_PATH/fontconfig ~/.config/
 
 ## Everything else
 ```bash
+ln -s $DOTFILES_PATH/.pam_environment ~/
 ln -s $DOTFILES_PATH/i3status-rust ~/.config/
 ln -s $DOTFILES_PATH/alacritty ~/.config/
+ln -s $DOTFILES_PATH/mako ~/.config/
 ln -s $DOTFILES_PATH/fish ~/.config/
+ln -s $DOTFILES_PATH/tmux ~/.config/
 ln -s $DOTFILES_PATH/mpd ~/.config/
 ln -s $DOTFILES_PATH/mpv ~/.config/
 ```
