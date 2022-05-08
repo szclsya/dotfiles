@@ -10,4 +10,5 @@ export EDITOR=vim
 alias l='ls -al'
 alias gst='git status'
 alias sk='bash ~/.dotfiles/bin/start_kde'
+alias skx='startx ~/.dotfiles/bin/start_kde_x11'
 alias ss='bash ~/.dotfiles/bin/start_sway'
