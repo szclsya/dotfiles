@@ -19,6 +19,12 @@ info_fg = "#00ffff"
 name = "awesome"
 
 [[block]]
+block = "weather"
+format = "{weather} {temp}, {wind} m/s {direction}"
+# API key and City ID are written in env var
+service = { name = "openweathermap", units = "metric" }
+
+[[block]]
 block = "sound"
 
 [[block]]
