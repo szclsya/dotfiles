@@ -45,6 +45,8 @@ ln -s $DOTFILES_PATH/alacritty ~/.config/
 ln -s $DOTFILES_PATH/mako ~/.config/
 ln -s $DOTFILES_PATH/fish ~/.config/
 ln -s $DOTFILES_PATH/tmux ~/.config/
+# mpd won't automatically create state folder, so do it manually
+mkdir -p ~/.local/share/mpd
 ln -s $DOTFILES_PATH/mpd ~/.config/
 ln -s $DOTFILES_PATH/mpv ~/.config/
 ln -s $DOTFILES_PATH/ncmpcpp ~/.config/

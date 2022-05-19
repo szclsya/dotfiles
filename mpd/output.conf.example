@@ -1,0 +1,30 @@
+# If you are using PipeWire, use the pipewire output plugin
+# Although pipewire can use the pulse plugin, the native pipewire plugin has better performance
+audio_output {
+    type "pipewire"
+    name "Default PipeWire output"
+    # If you have a DSD-capable DAC and PipeWire >= 0.38
+    dsd "yes"
+}
+
+audio_output {
+    type "pulse"
+    name "Default PulseAudio output"
+}
+
+audio_output {
+    type "jack"
+    mixer_type "software"
+    name "Default JACK output"
+}
+
+audio_output {
+   type "alsa"
+   name "Specific ALSA output"
+   # To make this disabled on default:
+   enabled "no"
+   # Use `aplay -L` to find your device name
+   device "hw:1"
+   # If your DAC supports DSD over PCM but not DSD native, enable this
+   dop "no"
+}
