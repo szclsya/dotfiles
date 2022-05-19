@@ -22,6 +22,9 @@ And enable them just like any other systemd user services.
 # mako: notification daemon
 sudo pacman -S sway xdg-desktop-portal-wlr fcitx5-im brightnessctl wl-clipboard grim slurp bemenu-wayland swayidle swaylock swaybg i3status-rust mako
 $YOUR_AUR_HELPER -S j4-dmenu-desktop
+
+# Create and edit local settings (used by Sway)
+cp -v ~/.dotfiles/bin/local_settings.example ~/.dotfiles/bin/local_settings
 ```
 
 Sway requires `sway-session.target` from systemd to function properly.
