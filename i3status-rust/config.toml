@@ -19,6 +19,14 @@ info_fg = "#00ffff"
 name = "awesome"
 
 [[block]]
+block = "music"
+player = "mpd"
+max_width = 28
+marquee = true
+seek_step = 0
+on_click = "mpc toggle"
+
+[[block]]
 block = "weather"
 format = "{weather} {temp}, {wind} m/s {direction}"
 # API key and City ID are written in env var
