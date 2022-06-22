@@ -23,7 +23,7 @@ set $menu j4-dmenu-desktop --no-exec --dmenu='bemenu -i --fn "Sarasa Term SC 12"
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-set $wallpapers_path $HOME/Images/Wallpaper
+set $wallpapers_path $HOME/Pictures/Wallpaper
 output * bg `find $wallpapers_path -type f | shuf -n 1` fill
 
 exec swayidle -w \
