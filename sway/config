@@ -193,6 +193,10 @@ bar {
     }
 }
 
+# More color scheme
+client.focused  #005a9eFF #005a9eFF #FFFFFFFF
+client.unfocused #252423FF #252423FF #FFFFFFFF
+
 # No border plz
 default_border none
 
