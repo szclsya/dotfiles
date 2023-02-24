@@ -1,5 +1,6 @@
 [theme]
-name = "plain"
+theme = "plain"
+
 [theme.overrides]
 idle_bg = "#00000000"
 idle_fg = "#ffffffff"
@@ -16,39 +17,33 @@ info_bg = "#00000000"
 info_fg = "#00ffff"
 
 [icons]
-name = "awesome"
+icons = "awesome4"
 
 [[block]]
 block = "music"
 player = "mpd"
-max_width = 28
-marquee = true
-seek_step = 0
-on_click = "mpc toggle"
+format = " $icon {$combo.str(max_w:25,rot_interval:0.5) $play |} "
 
 [[block]]
 block = "weather"
-format = "{weather} {temp}, {wind} m/s {direction}"
+format = " $icon $weather $temp, $wind m/s $direction"
 # API key and City ID are written in env var
 service = { name = "openweathermap", units = "metric" }
 
 [[block]]
 block = "sound"
-
-[[block]]
-block = "backlight"
+[[block.click]]
+button = "left"
+cmd = "pavucontrol"
 
 [[block]]
 block = "net"
 device = "wlan0"
-format = "{ssid} {ip}"
-format_alt = "{signal_strength} {speed_up} {speed_down}"
+format = " $icon ^icon_net_down $speed_down.eng(prefix:K,w:4) ^icon_net_up $speed_up.eng(prefix:K,w:4) "
 
 [[block]]
 block = "memory"
-display_type = "memory"
-format_mem = "{mem_total_used_percents}"
-format_swap = "{swap_used_percents}"
+format = " $icon $mem_used.eng(prefix:M)/$mem_total.eng(prefix:M) ($mem_total_used_percents.eng(w:2)) "
 
 [[block]]
 block = "cpu"
@@ -56,9 +51,9 @@ interval = 1
 
 [[block]]
 block = "battery"
-format = "{percentage} {time}"
+format = "$percentage $time"
 
 [[block]]
 block = "time"
 interval = 1
-format = "%Y-%m-%d %a %H:%M:%S"
+format = "$timestamp.datetime(f:'%Y-%m-%d %a %H:%M:%S')"
