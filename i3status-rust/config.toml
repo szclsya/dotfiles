@@ -51,7 +51,7 @@ interval = 1
 
 [[block]]
 block = "battery"
-format = "$percentage $time"
+format = " $icon $percentage $time "
 
 [[block]]
 block = "time"
