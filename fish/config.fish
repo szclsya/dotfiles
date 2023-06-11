@@ -5,6 +5,8 @@ set fish_color_command green
 export LANG=en_US.UTF-8
 # Set editor
 export EDITOR=vim
+# Set hledger default file
+export LEDGER_FILE=$HOME/Documents/ledger/current.journal
 
 # Alias
 alias l='ls -al'
