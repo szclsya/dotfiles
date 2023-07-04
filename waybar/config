@@ -2,9 +2,10 @@
   "layer": "top",
   "position": "bottom",
   "modules-left": ["sway/workspaces", "sway/mode"],
-  "modules-right": ["custom/separator-transparent-to-faint-red", "mpd", "wireplumber", "backlight",
+  "fixed-center": false,
+  "modules-right": ["custom/separator-transparent-to-faint-red", "mpd", "wireplumber",
                     "custom/separator-faint-red-to-blue", "network", "bluetooth",
-                    "custom/separator-blue-to-orange", "cpu", "memory", "battery",
+                    "custom/separator-blue-to-orange", "cpu", "memory", "backlight", "battery",
                     "custom/separator-orange-to-almost-black", "clock", "tray"],
   "custom/separator-orange-to-almost-black": {
     "format": " ",
@@ -81,7 +82,7 @@
 	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
   },
   "battery": {
-    "format": "{capacity}% {icon}",
+    "format": "{icon} {capacity}%",
     "format-icons": ["", "", "", "", ""]
   },
   "clock": {

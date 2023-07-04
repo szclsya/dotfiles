@@ -22,7 +22,7 @@
 
 #workspaces button {
     color: @almost-white;
-    padding: 2pt 5pt
+    padding: 1pt 2pt
 }
 
 #workspaces button.focused {
@@ -33,7 +33,9 @@
 /* Disable hover effects */
 #workspaces button:hover {}
 
-#mpd, #wireplumber, #backlight, #network, #bluetooth, #cpu, #memory, #clock, #tray {
+#mpd, #wireplumber, #network, #bluetooth, #cpu, #memory, #backlight, #battery, #clock, #tray {
+    color: @almost-white;
+    color: @almost-white;
     padding-left: 5pt;
     padding-right: 5pt;
 }
@@ -42,12 +44,12 @@
     background: @faint-red;
 }
 
-#cpu, #memory {
-    background: @orange
-}
-
 #network, #bluetooth {
     background: @blue;
+}
+
+#cpu, #memory, #backlight, #battery {
+    background: @orange
 }
 
 #clock, #tray {
