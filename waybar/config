@@ -1,0 +1,71 @@
+{
+  "layer": "top",
+  "position": "bottom",
+  "modules-left": ["sway/workspaces", "sway/mode"],
+  "modules-right": ["mpd", "wireplumber", "backlight", "network", "bluetooth", "cpu", "memory", "battery", "clock", "tray"],
+  "mpd": {
+    "format": "{stateIcon} {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
+    "artist-len": 10,
+    "album-len": 10,
+    "title-len": 20,
+    "format-stopped": " Stopped",
+    "interval": 1,
+    "state-icons": {
+        "paused": "",
+        "playing": ""
+    },
+    "tooltip-format": "MPD (connected)",
+    "tooltip-format-disconnected": "MPD (disconnected)",
+    "on-click": "mpc toggle",
+    "max-length": 40
+  },
+  "wireplumber": {
+    "format": " {volume}%",
+    "format-muted": " MUTE",
+    "on-click": "helvum",
+    "max-volume": 150,
+    "scroll-step": 0.2
+  },
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": ["", ""]
+  },
+  "network": {
+    "format": "{ifname}",
+    "format-wifi": " {essid} ({signalStrength}%)",
+    "format-ethernet": " {ipaddr}/{cidr}",
+    "format-disconnected": "",
+    "tooltip-format": " {ifname} via {gwaddr}",
+    "tooltip-format-wifi": " {essid} ({signalStrength}%)",
+    "tooltip-format-ethernet": " {ifname}",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50
+  },
+  "cpu": {
+    "interval": 1,
+    "format": " {usage0}%"
+  },
+  "memory": {
+    "interval": 5,
+    "format": " {}%"
+  },
+  "bluetooth": {
+	"format": " {status}",
+	"format-disabled": "",
+	"format-connected": " {num_connections} connected",
+	"tooltip-format": "{controller_alias}\t{controller_address}",
+	"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
+  },
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "clock": {
+    "interval": 1,
+    "format": " {:%Y-%m-%d %a %H:%M:%S}"
+  },
+  "tray": {
+    "spacing": 5
+  }
+}

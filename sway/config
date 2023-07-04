@@ -169,29 +169,7 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
-bar {
-    position bottom
-    icon_theme Adwaita
-
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    separator_symbol " "
-    status_command i3status-rs
-
-    colors {
-        background #00000000
-	    statusline #00000000
-	    separator #00000000
-        # Workspace theme  border background text
-        focused_workspace #cfd8dc #cfd8dc #263238
-        active_workspace   #00000000 #00000000 #eceff1
-        inactive_workspace #00000000 #00000000 #eceff1
-    }
-}
+# Status bar is implemented by waybar
 
 # More color scheme
 client.focused  #005a9eFF #005a9eFF #FFFFFFFF

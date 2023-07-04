@@ -5,6 +5,8 @@ exec systemctl --user start sway-session.target
 # Activate XDG desktop portal
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
-exec keepassxc
+# Status bar
+exec waybar
+
 # Send a warm welcome message
 exec notify-send "Welcome Back!"
