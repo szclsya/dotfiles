@@ -15,18 +15,18 @@ if [[ "$*" == '--install' ]]; then
 fi
 
 # User variables
-ln -s "$DOTFILES_PATH"/.pam_environment ~/
+ln -sf "$DOTFILES_PATH"/.pam_environment ~/
 
 # systemd services
 mkdir -p ~/.config/systemd/user/
-ln -s "$DOTFILES_PATH"/systemd/* ~/.config/systemd/user/
+ln -sf "$DOTFILES_PATH"/systemd/* ~/.config/systemd/user/
 
 # Sway and related services and applications
-ln -s "$DOTFILES_PATH"/sway ~/.config/
-ln -s "$DOTFILES_PATH"/alacritty ~/.config/
-ln -s "$DOTFILES_PATH"/mako ~/.config/
+ln -sf "$DOTFILES_PATH"/sway ~/.config/
+ln -sf "$DOTFILES_PATH"/alacritty ~/.config/
+ln -sf "$DOTFILES_PATH"/mako ~/.config/
 systemctl --user enable mako.service
-ln -s "$DOTFILES_PATH"/gammastep ~/.config/
+ln -sf "$DOTFILES_PATH"/gammastep ~/.config/
 systemctl --user enable gammastep.service
 
 # Fcitx5 and RIME config
@@ -37,16 +37,16 @@ ln -sf "$DOTFILES_PATH"/fcitx5/themes ~/.local/share/fcitx5/themes
 ln -sf "$DOTFILES_PATH"/rime ~/.local/share/fcitx5/rime
 
 # Fontconfig
-ln -s "$DOTFILES_PATH"/fontconfig ~/.config/
+ln -sf "$DOTFILES_PATH"/fontconfig ~/.config/
 
 # Shell and CLI utilities
-ln -s "$DOTFILES_PATH"/fish ~/.config/
-ln -s "$DOTFILES_PATH"/tmux ~/.config/
+ln -sf "$DOTFILES_PATH"/fish ~/.config/
+ln -sf "$DOTFILES_PATH"/tmux ~/.config/
 
 # mpd won't automatically create state folder, so do it manually
 mkdir -p ~/.local/share/mpd
-ln -s "$DOTFILES_PATH"/mpd ~/.config/
+ln -sf "$DOTFILES_PATH"/mpd ~/.config/
 
-ln -s "$DOTFILES_PATH"/mpv ~/.config/
-ln -s "$DOTFILES_PATH"/ncmpcpp ~/.config/
+ln -sf "$DOTFILES_PATH"/mpv ~/.config/
+ln -sf "$DOTFILES_PATH"/ncmpcpp ~/.config/
 

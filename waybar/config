@@ -2,7 +2,30 @@
   "layer": "top",
   "position": "bottom",
   "modules-left": ["sway/workspaces", "sway/mode"],
-  "modules-right": ["mpd", "wireplumber", "backlight", "network", "bluetooth", "cpu", "memory", "battery", "clock", "tray"],
+  "modules-right": ["custom/separator-transparent-to-faint-red", "mpd", "wireplumber", "backlight",
+                    "custom/separator-faint-red-to-blue", "network", "bluetooth",
+                    "custom/separator-blue-to-orange", "cpu", "memory", "battery",
+                    "custom/separator-orange-to-almost-black", "clock", "tray"],
+  "custom/separator-orange-to-almost-black": {
+    "format": " ",
+    "interval": "once",
+    "tooltip": false
+  },
+  "custom/separator-blue-to-orange": {
+    "format": " ",
+    "interval": "once",
+    "tooltip": false
+  },
+  "custom/separator-faint-red-to-blue": {
+    "format": " ",
+    "interval": "once",
+    "tooltip": false
+  },
+  "custom/separator-transparent-to-faint-red": {
+    "format": " ",
+    "interval": "once",
+    "tooltip": false
+  },
   "mpd": {
     "format": "{stateIcon} {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
     "artist-len": 10,
@@ -63,7 +86,9 @@
   },
   "clock": {
     "interval": 1,
-    "format": " {:%Y-%m-%d %a %H:%M:%S}"
+    "format": " {:%Y-%m-%d %a %H:%M:%S}",
+    "on-click": "kill -s SIGUSR2 $(pgrep waybar)"
+
   },
   "tray": {
     "spacing": 5

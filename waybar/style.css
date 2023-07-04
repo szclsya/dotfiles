@@ -1,3 +1,11 @@
+@define-color blue #005a9e;
+@define-color orange #ca5010;
+@define-color almost-white #eceff1;
+@define-color light-grey #cfd8dc;
+@define-color dark-grey #263238;
+@define-color almost-black #252423;
+@define-color faint-red #d13438;
+
 * {
     font-family: "monospace";
     font-size: 11pt;
@@ -13,13 +21,13 @@
 }
 
 #workspaces button {
-    color: #eceff1;
+    color: @almost-white;
     padding: 2pt 5pt
 }
 
 #workspaces button.focused {
-    background: #cfd8dc;
-    color: #263238;
+    background: @light-grey;
+    color: @dark-grey;
 }
 
 /* Disable hover effects */
@@ -31,17 +39,38 @@
 }
 
 #mpd, #wireplumber {
-    background: #252423;
+    background: @faint-red;
 }
 
 #cpu, #memory {
-    background: #986f0b
+    background: @orange
 }
 
 #network, #bluetooth {
-    background: #005a9e;
+    background: @blue;
 }
 
 #clock, #tray {
-    background: #252423;
+    background: @almost-black;
+}
+
+/* Separators */
+#custom-separator-orange-to-almost-black {
+    min-width: 20pt;
+    background: linear-gradient(135deg, @orange 50%, @almost-black 50%);
+}
+
+#custom-separator-blue-to-orange {
+    min-width: 20pt;
+    background: linear-gradient(135deg, @blue 50%, @orange 50%);
+}
+
+#custom-separator-faint-red-to-blue {
+    min-width: 20pt;
+    background: linear-gradient(135deg, @faint-red 50%, @blue 50%);
+}
+
+#custom-separator-transparent-to-faint-red {
+    min-width: 20pt;
+    background: linear-gradient(135deg, transparent 50%, @faint-red 50%);
 }
