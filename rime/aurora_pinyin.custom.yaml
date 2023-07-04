@@ -1,0 +1,3 @@
+patch:
+  translator/dictionary: aurora_pinyin.extended
+  recognizer/patterns/reverse_lookup:

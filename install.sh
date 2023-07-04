@@ -20,7 +20,6 @@ ln -s "$DOTFILES_PATH"/.pam_environment ~/
 # systemd services
 mkdir -p ~/.config/systemd/user/
 ln -s "$DOTFILES_PATH"/systemd/* ~/.config/systemd/user/
-systemctl --user enable fcitx5.service
 
 # Sway and related services and applications
 ln -s "$DOTFILES_PATH"/sway ~/.config/
@@ -29,6 +28,13 @@ ln -s "$DOTFILES_PATH"/mako ~/.config/
 systemctl --user enable mako.service
 ln -s "$DOTFILES_PATH"/gammastep ~/.config/
 systemctl --user enable gammastep.service
+
+# Fcitx5 and RIME config
+mkdir -p ~/.config/fcitx5/conf/
+ln -sf "$DOTFILES_PATH"/fcitx5/profile ~/.config/fcitx5/profile
+ln -sf "$DOTFILES_PATH"/fcitx5/conf/classicui.conf ~/.config/fcitx5/conf/classicui.conf 
+ln -sf "$DOTFILES_PATH"/fcitx5/themes ~/.local/share/fcitx5/themes
+ln -sf "$DOTFILES_PATH"/rime ~/.local/share/fcitx5/rime
 
 # Fontconfig
 ln -s "$DOTFILES_PATH"/fontconfig ~/.config/

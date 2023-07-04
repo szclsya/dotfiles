@@ -1,0 +1,7 @@
+---
+name: aurora_pinyin.extended
+version: "0.1"
+sort: by_weight
+import_tables:
+  - zhwiki
+  - aurora_pinyin

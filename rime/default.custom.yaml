@@ -1,0 +1,13 @@
+patch:
+  schema_list:
+    - schema: "aurora_pinyin"
+  translator/dictionary: "aurora_pinyin.extended"
+
+  ascii_composer/good_old_caps_lock: true
+  ascii_composer/switch_key/Caps_Lock: "commit_text"
+  ascii_composer/switch_key/Shift_L: "commit_code"
+  ascii_composer/switch_key/Shift_R: "commit_code"
+  switcher/option_list_separator: "/"
+  recognizer/patterns/reverse_lookup:
+  menu/page_size: 9
+
