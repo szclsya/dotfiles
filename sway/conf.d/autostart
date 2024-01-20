@@ -6,7 +6,7 @@ exec systemctl --user start sway-session.target
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 # Status bar
-exec waybar
+exec systemctl --user start waybar.service
 
 # Send a warm welcome message
 exec notify-send "Welcome Back!"

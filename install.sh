@@ -6,7 +6,7 @@ AUR_HELPER="paru"
 
 if [[ "$*" == '--install' ]]; then
     echo "Installing Sway and related services and applications..."
-    sudo pacman -S sway xdg-desktop-portal-wlr brightnessctl wl-clipboard grim slurp swayidle swaylock swaybg mako waybar
+    sudo pacman -S sway xdg-desktop-portal-wlr brightnessctl wl-clipboard grim slurp swayidle swaylock swaybg mako waybar alacritty
     echo "Installing Fcitx5 and RIME..."
     sudo pacman -S fcitx5-im fcitx5-rime rime-pinyin-zhwiki
     "$AUR_HELPER" -S rime-aurora-pinyin-git
@@ -30,7 +30,7 @@ ln -sf "$DOTFILES_PATH"/gammastep ~/.config/
 systemctl --user enable gammastep.service
 
 # Fcitx5 and RIME config
-mkdir -p ~/.config/fcitx5/conf/
+mkdir -p ~/.config/fcitx5/conf/ ~/.local/share/fcitx5/{rime, themes}
 ln -sf "$DOTFILES_PATH"/fcitx5/profile ~/.config/fcitx5/profile
 ln -sf "$DOTFILES_PATH"/fcitx5/conf/classicui.conf ~/.config/fcitx5/conf/classicui.conf 
 ln -sf "$DOTFILES_PATH"/fcitx5/themes ~/.local/share/fcitx5/themes
