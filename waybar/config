@@ -82,7 +82,7 @@
 	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
   },
   "battery": {
-    "format": "{icon} {capacity}%",
+    "format": "{icon} {capacity}% ({time})",
     "format-icons": ["", "", "", "", ""]
   },
   "clock": {
