@@ -3,7 +3,7 @@
   "position": "bottom",
   "modules-left": ["sway/workspaces", "sway/mode"],
   "fixed-center": false,
-  "modules-right": ["custom/separator-transparent-to-faint-red", "mpd", "wireplumber",
+  "modules-right": ["custom/separator-transparent-to-faint-red", "mpris", "wireplumber",
                     "custom/separator-faint-red-to-blue", "network", "bluetooth",
                     "custom/separator-blue-to-orange", "cpu", "memory", "backlight", "battery",
                     "custom/separator-orange-to-almost-black", "clock", "tray"],
@@ -27,21 +27,14 @@
     "interval": "once",
     "tooltip": false
   },
-  "mpd": {
-    "format": "{stateIcon} {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
-    "artist-len": 10,
-    "album-len": 10,
-    "title-len": 20,
-    "format-stopped": " Stopped",
-    "interval": 1,
-    "state-icons": {
-        "paused": "",
-        "playing": ""
-    },
-    "tooltip-format": "MPD (connected)",
-    "tooltip-format-disconnected": "MPD (disconnected)",
-    "on-click": "mpc toggle",
-    "max-length": 40
+  "mpris": {
+    "format": "{status_icon} {dynamic}",
+	"status-icons": {
+		"default": "",
+		"paused": ""
+	},
+    "ignored-players": ["firefox"],
+    "max-length": 40,
   },
   "wireplumber": {
     "format": " {volume}%",

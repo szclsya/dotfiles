@@ -33,14 +33,14 @@
 /* Disable hover effects */
 #workspaces button:hover {}
 
-#mpd, #wireplumber, #network, #bluetooth, #cpu, #memory, #backlight, #battery, #clock, #tray {
+#mpris, #wireplumber, #network, #bluetooth, #cpu, #memory, #backlight, #battery, #clock, #tray {
     color: @almost-white;
     color: @almost-white;
     padding-left: 5pt;
     padding-right: 5pt;
 }
 
-#mpd, #wireplumber {
+#mpris, #wireplumber {
     background: @faint-red;
 }
 
