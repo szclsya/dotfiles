@@ -15,7 +15,7 @@ And enable them just like any other systemd user services.
 # wl-clipboard: provide CLI clipboard tools
 # grim && slurp: select a region and take a scrrenshot
 # fuzzel: application launcher
-# alacritty: terminal emulator
+# wezterm: terminal emulator
 # swayidle && swaylock: idle management and screen lock
 # swaybg: wallpaper management
 # waybar: status bar

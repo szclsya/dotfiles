@@ -6,7 +6,7 @@ AUR_HELPER="paru"
 
 if [[ "$*" == '--install' ]]; then
     echo "Installing Sway and related services and applications..."
-    sudo pacman -S sway xdg-desktop-portal-wlr brightnessctl wl-clipboard grim slurp swayidle swaylock swaybg mako waybar alacritty
+    sudo pacman -S sway xdg-desktop-portal-wlr brightnessctl wl-clipboard grim slurp swayidle swaylock swaybg mako waybar wezterm
     echo "Installing Fcitx5 and RIME..."
     sudo pacman -S fcitx5-im fcitx5-rime rime-pinyin-zhwiki
     "$AUR_HELPER" -S rime-aurora-pinyin-git
@@ -23,7 +23,7 @@ ln -sf "$DOTFILES_PATH"/systemd/* ~/.config/systemd/user/
 
 # Sway and related services and applications
 ln -sf "$DOTFILES_PATH"/sway ~/.config/
-ln -sf "$DOTFILES_PATH"/alacritty ~/.config/
+ln -sf "$DOTFILES_PATH"/wezterm ~/.config/
 ln -sf "$DOTFILES_PATH"/mako ~/.config/
 systemctl --user enable mako.service
 ln -sf "$DOTFILES_PATH"/gammastep ~/.config/
