@@ -1,0 +1,73 @@
+# Automatically create missing mailboxes, both locally and on the server
+Create Both
+# Sync the movement of messages between folders and deletions. Use `Both` after making sure the sync works
+#Expunge None
+Expunge Both
+# Save the synchronization state files in the relevant directory
+SyncState *
+
+# Gmail
+IMAPAccount gmail
+Host imap.gmail.com
+User szclsya@gmail.com
+# Password is stored in gnome-keyring. See msmtp config for how to enroll
+PassCmd "secret-tool lookup host smtp.gmail.com service smtp user szclsya@gmail.com"
+SSLType IMAPS
+
+IMAPStore gmail-remote
+Account gmail
+
+MaildirStore gmail-local
+SubFolders Verbatim
+# The trailing "/" is important
+Path ~/.mail/gmail/
+Inbox ~/.mail/gmail/Inbox
+
+Channel gmail
+Near :gmail-local:
+Far :gmail-remote:
+Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Drafts" "[Gmail]/Trash" "[Gmail]/Spam"
+#Patterns * ![Gmail]*
+
+
+# LE/CS
+IMAPAccount lecs
+Host mx.lecs.dev
+User i@szclsya.me
+PassCmd "secret-tool lookup host mx.lecs.dev service smtp user i@szclsya.me"
+SSLType IMAPS
+
+IMAPStore lecs-remote
+Account lecs
+
+MaildirStore lecs-local
+SubFolders Verbatim
+Path ~/.mail/lecs/
+Inbox ~/.mail/lecs/Inbox
+
+Channel lecs
+Near :lecs-local:
+Far :lecs-remote:
+Patterns * !Amazon !Postmaster
+#Sync Push
+
+
+# CSC
+IMAPAccount csc
+Host mail.csclub.uwaterloo.ca
+User y266shen
+PassCmd "secret-tool lookup host mail.csclub.uwaterloo.ca service smtp user y266shen"
+SSLType IMAPS
+
+IMAPStore csc-remote
+Account csc
+
+MaildirStore csc-local
+SubFolders Verbatim
+Path ~/.mail/csc/
+Inbox ~/.mail/csc/Inbox
+
+Channel csc
+Near :csc-local:
+Far :csc-remote:
+Patterns *

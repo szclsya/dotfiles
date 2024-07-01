@@ -1,0 +1,37 @@
+# Set default values for all following accounts.
+defaults
+auth           on
+tls            on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+logfile        ~/.local/share/msmtp.log
+
+# LE/CS Mailing System
+account        lecs
+host           mx.lecs.dev
+port           465
+from           i@szclsya.me
+user           i@szclsya.me
+tls_starttls   off
+# Using gnome-keyring. Add key via:
+# secret-tool store --label=msmtp host mx.lecs.dev service smtp user i@szclsya.me
+
+# Gmail
+account        gmail
+host           smtp.gmail.com
+port           587
+from           szclsya@gmail.com
+user           szclsya@gmail.com
+# Using gnome-keyring. Add key via:
+# secret-tool store --label=msmtp host smtp.gmail.com service smtp user szclsya@gmail.com
+
+# CSC
+account        csc
+host           mail.csclub.uwaterloo.ca
+port           587
+from           y266shen@csclub.uwaterloo.ca
+user           y266shen
+# Using gnome-keyring. Add key via:
+# secret-tool store --label=msmtp host mail.csclub.uwaterloo.ca service smtp user y266shen
+
+# Set a default account
+account default : lecs

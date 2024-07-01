@@ -1,0 +1,17 @@
+[database]
+path=/home/sya/.mail
+
+[user]
+name=Leo Shen
+primary_email=i@szclsya.me
+other_email=szclsya@gmail.com;y266shen@csclub.uwaterloo.ca;
+
+[new]
+tags=
+ignore=.uidvalidity;.mbsyncstate
+
+[search]
+exclude_tags=deleted;spam;
+
+[maildir]
+synchronize_flags=true

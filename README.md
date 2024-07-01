@@ -31,7 +31,7 @@ And enable them just like any other systemd user services.
 ## Sway
 ```bash
 # xdg-desktop-portal-wlr: for sharing desktop via PipeWire
-# fcitx5-im: input method support (currently doesn't work well with alacritty)
+# fcitx5-im: input method support (awaiting new sway release to support popup window in wezterm)
 # wl-clipboard: provide CLI clipboard tools
 # grim && slurp: select a region and take a scrrenshot
 # fuzzel: application launcher
@@ -40,7 +40,8 @@ And enable them just like any other systemd user services.
 # swaybg: wallpaper management
 # waybar: status bar
 # mako: notification daemon
-sudo pacman -S sway xdg-desktop-portal-wlr fcitx5-im brightnessctl wl-clipboard grim slurp swayidle swaylock swaybg mako
+# gnome-keyring: stores secrets
+sudo pacman -S sway xdg-desktop-portal-wlr fcitx5-im brightnessctl wl-clipboard grim slurp swayidle swaylock swaybg mako gnome-keyring
 
 # Create and edit local settings (used by Sway)
 cp -v ~/.dotfiles/bin/local_settings.example ~/.dotfiles/bin/local_settings
@@ -60,11 +61,20 @@ sudo pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-sarasa-gothic
 ln -s $DOTFILES_PATH/fontconfig ~/.config/
 ```
 
+## Email
+`isync` for IMAP syncing, `msmtp` for SMTP sending, and `notmuch` for indexing. Viewing email in Emacs.
+
+```bash
+sudo pacman -S isync notmuch msmtp
+ln -sf "$DOTFILES_PATH"/{isync, msmtp, notmuch} ~/.config/
+mkdir -p ~/.mail/{lecs,csc,gmail}
+systemctl --user enable --now notmuch.timer
+```
+
 ## Everything else
 ```bash
-ln -s $DOTFILES_PATH/.pam_environment ~/
 ln -s $DOTFILES_PATH/i3status-rust ~/.config/
-ln -s $DOTFILES_PATH/alacritty ~/.config/
+ln -s $DOTFILES_PATH/wezterm ~/.config/
 ln -s $DOTFILES_PATH/mako ~/.config/
 ln -s $DOTFILES_PATH/fish ~/.config/
 ln -s $DOTFILES_PATH/tmux ~/.config/

@@ -10,12 +10,14 @@ if [[ "$*" == '--install' ]]; then
     echo "Installing Fcitx5 and RIME..."
     sudo pacman -S fcitx5-im fcitx5-rime rime-pinyin-zhwiki
     "$AUR_HELPER" -S rime-aurora-pinyin-git
+    echo "Install Email tools..."
+    sudo pacman -S isync msmtp notmuch
     echo "Installing fonts..."
     sudo pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-sarasa-gothic
 fi
 
 # User variables
-ln -sf "$DOTFILES_PATH"/{.env, .env.local, .profile} ~/
+ln -sf "$DOTFILES_PATH"/{.env,.env.local,.profile} ~/
 
 # systemd services
 mkdir -p ~/.config/systemd/user/
@@ -30,7 +32,7 @@ ln -sf "$DOTFILES_PATH"/gammastep ~/.config/
 systemctl --user enable gammastep.service
 
 # Fcitx5 and RIME config
-mkdir -p ~/.config/fcitx5/conf/ ~/.local/share/fcitx5/{rime, themes}
+mkdir -p ~/.config/fcitx5/conf/ ~/.local/share/fcitx5/{rime,themes}
 ln -sf "$DOTFILES_PATH"/fcitx5/profile ~/.config/fcitx5/profile
 ln -sf "$DOTFILES_PATH"/fcitx5/conf/classicui.conf ~/.config/fcitx5/conf/classicui.conf 
 ln -sf "$DOTFILES_PATH"/fcitx5/themes ~/.local/share/fcitx5/themes
@@ -42,6 +44,11 @@ ln -sf "$DOTFILES_PATH"/fontconfig ~/.config/
 # Shell and CLI utilities
 ln -sf "$DOTFILES_PATH"/fish ~/.config/
 ln -sf "$DOTFILES_PATH"/tmux ~/.config/
+
+# Email
+ln -sf "$DOTFILES_PATH"/{isync,msmtp,notmuch} ~/.config/
+mkdir -p ~/.mail/{lecs,csc,gmail}
+systemctl --user enable --now notmuch.timer
 
 # mpd won't automatically create state folder, so do it manually
 mkdir -p ~/.local/share/mpd
