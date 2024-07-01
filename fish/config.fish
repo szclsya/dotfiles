@@ -2,16 +2,17 @@
 set fish_color_command green
 
 # Set locale
-export LANG=en_US.UTF-8
-# Set editor
-export EDITOR=vim
-# Set hledger default file
-export LEDGER_FILE=$HOME/Documents/ledger/current.journal
+if not set -q LANG
+    echo "Warning: LANG not set, default to 'en_US.UTF-8'"
+    export LANG=en_US.UTF-8
+end
+
+# Load ~/.env if some always-present variables are not set
+if not set -q ENV_SET
+    function setenv; set -gx $argv; end
+    source ~/.env
+end
 
 # Alias
-alias l='ls -al'
 alias gst='git status'
 alias gpg-relearn-key='gpg-connect-agent "scd serialno" "learn --force" /bye'
-alias sk='bash ~/.dotfiles/bin/start_kde'
-alias skx='startx ~/.dotfiles/bin/start_kde_x11'
-alias ss='bash ~/.dotfiles/bin/start_sway'

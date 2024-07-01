@@ -1,5 +1,25 @@
 My practical Linux desktop config.
 
+## Variables
+Variables are stored in `.env` and `.env.local`. `.env.local` is intended for machine-specific variables and are not tracked by Git.
+
+The syntax of `.env` is special. Read it to know more.
+
+```bash
+ln -s $DOTFILES_PATH/{.env, .env.local, .profile} ~/
+```
+
+## Login
+We use `greetd` and `tuigreet` with a custom script. Install `greetd` and `greetd-tuigreet` on Arch Linux, and edit:
+
+```conf
+# in /etc/greetd/config.toml
+[default_session]
+command = "tuigreet --remember --cmd start_sway"
+```
+
+Note that this depends on a properly loaded `.env` file.
+
 ## systemd
 To install systemd user services:
 ```bash

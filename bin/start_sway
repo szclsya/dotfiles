@@ -1,10 +1,10 @@
 #!/bin/bash
 
 source ~/.dotfiles/bin/wayland_prelude
-source ~/.dotfiles/bin/local_settings
 
 # Qt5
 export QT_QPA_PLATFORMTHEME=qt5ct
+export XDG_CURRENT_DESKTOP=sway
 
 # Run sway
 if [[ "$NVIDIA_GBM" == "true" ]]; then

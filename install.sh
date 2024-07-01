@@ -15,7 +15,7 @@ if [[ "$*" == '--install' ]]; then
 fi
 
 # User variables
-ln -sf "$DOTFILES_PATH"/.pam_environment ~/
+ln -sf "$DOTFILES_PATH"/{.env, .env.local, .profile} ~/
 
 # systemd services
 mkdir -p ~/.config/systemd/user/
@@ -50,3 +50,5 @@ ln -sf "$DOTFILES_PATH"/mpd ~/.config/
 ln -sf "$DOTFILES_PATH"/mpv ~/.config/
 ln -sf "$DOTFILES_PATH"/ncmpcpp ~/.config/
 
+# GnuPG freaks out if GNUPGHOME is not a folder, so do it manually
+mkdir -p ~/.local/share/gnupg

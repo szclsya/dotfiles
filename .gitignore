@@ -2,7 +2,7 @@
 fish_variables
 ncmpcpp/*
 # Device-specific files
-bin/local_settings
+.env.local
 mpd/output.conf
 sway/conf.d/input
 sway/conf.d/output
