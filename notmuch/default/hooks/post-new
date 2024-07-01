@@ -1,0 +1,36 @@
+#!/bin/bash
+set -eu
+
+NOTMUCH_UNREAD_COUNT_FILE="/tmp/notmuch-unread-count"
+
+echo "[POST-NEW] Tagging lecs mails"
+notmuch tag +inbox "folder:lecs/Inbox"
+notmuch tag +archive "folder:lecs/Archive"
+notmuch tag +sent "folder:lecs/Sent"
+notmuch tag +drafts "folder:lecs/Drafts"
+notmuch tag +trash "folder:lecs/Trash"
+
+echo "[POST-NEW] Tagging gmail mails"
+notmuch tag +inbox "folder:gmail/Inbox"
+notmuch tag +drafts "folder:gmail/[Gmail]/Drafts"
+notmuch tag +sent "folder:gmail/[Gmail]/Sent Mail"
+notmuch tag +trash "folder:gmail/[Gmail]/Trash"
+
+echo "[POST-NEW] Tagging csc mails"
+notmuch tag +csc "folder:csc/Inbox"
+notmuch tag +sent "folder:csc/Sent"
+notmuch tag +drafts "folder:csc/Drafts"
+
+echo "[POST-NEW] Notify if there're new unread messages"
+current_count=$(notmuch count --output=files --exclude=false tag:unread AND tag:inbox AND NOT tag:trash)
+if ! [[ -e $NOTMUCH_UNREAD_COUNT_FILE ]]; then
+    echo "[POST-NEW] Creating $NOTMUCH_UNREAD_COUNT_FILE"
+    notify-send "You have $current_count unread mails"
+else
+    previous_count=$(< $NOTMUCH_UNREAD_COUNT_FILE)
+    echo "[POST-NEW] Previous unread: $previous_count, current unread: $current_count"
+    if [[ current_count -gt previous_count ]]; then
+        notify-send --urgency=critical "You have $current_count unread mails"
+    fi
+fi
+echo "$current_count" > $NOTMUCH_UNREAD_COUNT_FILE
