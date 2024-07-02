@@ -5,7 +5,7 @@
   "fixed-center": false,
   "modules-right": ["custom/separator-transparent-to-faint-red", "mpris", "wireplumber",
                     "custom/separator-faint-red-to-blue", "network", "bluetooth",
-                    "custom/separator-blue-to-orange", "cpu", "memory", "backlight", "battery",
+                    "custom/separator-blue-to-orange", "idle_inhibitor", "custom/notmuch", "backlight", "battery",
                     "custom/separator-orange-to-almost-black", "clock", "tray"],
   "custom/separator-orange-to-almost-black": {
     "format": " ",
@@ -28,61 +28,63 @@
     "tooltip": false
   },
   "mpris": {
-    "format": "{status_icon} {dynamic}",
+    "format": "<span font-size='10pt' rise='1500'>{status_icon}</span> {dynamic}",
 	"status-icons": {
-		"default": "",
-		"paused": ""
+		"default": "\uf500",
+		"paused": "\udb80\udfe8"
 	},
     "ignored-players": ["firefox"],
     "max-length": 40,
   },
   "wireplumber": {
-    "format": " {volume}%",
-    "format-muted": " MUTE",
+    "format": "<span font-size='9pt' rise='2000'>\udb81\udd7e</span> {volume}%",
+    "format-muted": "<span font-size='10pt' rise='1000'>\udb81\udd81</span> MUTE",
     "on-click": "helvum",
     "max-volume": 150,
     "scroll-step": 0.2
   },
   "backlight": {
     "format": "{icon} {percent}%",
-    "format-icons": ["", ""]
+    "format-icons": ["\udb80\udce0", "\udb80\udcde"]
   },
   "network": {
     "format": "{ifname}",
-    "format-wifi": " {essid} ({signalStrength}%)",
-    "format-ethernet": " {ipaddr}/{cidr}",
-    "format-disconnected": "",
-    "tooltip-format": " {ifname} via {gwaddr}",
-    "tooltip-format-wifi": " {essid} ({signalStrength}%)",
-    "tooltip-format-ethernet": " {ifname}",
+    "format-wifi": "<span font-size='10pt' rise='1000'>\udb81\udda9</span> {essid} ({signalStrength}%)",
+    "format-ethernet": "<span font-size='10pt' rise='1000'>\udb83\udc9d</span> {ipaddr}/{cidr}",
+    "format-disconnected": "<span font-size='10pt' rise='1000'>\udb82\udcfc</span>",
+    "tooltip-format-wifi": "\udb81\udda9 {essid} ({signalStrength}%)",
+    "tooltip-format-ethernet": "\udb83\udc9d  {ifname} via {gwaddr}",
     "tooltip-format-disconnected": "Disconnected",
     "max-length": 50
   },
-  "cpu": {
-    "interval": 1,
-    "format": " {usage0}%"
-  },
-  "memory": {
-    "interval": 5,
-    "format": " {}%"
-  },
   "bluetooth": {
-	"format": " {status}",
-	"format-disabled": "",
-	"format-connected": " {num_connections} connected",
+	"format": "<span font-size='10pt' rise='1000'>\uf294</span> {status}",
+	"format-disabled": "<span font-size='10pt' rise='1000'>\udb80\udcb2</span>",
+	"format-connected": "<span font-size='10pt' rise='1000'>\udb80\udcb2</span> {num_connections} connected",
 	"tooltip-format": "{controller_alias}\t{controller_address}",
 	"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
 	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
   },
+  "idle_inhibitor": {
+    "format": "<span font-size='10pt' rise='1000'>{icon}</span>",
+    "format-icons": {
+      "activated": "\udb81\udeca",
+      "deactivated": "\udb83\udfab"
+    }
+  },
+  "custom/notmuch": {
+    "format": "<span font-size='11pt' rise='1000'>\ueb1c</span> {}",
+    "exec": "notmuch count --exclude=false tag:unread AND tag:inbox AND NOT tag:trash",
+    "interval": 0
+  },
   "battery": {
-    "format": "{icon} {capacity}% ({time})",
-    "format-icons": ["", "", "", "", ""]
+    "format": "<span font-size='10pt' rise='1000'>{icon}</span> {capacity}% ({time})",
+    "format-icons": ["\udb80\udc7a", "\udb80\udc7c", "\udb80\udc7f", "\udb80\udc81", "\udb80\udc79"]
   },
   "clock": {
     "interval": 1,
-    "format": " {:%Y-%m-%d %a %H:%M:%S}",
+    "format": "<span font-size='11pt' rise='1000'>\ue641</span> {:%Y-%m-%d %a %H:%M:%S}",
     "on-click": "kill -s SIGUSR2 $(pgrep waybar)"
-
   },
   "tray": {
     "spacing": 5

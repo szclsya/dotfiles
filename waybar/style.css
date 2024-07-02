@@ -7,7 +7,7 @@
 @define-color faint-red #d13438;
 
 * {
-    font-family: "monospace";
+    font-family: "Symbols Nerd Font Mono", "monospace";
     font-size: 11pt;
 
     min-height: 0;
@@ -33,7 +33,8 @@
 /* Disable hover effects */
 #workspaces button:hover {}
 
-#mpris, #wireplumber, #network, #bluetooth, #cpu, #memory, #backlight, #battery, #clock, #tray {
+#custom-notmuch, #idle_inhibitor, #mpris, #wireplumber, #network, #bluetooth,
+#cpu, #memory, #backlight, #battery, #clock, #tray {
     color: @almost-white;
     color: @almost-white;
     padding-left: 5pt;
@@ -48,7 +49,7 @@
     background: @blue;
 }
 
-#cpu, #memory, #backlight, #battery {
+#custom-notmuch, #cpu, #memory, #backlight, #battery, #idle_inhibitor {
     background: @orange
 }
 
