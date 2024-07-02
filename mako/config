@@ -22,8 +22,8 @@ background-color=#005a9eFF
 border-color=#005a9eFF
 
 [urgency=high]
-background-color=#b7472aFF
-border-color=#b7472aFF
+background-color=#c50f1fFF
+border-color=#c50f1fFF
 
 [app-name=notify-send]
 format=%s\n%b
