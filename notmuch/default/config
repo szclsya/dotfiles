@@ -1,5 +1,5 @@
 [database]
-path=~/.mail
+mail_root=/home/sya/.mail
 
 [user]
 name=Leo Shen

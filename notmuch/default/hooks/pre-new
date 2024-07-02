@@ -2,18 +2,21 @@
 set -eu
 
 MAILDIR="$HOME/.mail"
+DRYRUN=false
 
 # safe_move: move $1 to $2, remove its uid part
 function safe_move {
     s=${1##*/}; s=${s%%,*}
-    #echo "Moving: $1 -> $2/$s";
-    mv -f $1 $2/$s;
+    if [[ $DRYRUN = "true" ]]; then
+        echo "Moving: $1 -> $2/$s";
+    else
+        mv -f "$1" "$2/$s";
+    fi
 }
 
 # tag_move: move mails in folder $1 with custom search string $2 to folder $3
 function tag_move {
     filter_str="path:$1/** AND $2 AND NOT folder:$3"
-    #echo "$filter_str"
     count="$(notmuch count --output=files --exclude=false "$filter_str")"
     echo "Moving $count messages in $1 with $2 to $3"
     for i in $(notmuch search --exclude=false --output=files "$filter_str"); do
@@ -27,13 +30,17 @@ function tag_delete {
     count="$(notmuch count --output=files --exclude=false "$filter_str")"
     echo "Deleting $count messages in $1 with $2"
     for i in $(notmuch search --exclude=false --output=files "$filter_str"); do
-        rm "$i"
-        #echo "Removing $i"
+        if [[ $DRYRUN = "true" ]]; then
+            echo "Removing: $i";
+        else
+            rm "$i"
+        fi
     done
 }
 
 # === Magic Starts Here ===
 echo "[PRE-NEW] pre-new hook start. Maildir is $MAILDIR"
+echo "[PRE-NEW] running initial notmuch scan"
 notmuch new --no-hooks
 
 # -delete
@@ -51,10 +58,14 @@ tag_move "lecs" "$TAG" "lecs/Spam"
 tag_move "csc" "$TAG" "csc/Spam"
 
 # -archive
-TAG="NOT tag:inbox"
-echo "[PRE-NEW] processing $TAG"
-tag_delete "gmail/Inbox" "$TAG"
-tag_move "lecs/Inbox" "$TAG" "lecs/Archive"
+# only do this if there's actually something in the inbox, so that we don't delete everything on init setup
+inbox_count="$(notmuch count --output=files --exclude=false tag:inbox)"
+if [[ $inbox_count -ne 0 ]]; then
+    TAG="NOT tag:inbox AND NOT tag:sent AND NOT tag:drafts AND NOT tag:trash"
+    echo "[PRE-NEW] processing $TAG"
+    tag_delete "gmail/Inbox" "$TAG"
+    tag_move "lecs/Inbox" "$TAG" "lecs/Archive"
+fi
 
 echo "[PRE-NEW] running mbsync"
 mbsync -a -c ~/.config/isync/mbsyncrc
