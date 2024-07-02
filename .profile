@@ -8,3 +8,6 @@ function setenv() { export "$1=$2"; }
 
 # And actually reading the variables
 . $HOME/.env
+if [[ -e "$HOME/.env.local" ]]; then
+    . $HOME/.env.local
+fi
