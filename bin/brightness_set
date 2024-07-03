@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+for display in $(brightnessctl -m -l | grep -F backlight); do
+    readarray -td, d <<< "$display"
+    brightnessctl set -d "${d[0]}" "$1"
+done

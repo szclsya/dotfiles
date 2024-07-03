@@ -5,10 +5,14 @@ local config = wezterm.config_builder()
 config.font = wezterm.font 'monospace'
 config.font_size = 11
 config.font_rules = {
-  {
-    intensity = "Bold",
-    font = wezterm.font({ family = "monospace", weight = "ExtraBold" }),
-  },
+    {
+        intensity = "Bold",
+        font = wezterm.font({ family = "monospace", weight = "ExtraBold" }),
+    },
+    {
+        intensity = "Half",
+        font = wezterm.font({ family = "monospace", weight = "Light" }),
+    }
 }
 
 config.window_background_opacity = 0.75
@@ -20,6 +24,7 @@ config.colors = {
     selection_fg = 'black',
     selection_bg = '#e7e7e7',
     cursor_fg = 'black',
+    cursor_border = "#eaeaea",
     cursor_bg = 'white',
 }
 
@@ -31,7 +36,7 @@ config.window_padding = {
 }
 
 config.enable_tab_bar = false
-config.enable_scroll_bar = true
+config.enable_scroll_bar = false
 config.window_close_confirmation = 'NeverPrompt'
 --- Config Ends
 

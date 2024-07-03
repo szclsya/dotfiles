@@ -39,13 +39,21 @@
   "wireplumber": {
     "format": "<span font-size='9pt' rise='2000'>\udb81\udd7e</span> {volume}%",
     "format-muted": "<span font-size='10pt' rise='1000'>\udb81\udd81</span> MUTE",
-    "on-click": "helvum",
+    "on-scroll-up": "pactl set-sink-volume 0 +5%",
+    "on-scroll-down": "pactl set-sink-volume 0 -5%",
     "max-volume": 150,
     "scroll-step": 0.2
   },
   "backlight": {
-    "format": "{icon} {percent}%",
-    "format-icons": ["\udb80\udce0", "\udb80\udcde"]
+    "format": "<span font-size='10pt' rise='2000'>{icon}</span> {percent}%",
+    "format-icons": ["\udb81\udee9", "\udb86\ude50", "\udb86\ude52", "\udb86\ude54", "\udb81\udee8"],
+    "interval": "once",
+    "signal": 8,
+    "tooltip-format": "Left click -> increase, right click -> decrease",
+    "on-click": "pkill -RTMIN+8 waybar",
+    "on-scroll-up": "~/.dotfiles/bin/brightness_set 5%+ && pkill -RTMIN+8 waybar",
+    "on-scroll-down": "~/.dotfiles/bin/brightness_set 5- && pkill -RTMIN+8 waybar",
+    "scroll-step": 0.2,
   },
   "network": {
     "format": "{ifname}",
@@ -83,8 +91,8 @@
   },
   "clock": {
     "interval": 1,
-    "format": "<span font-size='11pt' rise='1000'>\ue641</span> {:%Y-%m-%d %a %H:%M:%S}",
-    "on-click": "kill -s SIGUSR2 $(pgrep waybar)"
+    "format": "<span font-size='10pt' rise='1000'>\ue641</span> {:%Y-%m-%d %a %H:%M:%S}",
+    "on-click": "pkill -SIGUSR2 waybar"
   },
   "tray": {
     "spacing": 5
