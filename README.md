@@ -10,15 +10,9 @@ ln -s $DOTFILES_PATH/{.env, .env.local, .profile} ~/
 ```
 
 ## Login
-We use `greetd` and `tuigreet` with a custom script. Install `greetd` and `greetd-tuigreet` on Arch Linux, and edit:
+We use `greetd` and `tuigreet` with a custom script. Install `greetd` and `greetd-tuigreet` on Arch Linux. Config in `greetd`.
 
-```conf
-# in /etc/greetd/config.toml
-[default_session]
-command = "tuigreet --remember --cmd start_sway"
-```
-
-Note that this depends on a properly loaded `.env` file.
+Note that this config file depends on a properly loaded `.env` file.
 
 ## systemd
 To install systemd user services:

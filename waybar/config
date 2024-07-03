@@ -28,7 +28,7 @@
     "tooltip": false
   },
   "mpris": {
-    "format": "<span font-size='10pt' rise='1500'>{status_icon}</span> {dynamic}",
+    "format": "<span font-size='10pt' rise='1200'>{status_icon}</span> {dynamic}",
 	"status-icons": {
 		"default": "\uf500",
 		"paused": "\udb80\udfe8"
@@ -37,23 +37,12 @@
     "max-length": 40,
   },
   "wireplumber": {
-    "format": "<span font-size='9pt' rise='2000'>\udb81\udd7e</span> {volume}%",
+    "format": "<span font-size='10pt' rise='1200'>\udb81\udd7e</span> {volume}%",
     "format-muted": "<span font-size='10pt' rise='1000'>\udb81\udd81</span> MUTE",
     "on-scroll-up": "pactl set-sink-volume 0 +5%",
     "on-scroll-down": "pactl set-sink-volume 0 -5%",
     "max-volume": 150,
     "scroll-step": 0.2
-  },
-  "backlight": {
-    "format": "<span font-size='10pt' rise='2000'>{icon}</span> {percent}%",
-    "format-icons": ["\udb81\udee9", "\udb86\ude50", "\udb86\ude52", "\udb86\ude54", "\udb81\udee8"],
-    "interval": "once",
-    "signal": 8,
-    "tooltip-format": "Left click -> increase, right click -> decrease",
-    "on-click": "pkill -RTMIN+8 waybar",
-    "on-scroll-up": "~/.dotfiles/bin/brightness_set 5%+ && pkill -RTMIN+8 waybar",
-    "on-scroll-down": "~/.dotfiles/bin/brightness_set 5- && pkill -RTMIN+8 waybar",
-    "scroll-step": 0.2,
   },
   "network": {
     "format": "{ifname}",
@@ -84,6 +73,17 @@
     "format": "<span font-size='11pt' rise='1000'>\ueb1c</span> {}",
     "exec": "notmuch count --exclude=false tag:unread AND tag:inbox AND NOT tag:trash",
     "interval": 0
+  },
+  "backlight": {
+    "format": "<span font-size='10pt' rise='2000'>{icon}</span> {percent}%",
+    "format-icons": ["\udb81\udee9", "\udb86\ude50", "\udb86\ude52", "\udb86\ude54", "\udb81\udee8"],
+    "interval": "once",
+    "signal": 8,
+    "tooltip-format": "Left click -> increase, right click -> decrease",
+    "on-click": "pkill -RTMIN+8 waybar",
+    "on-scroll-up": "~/.dotfiles/bin/brightness_set 5%+ && pkill -RTMIN+8 waybar",
+    "on-scroll-down": "~/.dotfiles/bin/brightness_set 5- && pkill -RTMIN+8 waybar",
+    "scroll-step": 0.2,
   },
   "battery": {
     "format": "<span font-size='10pt' rise='1000'>{icon}</span> {capacity}% ({time})",
