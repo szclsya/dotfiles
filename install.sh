@@ -9,33 +9,36 @@ ERROR_PREFIX="\e[1;91m[ERROR]\e[0m"
 # Get distro
 . /etc/os-release
 
-read -pr $'\e[1;97mAllow sudo? (y/n)\e[0m ' SYSTEM
+read -rp $'\e[1;97mAllow sudo? (y/n)\e[0m ' SYSTEM
+ARCH_INSTALL="n"
 
-if [[ $NAME == "Arch Linux" ]]; then
-    read -pr $'\e[1;97mArch Linux detected. Use pacman and $AUR_HELPER to install packages?\e[0m ' ARCH_INSTALL
+if [[ $SYSTEM == "y" ]] && [[ $NAME == "Arch Linux" ]]; then
+    read -rp $'\e[1;97mArch Linux detected. Use pacman and $AUR_HELPER to install packages?\e[0m ' ARCH_INSTALL
 fi
 
-if [[ $SYSTEM == "y" ]] && [[ $ARCH_INSTALL == "y" ]]; then
-    if ! [[ -x $AUR_HELPER ]]; then
-        echo "$ERROR_PREFIX AUR helper $AUR_HELPER not found! Exiting"
+if [[ $ARCH_INSTALL == "y" ]]; then
+    if ! [[ -x $(command -v $AUR_HELPER) ]]; then
+        echo -e "$ERROR_PREFIX AUR helper $AUR_HELPER not found! Exiting"
         exit 1
     fi
-    echo "$INFO_PREFIX Installing login manager (greetd)"
+    echo -e "$INFO_PREFIX Installing login manager (greetd)"
     sudo pacman -S seatd greetd greetd-tuigreet
-    echo "$INFO_PREFIX Installing Sway and related services and applications"
-    sudo pacman -S sway xdg-desktop-pvortal-wlr brightnessctl wl-clipboard grim slurp swayidle swaylock swaybg mako waybar wezterm
-    echo "$INFO_PREFIX Installing Fcitx5 and RIME"
-    sudo pacman -S fcitx5-im fcitx5-rime rime-pvinyin-zhwiki
-    "$AUR_HELPER" -S rime-aurora-pvinyin-git
-    echo "$INFO_PREFIX Install Email tools"
+    echo -e "$INFO_PREFIX Installing Sway and related services and applications"
+    sudo pacman -S sway xdg-desktop-portal-wlr brightnessctl wl-clipboard grim slurp swayidle swaybg mako waybar wezterm
+    "$AUR_HELPER" swaylock-effects
+    echo -e "$INFO_PREFIX Installing Fcitx5 and RIME"
+    sudo pacman -S fcitx5-im fcitx5-rime rime-pinyin-zhwiki
+    "$AUR_HELPER" -S rime-aurora-pinyin-git
+    echo -e "$INFO_PREFIX Install Email tools"
     sudo pacman -S isync msmtp notmuch
-    echo "$INFO_PREFIX Installing fonts"
+    echo -e "$INFO_PREFIX Installing fonts"
     sudo pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-sarasa-gothic
 fi
 
 if [[ $SYSTEM == "y" ]]; then
-    echo "$INFO_PREFIX Installing system-wide configs"
-    sudo cp -v "$DOTFILES_PATH"/systemd/system/* /etc/systemd/system/
+    echo -e "$INFO_PREFIX Installing system-wide configs"
+    # greetd
+    sudo cp -rv "$DOTFILES_PATH"/systemd/system/greetd.service.d /etc/systemd/system/
     sudo cp -v "$DOTFILES_PATH"/greetd/* /etc/greetd/
     sudo systemctl enable seatd.service greetd.service
 fi
@@ -63,7 +66,7 @@ mkdir -pv ~/.config/fcitx5/conf/ ~/.local/share/fcitx5/{rime,themes}
 ln -sfv "$DOTFILES_PATH"/fcitx5/profile ~/.config/fcitx5/profile
 ln -sfv "$DOTFILES_PATH"/fcitx5/conf/classicui.conf ~/.config/fcitx5/conf/classicui.conf 
 ln -sfv "$DOTFILES_PATH"/fcitx5/themes ~/.local/share/fcitx5/themes
-ln -sfv "$DOTFILES_PATH"/rime ~/.local/share/fcitx5/rime
+ln -sfv "$DOTFILES_PATH"/rime ~/.local/share/fcitx5/
 systemctl --user enable fcitx5.service
 
 # Fontconfig
