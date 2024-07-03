@@ -10,7 +10,16 @@ ln -s $DOTFILES_PATH/{.env, .env.local, .profile} ~/
 ```
 
 ## Login
-We use `greetd` and `tuigreet` with a custom script. Install `greetd` and `greetd-tuigreet` on Arch Linux. Config in `greetd`.
+We use `greetd` and `tuigreet` with a custom script. Install `greetd` and `greetd-tuigreet` on Arch Linux. Config in `greetd`. To install:
+
+```bash
+sudo pacman -S greetd greetd-tuigreet seatd
+sudo cp $DOTFILES_PATH/greetd/config.toml /etc/greetd/config.toml
+# This is for avoiding systemd log to litter the TUI greet screen
+sudo cp $DOTFILES_PATH/systemd/system/greetd.service.d /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable seatd.service greetd.service
+```
 
 Note that this config file depends on a properly loaded `.env` file.
 
