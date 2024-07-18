@@ -46,7 +46,7 @@
   },
   "network": {
     "format": "{ifname}",
-    "format-wifi": "<span font-size='10pt' rise='1000'>\udb81\udda9</span> {essid} ({signalStrength}%)",
+    "format-wifi": "<span font-size='10pt' rise='1500'>\udb81\udda9</span> {essid} ({signalStrength}%)",
     "format-ethernet": "<span font-size='10pt' rise='1000'>\udb83\udc9d</span> {ipaddr}/{cidr}",
     "format-disconnected": "<span font-size='10pt' rise='1000'>\udb82\udcfc</span>",
     "tooltip-format-wifi": "\udb81\udda9 {essid} ({signalStrength}%)",
@@ -86,7 +86,7 @@
     "scroll-step": 0.2,
   },
   "battery": {
-    "format": "<span font-size='10pt' rise='1000'>{icon}</span> {capacity}% ({time})",
+    "format": "<span font-size='10pt' rise='1500'>{icon}</span> {capacity}% ({time})",
     "format-icons": ["\udb80\udc7a", "\udb80\udc7c", "\udb80\udc7f", "\udb80\udc81", "\udb80\udc79"]
   },
   "clock": {
