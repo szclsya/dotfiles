@@ -24,7 +24,7 @@ if [[ $ARCH_INSTALL == "y" ]]; then
     echo -e "$INFO_PREFIX Installing login manager (greetd)"
     sudo pacman -S seatd greetd greetd-tuigreet
     echo -e "$INFO_PREFIX Installing Sway and related services and applications"
-    sudo pacman -S sway xdg-desktop-portal-wlr brightnessctl wl-clipboard grim slurp swayidle swaybg mako waybar wezterm
+    sudo pacman -S sway xdg-desktop-portal-wlr brightnessctl wl-clipboard grim slurp swayidle swaybg mako waybar wezterm fuzzel gammastep
     "$AUR_HELPER" swaylock-effects
     echo -e "$INFO_PREFIX Installing Fcitx5 and RIME"
     sudo pacman -S fcitx5-im fcitx5-rime rime-pinyin-zhwiki
@@ -32,7 +32,7 @@ if [[ $ARCH_INSTALL == "y" ]]; then
     echo -e "$INFO_PREFIX Install Email tools"
     sudo pacman -S isync msmtp notmuch
     echo -e "$INFO_PREFIX Installing fonts"
-    sudo pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-sarasa-gothic
+    sudo pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-sarasa-gothic ttf-nerd-fonts-symbols
 fi
 
 if [[ $SYSTEM == "y" ]]; then
@@ -62,7 +62,7 @@ ln -sfv "$DOTFILES_PATH"/waybar ~/.config/
 systemctl --user enable waybar.service
 
 # Fcitx5 and RIME config
-mkdir -pv ~/.config/fcitx5/conf/ ~/.local/share/fcitx5/{rime,themes}
+mkdir -pv ~/.config/fcitx5/conf/ ~/.local/share/fcitx5/themes
 ln -sfv "$DOTFILES_PATH"/fcitx5/profile ~/.config/fcitx5/profile
 ln -sfv "$DOTFILES_PATH"/fcitx5/conf/classicui.conf ~/.config/fcitx5/conf/classicui.conf 
 ln -sfv "$DOTFILES_PATH"/fcitx5/themes ~/.local/share/fcitx5/themes
@@ -90,3 +90,5 @@ ln -sfv "$DOTFILES_PATH"/ncmpcpp ~/.config/
 
 # GnuPG freaks out if GNUPGHOME is not a folder, so do it manually
 mkdir -pv ~/.local/share/gnupg
+chmod -R 700 ~/.local/share/gnupg
+ln -sfv "$DOTFILES_PATH"/gnupg/gpg-agent.conf ~/.local/share/gnupg
