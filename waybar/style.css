@@ -22,7 +22,7 @@
 
 #workspaces button {
     color: @almost-white;
-    padding: 1pt 2pt
+    padding: 1pt 4pt;
 }
 
 #workspaces button.focused {

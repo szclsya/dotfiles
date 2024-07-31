@@ -55,9 +55,9 @@
     "max-length": 50
   },
   "bluetooth": {
-	"format": "<span font-size='10pt' rise='1000'>\uf294</span> {status}",
+	"format": "<span font-size='10pt' rise='1000'>\udb80\udcaf</span> {status}",
 	"format-disabled": "<span font-size='10pt' rise='1000'>\udb80\udcb2</span>",
-	"format-connected": "<span font-size='10pt' rise='1000'>\udb80\udcb2</span> {num_connections} connected",
+	"format-connected": "<span font-size='10pt' rise='1000'>\udb80\udcb1</span> {num_connections} connected",
 	"tooltip-format": "{controller_alias}\t{controller_address}",
 	"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
 	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"

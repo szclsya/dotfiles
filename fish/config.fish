@@ -8,7 +8,7 @@ if not set -q LANG
 end
 
 # Load ~/.env if some always-present variables are not set
-if not set -q ENV_SET
+if not set -q ENV_SET && test -e ~/.env
     function setenv; set -gx $argv; end
     source ~/.env
 end

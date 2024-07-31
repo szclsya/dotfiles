@@ -27,9 +27,9 @@ set $wallpapers_path $HOME/Pictures/Wallpaper
 output * bg `find $wallpapers_path -type f | shuf -n 1` fill
 
 exec swayidle -w \
-     timeout 600 'swaylock -f -c 000000' \
+     timeout 600 'swaylock -f --screenshot --fade-in 0.5 --effect-blur 20x5' \
      timeout 1200 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-     before-sleep 'swaylock -f -c 000000'
+     before-sleep 'swaylock -f --screenshot --fade-in 0.5 --effect-blur 20x5'
 
 ### Key bindings
 #
