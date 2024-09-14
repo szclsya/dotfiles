@@ -8,9 +8,11 @@ if not set -q LANG
 end
 
 # Load ~/.env if some always-present variables are not set
-if not set -q ENV_SET && test -e ~/.env
-    function setenv; set -gx $argv; end
-    source ~/.env
+# Load variables if not set
+if not set -q ENV_SET \
+    && test -e ~/.config/environment.d \
+    && test -x /usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator
+    export (/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator)
 end
 
 # Alias
