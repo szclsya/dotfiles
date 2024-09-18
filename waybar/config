@@ -86,8 +86,13 @@
     "scroll-step": 0.2,
   },
   "battery": {
-    "format": "<span font-size='10pt' rise='1500'>{icon}</span> {capacity}% ({time})",
-    "format-icons": ["\udb80\udc7a", "\udb80\udc7c", "\udb80\udc7f", "\udb80\udc81", "\udb80\udc79"]
+    "format": "<span font-size='10pt' rise='1500'>{icon}</span> {capacity}%",
+    "format-charging": "<span font-size='10pt' rise='1500'>{icon}</span> {capacity}% ({time})",
+    "format-icons": {
+         "discharging": ["\udb80\udc7a", "\udb80\udc7c", "\udb80\udc7f", "\udb80\udc81", "\udb80\udc79"],
+         "charging": ["\udb82\udc9c", "\udb80\udc87", "\udb82\udc9d", "\udb80\udc8b", "\udb80\udc85"],
+         "plugged": "\udb85\udc25"
+    }
   },
   "clock": {
     "interval": 1,
