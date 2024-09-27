@@ -12,7 +12,7 @@ Host imap.gmail.com
 User szclsya@gmail.com
 # Password is stored in gnome-keyring. See msmtp config for how to enroll
 PassCmd "secret-tool lookup host smtp.gmail.com service smtp user szclsya@gmail.com"
-SSLType IMAPS
+TLSType IMAPS
 
 IMAPStore gmail-remote
 Account gmail
@@ -35,7 +35,7 @@ IMAPAccount lecs
 Host mx.lecs.dev
 User i@szclsya.me
 PassCmd "secret-tool lookup host mx.lecs.dev service smtp user i@szclsya.me"
-SSLType IMAPS
+TLSType IMAPS
 
 IMAPStore lecs-remote
 Account lecs
@@ -48,7 +48,7 @@ Inbox ~/.mail/lecs/Inbox
 Channel lecs
 Near :lecs-local:
 Far :lecs-remote:
-Patterns * !Amazon !Postmaster
+Patterns * !Postmaster
 #Sync Push
 
 
@@ -57,7 +57,7 @@ IMAPAccount csc
 Host mail.csclub.uwaterloo.ca
 User y266shen
 PassCmd "secret-tool lookup host mail.csclub.uwaterloo.ca service smtp user y266shen"
-SSLType IMAPS
+TLSType IMAPS
 
 IMAPStore csc-remote
 Account csc
