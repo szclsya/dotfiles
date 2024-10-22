@@ -68,6 +68,6 @@ if [[ $inbox_count -ne 0 ]]; then
 fi
 
 echo "[PRE-NEW] running mbsync"
-mbsync -a -c ~/.config/isync/mbsyncrc
+mbsync -a -c ~/.config/isync/mbsyncrc || true
 
 echo "[PRE-NEW] pre-new hook complete"

@@ -4,25 +4,24 @@ set -eu
 NOTMUCH_UNREAD_COUNT_FILE="/tmp/notmuch-unread-count"
 
 echo "[POST-NEW] Tagging lecs mails"
-notmuch tag +inbox "folder:lecs/Inbox"
-notmuch tag +archive "folder:lecs/Archive"
-notmuch tag +sent "folder:lecs/Sent"
-notmuch tag +draft "folder:lecs/Drafts"
-notmuch tag +trash "folder:lecs/Trash"
+notmuch tag -new +lecs +inbox "folder:lecs/Inbox"  and tag:new and not tag:inbox and not tag:lecs
+notmuch tag -new +lecs +junk  "folder:lecs/Spam"   and tag:new and not tag:junk  and not tag:lecs
+notmuch tag -new +lecs +sent  "folder:lecs/Sent"   and tag:new and not tag:sent  and not tag:lecs
+notmuch tag -new +lecs +draft "folder:lecs/Drafts" and tag:new and not tag:draft and not tag:lecs
 
 echo "[POST-NEW] Tagging gmail mails"
-notmuch tag +inbox "folder:gmail/Inbox"
-notmuch tag +draft "folder:gmail/[Gmail]/Drafts"
-notmuch tag +sent "folder:gmail/[Gmail]/Sent Mail"
-notmuch tag +trash "folder:gmail/[Gmail]/Trash"
+notmuch tag -new +gmail +inbox "folder:gmail/Inbox"             and tag:new and not tag:inbox  and not tag:gmail
+notmuch tag -new +gmail +sent  "folder:gmail/[Gmail]/Sent Mail" and tag:new and not tag:sent   and not tag:gmail
+notmuch tag -new +gmail +draft "folder:gmail/[Gmali]/Drafts"    and tag:new and not tag:drafts and not tag:gmail
 
 echo "[POST-NEW] Tagging csc mails"
-notmuch tag +csc "folder:csc/Inbox"
-notmuch tag +sent "folder:csc/Sent"
-notmuch tag +draft "folder:csc/Drafts"
+notmuch tag -new +csc +inbox  "folder:csc/Inbox"  and tag:new and not tag:inbox  and not tag:csc
+notmuch tag -new +csc +sent   "folder:csc/Sent"   and tag:new and not tag:sent   and not tag:csc
+notmuch tag -new +csc +draft  "folder:csc/Drafts" and tag:new and not tag:drafts and not tag:csc
+notmuch tag -new +csc +syscom "folder:csc/Syscom" and tag:new and not tag:csc    and not tag:csc
 
 echo "[POST-NEW] Notify if there're new unread messages"
-current_count=$(notmuch count --output=files --exclude=false tag:unread AND tag:inbox AND NOT tag:trash)
+current_count=$(notmuch count --output=files tag:unread AND tag:inbox AND NOT tag:trash)
 if ! [[ -e $NOTMUCH_UNREAD_COUNT_FILE ]]; then
     echo "[POST-NEW] Creating $NOTMUCH_UNREAD_COUNT_FILE"
     notify-send "You have $current_count unread mails"

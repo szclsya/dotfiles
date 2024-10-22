@@ -1,5 +1,7 @@
 [database]
-mail_root=/home/sya/.mail
+mail_root=.mail
+# Put database in XDG_DATA_HOME
+path=.local/share/notmuch
 
 [user]
 name=Leo Shen
