@@ -3,6 +3,7 @@ set -eu
 
 MAILDIR="$HOME/.mail"
 DRYRUN=false
+IFS=$'\n'
 
 # safe_move: move $1 to $2, remove its uid part
 function safe_move {

@@ -9,7 +9,7 @@ primary_email=i@szclsya.me
 other_email=szclsya@gmail.com;y266shen@csclub.uwaterloo.ca;
 
 [new]
-tags=
+tags=new
 ignore=.uidvalidity;.mbsyncstate
 
 [search]

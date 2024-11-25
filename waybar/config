@@ -71,7 +71,7 @@
   },
   "custom/notmuch": {
     "format": "<span font-size='11pt' rise='1000'>\ueb1c</span> {}",
-    "exec": "notmuch count --exclude=false tag:unread AND tag:inbox AND NOT tag:trash",
+    "exec": "notmuch count tag:unread AND tag:inbox AND NOT tag:trash",
     "interval": 0
   },
   "backlight": {
