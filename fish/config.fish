@@ -18,3 +18,5 @@ end
 # Alias
 alias gst='git status'
 alias gpg-relearn-key='gpg-connect-agent "scd serialno" "learn --force" /bye'
+alias zdf='zfs list -o name,compression,compressratio,used,logicalused'
+

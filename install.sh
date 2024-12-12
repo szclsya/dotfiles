@@ -44,7 +44,8 @@ if [[ $SYSTEM == "y" ]]; then
 fi
 
 # User variables
-ln -sfv "$DOTFILES_PATH"/{.env,.env.local,.profile} ~/
+ln -sfv "$DOTFILES_PATH"/.profile ~/
+ln -sfv "$DOTFILES_PATH"/environment.d ~/.config/
 
 # systemd services
 mkdir -pv ~/.config/systemd/user/
