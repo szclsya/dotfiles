@@ -24,7 +24,7 @@ if [[ $ARCH_INSTALL == "y" ]]; then
     echo -e "$INFO_PREFIX Installing login manager (greetd)"
     sudo pacman -S seatd greetd greetd-tuigreet
     echo -e "$INFO_PREFIX Installing Sway and related services and applications"
-    sudo pacman -S sway xdg-desktop-portal-wlr brightnessctl wl-clipboard grim slurp swayidle swaybg mako waybar foot fuzzel gammastep
+    sudo pacman -S niri xdg-desktop-portal-gtk xdg-desktop-portal-gnome fcitx5-im brightnessctl wl-clipboard swayidle swaylock swaybg mako gnome-keyring
     "$AUR_HELPER" swaylock-effects
     echo -e "$INFO_PREFIX Installing Fcitx5 and RIME"
     sudo pacman -S fcitx5-im fcitx5-rime rime-pinyin-zhwiki
@@ -49,12 +49,11 @@ mkdir ~/.config
 ln -sfv "$DOTFILES_PATH"/environment.d ~/.config/
 
 # systemd services
-mkdir -pv ~/.config/systemd/user/
-ln -sfv "$DOTFILES_PATH"/systemd/user/* ~/.config/systemd/user/
+ln -sfv "$DOTFILES_PATH"/systemd/user ~/.config/systemd/
 systemctl --user daemon-reload
 
 # Sway and related services and applications
-ln -sfv "$DOTFILES_PATH"/sway ~/.config/
+ln -sfv "$DOTFILES_PATH"/niri ~/.config/
 ln -sfv "$DOTFILES_PATH"/foot ~/.config/
 ln -sfv "$DOTFILES_PATH"/mako ~/.config/
 systemctl --user enable mako.service
@@ -66,7 +65,7 @@ systemctl --user enable waybar.service
 # Fcitx5 and RIME config
 mkdir -pv ~/.config/fcitx5/conf/ ~/.local/share/fcitx5/themes
 ln -sfv "$DOTFILES_PATH"/fcitx5/profile ~/.config/fcitx5/profile
-ln -sfv "$DOTFILES_PATH"/fcitx5/conf/classicui.conf ~/.config/fcitx5/conf/classicui.conf 
+ln -sfv "$DOTFILES_PATH"/fcitx5/conf/classicui.conf ~/.config/fcitx5/conf/classicui.conf
 ln -sfv "$DOTFILES_PATH"/fcitx5/themes ~/.local/share/fcitx5/themes
 ln -sfv "$DOTFILES_PATH"/rime ~/.local/share/fcitx5/
 systemctl --user enable fcitx5.service
@@ -86,7 +85,6 @@ systemctl --user enable --now notmuch.timer
 # mpd won't automatically create state folder, so do it manually
 mkdir -pv ~/.local/share/mpd
 ln -sfv "$DOTFILES_PATH"/mpd ~/.config/
-
 ln -sfv "$DOTFILES_PATH"/mpv ~/.config/
 ln -sfv "$DOTFILES_PATH"/ncmpcpp ~/.config/
 

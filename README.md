@@ -25,36 +25,32 @@ sudo systemctl enable seatd.service greetd.service
 Note that this config file depends on a properly loaded `.env` file.
 
 ## systemd
+Make sure you don't have exsitings systemd user services in `~/.config/systemd/user`!
+
 To install systemd user services:
 ```bash
-ln -s $DOTFILES_PATH/systemd/* ~/.config/systemd/user/
+ln -s $DOTFILES_PATH/systemd/user ~/.config/systemd/
 ```
 
 And enable them just like any other systemd user services.
 
-## Sway
+## Niri
 ```bash
-# xdg-desktop-portal-wlr: for sharing desktop via PipeWire
+# xdg-desktop-portal-gnome && xdg-desktop-portal-gtk: for sharing desktop via PipeWire
 # fcitx5-im: input method support (awaiting new sway release to support popup window in wezterm)
 # wl-clipboard: provide CLI clipboard tools
-# grim && slurp: select a region and take a scrrenshot
 # fuzzel: application launcher
-# wezterm: terminal emulator
 # swayidle && swaylock: idle management and screen lock
 # swaybg: wallpaper management
 # waybar: status bar
 # mako: notification daemon
 # gnome-keyring: stores secrets
-sudo pacman -S sway xdg-desktop-portal-wlr fcitx5-im brightnessctl wl-clipboard grim slurp swayidle swaylock swaybg mako gnome-keyring
-
-# Create and edit local settings (used by Sway)
-cp -v ~/.dotfiles/bin/local_settings.example ~/.dotfiles/bin/local_settings
+sudo pacman -S niri xdg-desktop-portal-gtk xdg-desktop-portal-gnome fcitx5-im brightnessctl wl-clipboard swayidle swaylock swaybg mako gnome-keyring
 ```
 
-Sway requires `sway-session.target` from systemd to function properly.
-
+Then install configs:
 ```bash
-ln -s $DOTFILES_PATH/sway ~/.config/
+ln -s $DOTFILES_PATH/niri ~/.config/
 ```
 
 ## Fontconfig
