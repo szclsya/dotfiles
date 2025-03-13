@@ -1,14 +1,16 @@
 [Unit]
 Description=Fcitx5 Input Method
-#PartOf=graphical-session.target
-#After=graphical-session.target
-BindsTo=sway-session.target
+PartOf=graphical-session.target
+After=graphical-session.target
 # ConditionEnvironment requires systemd v247 to work correctly
 ConditionEnvironment=WAYLAND_DISPLAY
 
 [Service]
 Type=simple
 ExecStart=/usr/bin/fcitx5
+#ExecStart=/usr/lib/fcitx5-wayland-launcher
+Restart=always
+RestartSec=5
 
 [Install]
 WantedBy=sway-session.target

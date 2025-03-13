@@ -1,7 +1,7 @@
 {
   "layer": "top",
   "position": "bottom",
-  "modules-left": ["sway/workspaces", "sway/mode"],
+  "modules-left": ["niri/workspaces", "niri/mode"],
   "fixed-center": false,
   "modules-right": ["custom/separator-transparent-to-faint-red", "mpris", "wireplumber",
                     "custom/separator-faint-red-to-blue", "network", "bluetooth",

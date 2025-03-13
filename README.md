@@ -77,6 +77,11 @@ mkdir -p ~/.mail/{lecs,csc,gmail}
 systemctl --user enable --now notmuch.timer
 ```
 
+## Git
+```bash
+ln -sf "$DOTFILES_PATH"/.gitconfig ~
+```
+
 ## Everything else
 ```bash
 ln -s $DOTFILES_PATH/i3status-rust ~/.config/

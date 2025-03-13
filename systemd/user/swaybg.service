@@ -1,0 +1,9 @@
+[Unit]
+Description=Sway desktop background service
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+ExecStart=/bin/sh -c '/usr/bin/swaybg -m fill -i $(find %h/Pictures/Wallpaper -type f | shuf -n1)'
+Restart=on-failure

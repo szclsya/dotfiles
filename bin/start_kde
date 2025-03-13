@@ -1,5 +1,0 @@
-#!/bin/bash
-
-source ~/.dotfiles/bin/wayland_prelude 
-
-XDG_SESSION_TYPE=wayland dbus-run-session startplasma-wayland

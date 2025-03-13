@@ -1,6 +1,0 @@
-# Dolphin copy window
-for_window [title="Copying.*— Dolphin"] floating enable, border normal
-for_window [title="Moving.*— Dolphin"] floating enable, border normal
-for_window [title="File Already Exists — Dolphin"] floating enable, border normal
-# Pinentry (used by GnuPG)
-for_window [app_id="pinentry-qt"] floating enable, border normal
