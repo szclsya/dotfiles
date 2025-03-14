@@ -24,7 +24,7 @@ if [[ $ARCH_INSTALL == "y" ]]; then
     echo -e "$INFO_PREFIX Installing login manager (greetd)"
     sudo pacman -S seatd greetd greetd-tuigreet
     echo -e "$INFO_PREFIX Installing Sway and related services and applications"
-    sudo pacman -S niri xdg-desktop-portal-gtk xdg-desktop-portal-gnome fcitx5-im brightnessctl wl-clipboard swayidle swaylock swaybg mako gnome-keyring
+    sudo pacman -S niri xdg-desktop-portal-gtk xdg-desktop-portal-gnome fcitx5-im brightnessctl wl-clipboard swayidle swaybg mako gnome-keyring
     "$AUR_HELPER" swaylock-effects
     echo -e "$INFO_PREFIX Installing Fcitx5 and RIME"
     sudo pacman -S fcitx5-im fcitx5-rime rime-pinyin-zhwiki
@@ -45,7 +45,9 @@ fi
 
 # User variables
 ln -sfv "$DOTFILES_PATH"/.profile ~/
-mkdir ~/.config
+if ! [[ -d ~/.config ]]; then
+    mkdir ~/.config
+fi
 ln -sfv "$DOTFILES_PATH"/environment.d ~/.config/
 
 # systemd services
