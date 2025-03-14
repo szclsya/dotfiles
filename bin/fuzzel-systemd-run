@@ -1,0 +1,20 @@
+#!/bin/bash --norc
+
+if [ -z "$FUZZEL_DESKTOP_FILE_ID" ]; then
+	appID="$(basename $1)"
+else
+	appID="$FUZZEL_DESKTOP_FILE_ID"
+fi
+
+if [ -z "$XDG_CURRENT_DESKTOP" ]; then
+	desktop="unknown"
+else
+	desktop="$XDG_CURRENT_DESKTOP"
+fi
+
+exec /usr/bin/systemd-run --user --scope -q \
+	--slice=app.slice \
+	--property=PartOf=graphical-session.target \
+	--property=After=graphical-session.target \
+	--unit="app-${desktop}-${appID}-${RANDOM}.scope" \
+	-- "$@"
