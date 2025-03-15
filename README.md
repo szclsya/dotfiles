@@ -45,7 +45,8 @@ And enable them just like any other systemd user services.
 # waybar: status bar
 # mako: notification daemon
 # gnome-keyring: stores secrets
-sudo pacman -S niri xdg-desktop-portal-gtk xdg-desktop-portal-gnome fcitx5-im brightnessctl wl-clipboard swayidle swaylock swaybg mako gnome-keyring
+# wlsunset: Day/night gamma adjustments
+sudo pacman -S niri xdg-desktop-portal-gtk xdg-desktop-portal-gnome fcitx5-im brightnessctl wl-clipboard swayidle swaylock swaybg mako gnome-keyring wlsunset
 ```
 
 Then install configs:
