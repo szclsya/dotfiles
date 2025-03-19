@@ -1,5 +1,5 @@
 input {
-    focus-follows-mouse
+    focus-follows-mouse max-scroll-amount="0%"
     keyboard {
         xkb {
 	    //options "ctrl:swapcaps"
@@ -218,8 +218,8 @@ binds {
     Alt+Shift+Equal { set-window-height "+10%"; }
 
     // Move the focused window between the floating and the tiling layout.
-    Alt+V       { toggle-window-floating; }
-    Alt+Shift+V { switch-focus-between-floating-and-tiling; }
+    Alt+Shift+Space { toggle-window-floating; }
+    Alt+Space       { switch-focus-between-floating-and-tiling; }
 
     // Toggle tabbed column display mode.
     // Windows in this column will appear as vertical tabs,
