@@ -4,13 +4,13 @@ function __git_prompt -d 'Wrapper of the official git prompt'
     set -g __fish_git_prompt_showcolorhints true
     set -g __fish_git_prompt_showdirtystate true
     set -g __fish_git_prompt_showuntrackedfiles true
-    set -g __fish_git_prompt_shorten_branch_len 8
+    set -g __fish_git_prompt_shorten_branch_len 10
 
     set -g __fish_git_prompt_char_cleanstate " o" # Need a space here, what a hack
     set -g __fish_git_prompt_char_dirtystate "x"
     set -g __fish_git_prompt_char_stagedstate "x"
     set -g __fish_git_prompt_char_untrackedfiles "+"
-    set -g __fish_git_prompt_char_invalidstate "x"
+    set -g __fish_git_prompt_char_invalidstate ""
 
     set -g __fish_git_prompt_color_cleanstate green
     set -g __fish_git_prompt_color_untrackedfiles red
