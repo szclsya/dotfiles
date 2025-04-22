@@ -7,15 +7,15 @@ function __git_prompt -d 'Wrapper of the official git prompt'
     set -g __fish_git_prompt_shorten_branch_len 10
 
     set -g __fish_git_prompt_char_cleanstate " o" # Need a space here, what a hack
-    set -g __fish_git_prompt_char_dirtystate "x"
     set -g __fish_git_prompt_char_stagedstate "x"
+    set -g __fish_git_prompt_char_dirtystate "x"
     set -g __fish_git_prompt_char_untrackedfiles "+"
-    set -g __fish_git_prompt_char_invalidstate ""
+    set -g __fish_git_prompt_char_invalidstate "-"
 
     set -g __fish_git_prompt_color_cleanstate green
-    set -g __fish_git_prompt_color_untrackedfiles red
+    set -g __fish_git_prompt_color_stagedstate green
     set -g __fish_git_prompt_color_dirtystate red
-    set -g __fish_git_prompt_color_stagedstate FFA500
+    set -g __fish_git_prompt_color_untrackedfiles red
     set -g __fish_git_prompt_color_invalidstate red
 
     set -g __fish_git_prompt_color_branch cyan
@@ -96,8 +96,11 @@ function fish_prompt --description 'Write out the prompt'
     set -f time (echo -s (set_color $fish_color_autosuggestion) (date "+%m-%d %H:%M:%S") (set_color normal))
     set -f prompt_max_len (math $COLUMNS - (string length --visible $time) - 5)
     set -f prompt_body (__prompt_body $prompt_max_len $_status)
-    set -f time_padded (string pad -w (math $COLUMNS - (string length --visible $prompt_body)) $time)
-
+    if [ (math $COLUMNS % 2) -eq 0 ]
+    	set -f time_padded (string pad -w (math $COLUMNS - (string length --visible $prompt_body)) $time)
+    else
+        set -f time_padded (string pad -w (math $COLUMNS - 1 - (string length --visible $prompt_body)) $time)
+    end
     # Line 0
     if [ $CMD_DURATION -ge 100 ]
         set -f last_command_time (echo -s (set_color $fish_color_autosuggestion) (__human_secs $CMD_DURATION) (set_color normal))
