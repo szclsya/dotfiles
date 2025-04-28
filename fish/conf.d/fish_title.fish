@@ -39,14 +39,18 @@ function fish_greeting
 end
 
 function __human_secs -d 'Generate human-readable time from miliseconds' -a ms
-    if [ $ms -le 500 ]
-        printf "%dms" $ms
-    else if [ $ms -le (math 60000) ]
-        printf "%.2fs" (math $ms/1000)
-    else if [ $ms -le (math 3600000) ]
-        printf "%.2fm" (math $ms/1000/60)
-    else
-        printf "%.2fh" (math $ms/1000/60/60)
+    set -l seconds (math floor $ms/1000%60)
+    set -l minutes (math floor $ms/60000%60)
+    set -l hours   (math floor $ms/3600000%24)
+
+    if [ $hours -ne 0 ]
+        printf "%dh" $hours
+    end
+    if [ $minutes -ne 0 ]
+        printf "%dm" $minutes
+    end
+    if [ $seconds -ne 0 ]
+        printf "%ds" $seconds
     end
 end
 
