@@ -1,8 +1,10 @@
 input {
+    mod-key "Alt"
     focus-follows-mouse max-scroll-amount="0%"
+
     keyboard {
         xkb {
-	    //options "ctrl:swapcaps"
+	        //options "ctrl:swapcaps"
         }
     }
 
@@ -34,7 +36,7 @@ layout {
     center-focused-column "never"
     default-column-display "tabbed"
 
-    // Alt-R to switch between
+    // Mod-R to switch between
     preset-column-widths {
         proportion 0.33333
         proportion 0.5
@@ -91,144 +93,106 @@ window-rule {
 }
 
 binds {
-    Alt+Shift+Slash { show-hotkey-overlay; }
+    Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Alt+Return { spawn "footclient"; }
-    Alt+D { spawn "fuzzel"; }
-    Alt+Super+L { spawn "swaylock"; }
+    Mod+Return { spawn "footclient"; }
+    Mod+D { spawn "fuzzel"; }
+    Mod+Super+L { spawn "swaylock"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
     XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
     XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
 
-    Alt+Shift+Q { close-window; }
+    Mod+Shift+Q { close-window; }
+    Mod+Space { toggle-overview; }
 
-    Alt+Left  { focus-column-or-monitor-left; }
-    Alt+Down  { focus-window-or-monitor-down; }
-    Alt+Up    { focus-window-or-monitor-up; }
-    Alt+Right { focus-column-or-monitor-right; }
-    Alt+H     { focus-column-or-monitor-left; }
-    Alt+J     { focus-window-or-monitor-down; }
-    Alt+K     { focus-window-or-monitor-up; }
-    Alt+L     { focus-column-or-monitor-right; }
+    Mod+H     { focus-column-or-monitor-left; }
+    Mod+J     { focus-window-or-monitor-down; }
+    Mod+K     { focus-window-or-monitor-up; }
+    Mod+L     { focus-column-or-monitor-right; }
 
-    Alt+Shift+H     { move-column-left; }
-    Alt+Shift+J     { move-window-down; }
-    Alt+Shift+K     { move-window-up; }
-    Alt+Shift+L     { move-column-right; }
+    Mod+Shift+H     { move-column-left; }
+    Mod+Shift+J     { move-window-down; }
+    Mod+Shift+K     { move-window-up; }
+    Mod+Shift+L     { move-column-right; }
 
-    Alt+Home { focus-column-first; }
-    Alt+End  { focus-column-last; }
-    Alt+Ctrl+Home { move-column-to-first; }
-    Alt+Ctrl+End  { move-column-to-last; }
+    Mod+Home { focus-column-first; }
+    Mod+End  { focus-column-last; }
+    Mod+Ctrl+Home { move-column-to-first; }
+    Mod+Ctrl+End  { move-column-to-last; }
 
-    Alt+Shift+Ctrl+Left  { move-column-to-monitor-left; }
-    Alt+Shift+Ctrl+Down  { move-column-to-monitor-down; }
-    Alt+Shift+Ctrl+Up    { move-column-to-monitor-up; }
-    Alt+Shift+Ctrl+Right { move-column-to-monitor-right; }
-    Alt+Shift+Ctrl+H     { move-column-to-monitor-left; }
-    Alt+Shift+Ctrl+J     { move-column-to-monitor-down; }
-    Alt+Shift+Ctrl+K     { move-column-to-monitor-up; }
-    Alt+Shift+Ctrl+L     { move-column-to-monitor-right; }
+    Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+    Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
 
-    Alt+Ctrl+Page_Down { move-column-to-workspace-down; }
-    Alt+Ctrl+Page_Up   { move-column-to-workspace-up; }
-    Alt+Ctrl+U         { move-column-to-workspace-down; }
-    Alt+Ctrl+I         { move-column-to-workspace-up; }
+    Mod+WheelScrollRight      { focus-column-right; }
+    Mod+WheelScrollLeft       { focus-column-left; }
+    Mod+Ctrl+WheelScrollRight { move-column-right; }
+    Mod+Ctrl+WheelScrollLeft  { move-column-left; }
 
-    Alt+Shift+Page_Down { move-workspace-down; }
-    Alt+Shift+Page_Up   { move-workspace-up; }
-    Alt+Shift+U         { move-workspace-down; }
-    Alt+Shift+I         { move-workspace-up; }
+    Mod+Shift+WheelScrollDown      { focus-column-right; }
+    Mod+Shift+WheelScrollUp        { focus-column-left; }
+    Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
+    Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
 
-    Alt+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
-    Alt+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
-    Alt+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
-    Alt+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    Mod+0 { focus-workspace 10 ; }
 
-    Alt+WheelScrollRight      { focus-column-right; }
-    Alt+WheelScrollLeft       { focus-column-left; }
-    Alt+Ctrl+WheelScrollRight { move-column-right; }
-    Alt+Ctrl+WheelScrollLeft  { move-column-left; }
-
-    Alt+Shift+WheelScrollDown      { focus-column-right; }
-    Alt+Shift+WheelScrollUp        { focus-column-left; }
-    Alt+Ctrl+Shift+WheelScrollDown { move-column-right; }
-    Alt+Ctrl+Shift+WheelScrollUp   { move-column-left; }
-
-    Alt+1 { focus-workspace 1; }
-    Alt+2 { focus-workspace 2; }
-    Alt+3 { focus-workspace 3; }
-    Alt+4 { focus-workspace 4; }
-    Alt+5 { focus-workspace 5; }
-    Alt+6 { focus-workspace 6; }
-    Alt+7 { focus-workspace 7; }
-    Alt+8 { focus-workspace 8; }
-    Alt+9 { focus-workspace 9; }
-    Alt+0 { focus-workspace 10 ; }
-
-    Alt+Shift+1 { move-column-to-workspace 1; }
-    Alt+Shift+2 { move-column-to-workspace 2; }
-    Alt+Shift+3 { move-column-to-workspace 3; }
-    Alt+Shift+4 { move-column-to-workspace 4; }
-    Alt+Shift+5 { move-column-to-workspace 5; }
-    Alt+Shift+6 { move-column-to-workspace 6; }
-    Alt+Shift+7 { move-column-to-workspace 7; }
-    Alt+Shift+8 { move-column-to-workspace 8; }
-    Alt+Shift+9 { move-column-to-workspace 9; }
-    Alt+Shift+0 { move-column-to-workspace 10; }
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+    Mod+Shift+6 { move-column-to-workspace 6; }
+    Mod+Shift+7 { move-column-to-workspace 7; }
+    Mod+Shift+8 { move-column-to-workspace 8; }
+    Mod+Shift+9 { move-column-to-workspace 9; }
+    Mod+Shift+0 { move-column-to-workspace 10; }
 
     // The following binds move the focused window in and out of a column.
     // If the window is alone, they will consume it into the nearby column to the side.
     // If the window is already in a column, they will expel it out.
-    Alt+BracketLeft  { consume-or-expel-window-left; }
-    Alt+BracketRight { consume-or-expel-window-right; }
+    Mod+BracketLeft  { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
 
     // Consume one window from the right to the bottom of the focused column.
-    Alt+Comma  { consume-window-into-column; }
+    Mod+Comma  { consume-window-into-column; }
     // Expel the bottom window from the focused column to the right.
-    Alt+Period { expel-window-from-column; }
+    Mod+Period { expel-window-from-column; }
 
-    Alt+R { switch-preset-column-width; }
-    Alt+Shift+R { switch-preset-window-height; }
-    Alt+Ctrl+R { reset-window-height; }
-    Alt+F { maximize-column; }
-    Alt+Shift+F { fullscreen-window; }
+    Mod+R { switch-preset-column-width; }
+    Mod+Shift+R { switch-preset-window-height; }
+    Mod+Ctrl+R { reset-window-height; }
+    Mod+F { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
 
     // Expand the focused column to space not taken up by other fully visible columns.
     // Makes the column "fill the rest of the space".
-    Alt+Ctrl+F { expand-column-to-available-width; }
+    Mod+Ctrl+F { expand-column-to-available-width; }
 
-    Alt+C { center-column; }
-
-    // Finer width adjustments.
-    // This command can also:
-    // * set width in pixels: "1000"
-    // * adjust width in pixels: "-5" or "+5"
-    // * set width as a percentage of screen width: "25%"
-    // * adjust width as a percentage of screen width: "-10%" or "+10%"
-    // Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
-    // set-column-width "100" will make the column occupy 200 physical screen pixels.
-    Alt+Minus { set-column-width "-10%"; }
-    Alt+Equal { set-column-width "+10%"; }
-
-    // Finer height adjustments when in column with other windows.
-    Alt+Shift+Minus { set-window-height "-10%"; }
-    Alt+Shift+Equal { set-window-height "+10%"; }
+    Mod+C { center-column; }
 
     // Move the focused window between the floating and the tiling layout.
-    Alt+Shift+Space { toggle-window-floating; }
-    Alt+Space       { switch-focus-between-floating-and-tiling; }
+    Mod+Shift+Space { toggle-window-floating; }
 
     // Toggle tabbed column display mode.
     // Windows in this column will appear as vertical tabs,
     // rather than stacked on top of each other.
-    Alt+W { toggle-column-tabbed-display; }
+    Mod+W { toggle-column-tabbed-display; }
 
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
-    Alt+Print { screenshot-window; }
+    Mod+Print { screenshot-window; }
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here
@@ -238,13 +202,13 @@ binds {
     //
     // The allow-inhibiting=false property can be applied to other binds as well,
     // which ensures niri always processes them, even when an inhibitor is active.
-    Alt+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
-    Alt+Shift+E { quit; }
-    Ctrl+Alt+Delete { quit; }
+    Mod+Shift+E { quit; }
+    Ctrl+Mod+Delete { quit; }
 
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
-    Alt+Shift+P { power-off-monitors; }
+    Mod+Shift+P { power-off-monitors; }
 }
