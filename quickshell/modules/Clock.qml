@@ -2,20 +2,28 @@ import QtQuick
 import Quickshell
 
 Rectangle {
-  width: block.width
+  width: clockText.width
+  height: clockText.height
+  color: "transparent"
+  anchors.fill: parent
+
+  property var font: root.font
+
   SystemClock {
     id: clock
     precision: SystemClock.Seconds
   }
 
   Text {
-    id: block
-    text: Qt.formatDateTime(clock.date, "yyyy-MM-dd ddd hh:mm:ss")
+    id: clockText
+    text: Qt.formatDateTime(clock.date, "MM-dd ddd hh:mm:ss")
     anchors {
-      right: parent.right
+      //right: parent.right
       verticalCenter: parent.verticalCenter
     }
-    font: root.font
+    font.pixelSize: 16
+    font.family: root.fontPixel.family
+    padding: 8
     color: "white"
   }
 }
