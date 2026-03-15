@@ -1,3 +1,4 @@
+//@ pragma UseQApplication
 import Quickshell
 import QtQuick
 import Niri 0.1

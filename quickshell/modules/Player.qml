@@ -11,6 +11,21 @@ Rectangle {
 
   property var player_blacklist: ["firefox", "playerctl"]
   property var player: Mpris.players.values[0]
+  /*
+  Component.onCompleted: {
+    findSuitablePlayer()
+    Mpris.players.onChange.connect(findSuitablePlayer)
+  }
+  function findSuitablePlayer() {
+    console.log("Hey finding players")
+    for (p of Mpris.players.values) {
+      if (player_blacklist.some(sub => player.dbusName.includes(sub))) {
+        console.err("Picking up new player " + player.dbusName)
+        player = p
+      }
+    }
+  }
+  */
 
   RowLayout {
     id: row
@@ -28,17 +43,19 @@ Rectangle {
       }
     }
     WrapperMouseArea {
+      onClicked: player.togglePlaying()
       Text {
         id: playButton
         anchors.verticalCenter: parent.verticalCenter
         text: player && player.isPlaying ? "\udb80\udfe4" : "\udb81\udc0a"
-        //text: player && player.isPlaying ? "\udb81\udc0a" : "\udb80\udfe4"
-        font: root.fontSymbol
+        font.family: root.fontSymbol.family
+        font.pixelSize: player && player.isPlaying ? 16 : 17
         width: font.pixelSize / 2
         color: player ? "white" : "grey"
       }
     }
     WrapperMouseArea {
+      onClicked: player.next()
       Text {
         id: nextButton
         anchors.verticalCenter: parent.verticalCenter
@@ -48,13 +65,35 @@ Rectangle {
         color: player && player.canGoNext ? "white" : "grey"
       }
     }
-    Marquee {
-      max_len: 26
-      text: player ? player.trackTitle + " - " + player.trackAlbum : "No Disc"
-      font: root.fontPixel
-      color: "white"
-      Component.onCompleted: {
-        player.trackChanged.connect(reset)
+    Item { width: 1 }
+    WrapperMouseArea {
+      onClicked: player.togglePlaying()
+      Rectangle {
+        implicitHeight: root.height
+        implicitWidth: childrenRect.width
+        color: "transparent"
+        Marquee {
+          anchors.verticalCenter: parent.verticalCenter
+          max_len: 36
+          text: {
+            if (!player) {
+              "No Player"
+            } else if (player.trackTitle == "") {
+              "No Disc"
+            } else {
+              var res = player.trackTitle
+              if (player.trackAlbum) {
+                res += " - " + player.trackAlbum
+              }
+              res
+            }
+          }
+          font: root.fontPixel
+          color: "white"
+          Component.onCompleted: {
+            player.trackChanged.connect(reset)
+          }
+        }
       }
     }
   }

@@ -2,10 +2,11 @@ import QtQuick
 import Quickshell
 
 Rectangle {
-  width: clockText.width
-  height: clockText.height
+  width: childrenRect.width
+  height: root.height
   color: "transparent"
-  anchors.fill: parent
+  //color: "green"
+  anchors.verticalCenter: parent.verticalCenter
 
   property var font: root.font
 
@@ -17,13 +18,16 @@ Rectangle {
   Text {
     id: clockText
     text: Qt.formatDateTime(clock.date, "MM-dd ddd hh:mm:ss")
-    anchors {
-      //right: parent.right
-      verticalCenter: parent.verticalCenter
-    }
-    font.pixelSize: 16
+    font.pixelSize: 15
     font.family: root.fontPixel.family
+    anchors.verticalCenter: parent.verticalCenter
     padding: 8
-    color: "white"
+    color: {
+      if (clock.minutes === 59 && clock.seconds > 50 && clocks.seconds % 2 === 0) {
+        "transparent"
+      } else {
+        "white"
+      }
+    }
   }
 }

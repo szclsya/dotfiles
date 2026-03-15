@@ -1,29 +1,30 @@
 import QtQuick
+import QtQuick.Layouts
 
 Row {
-  property var max_len: 25
+  property var max_len: 10
 
   spacing: 4
   height: parent.height
-  width: root.font.pixelSize * max_len
 
   Image {
-    id: img
     source: niri.focusedWindow?.iconPath ? "file://" + niri.focusedWindow.iconPath : ""
-    sourceSize.width: root.height * 0.6
-    sourceSize.height: root.height * 0.6
-    width: root.height * 0.6
-    anchors.verticalCenter: parent.verticalCenter
+    sourceSize.width: root.height * 0.66
+    sourceSize.height: root.height * 0.66
+    width: root.height * 0.66
     smooth: true
   }
 
   Text {
-    id: txt
-    anchors.verticalCenter: parent.verticalCenter
-    text: niri.focusedWindow?.title ?? "  Empty Workspace"
+    text: niri.focusedWindow?.title ?? "Empty Workspace"
     color: "white"
-    font: root.fontPixel
-    width: root.font.pixelSize * (parent.max_len - 1)
-    clip: true
+    font: root.font
+    width: max_len * font.pixelSize
+    elide: Text.ElideRight
+  }
+
+  Text {
+    // Just a spacer
+    text: " "
   }
 }
