@@ -25,6 +25,7 @@ Scope {
     color: "white"
   })
   property int height: 24
+  property var networks: ["wlan0", "enp17s0f1np1"]
 
   Variants {
     model: Quickshell.screens
@@ -38,5 +39,5 @@ Scope {
     onErrorOccurred: function(error) { console.error("Niri error: ", error) }
   }
 
-  PipewireService {}
+  //PipewireService {}
 }

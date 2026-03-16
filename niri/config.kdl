@@ -193,6 +193,7 @@ binds {
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
     Mod+Print { screenshot-window; }
+    Mod+Delete { spawn "qs" "ipc" "call" "global" "redactToggle"; }
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here

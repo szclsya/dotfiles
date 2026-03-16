@@ -6,11 +6,12 @@ Row {
   spacing: 6
   anchors.verticalCenter: parent.verticalCenter
 
+  property var adapter: Bluetooth.defaultAdapter
   property var connected: Bluetooth.devices.values.filter((d) => d.connected)
 
   Text {
     visible: connected.length === 0
-    text: Bluetooth.defaultAdapter.enabled ? "\uf294" : "\udb80\udcb2"
+    text: adapter && adapter.enabled ? "\uf294" : "\udb80\udcb2"
     font: root.fontSymbol
     color: "white"
   }

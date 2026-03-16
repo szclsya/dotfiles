@@ -23,7 +23,7 @@ Rectangle {
     anchors.verticalCenter: parent.verticalCenter
     padding: 8
     color: {
-      if (clock.minutes === 59 && clock.seconds > 50 && clocks.seconds % 2 === 0) {
+      if (clock.minutes === 59 && clock.seconds > 50 && clock.seconds % 2 === 0) {
         "transparent"
       } else {
         "white"

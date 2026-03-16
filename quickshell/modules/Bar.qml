@@ -38,7 +38,8 @@ PanelWindow {
       height: parent.height
       width: childrenRect.width
       radius: 50
-      color: "#553b3a39"
+      //color: "#553b3a39"
+      color: "transparent"
       anchors {
         right: parent.right
         verticalCenter: parent.verticalCenter
@@ -52,7 +53,7 @@ PanelWindow {
           color: "#881b1a19"
           radius: 50
           height: root.height
-          width: childrenRect.width + height
+          implicitWidth: childrenRect.width + root.height
 
           Player { id: mprisPlayer; anchors.horizontalCenter: parent.horizontalCenter }
         }
@@ -60,8 +61,7 @@ PanelWindow {
           color: "#7c1d21"
           radius: 50
           height: root.height
-          width: childrenRect.width
-
+          implicitWidth: childrenRect.width
           Row {
             padding: 10
             anchors.verticalCenter: parent.verticalCenter
@@ -72,18 +72,13 @@ PanelWindow {
           color: "#004e8c"
           radius: 50
           height: root.height
-          width: childrenRect.width
-
+          implicitWidth: childrenRect.width
+          //width: 265
           Row {
             padding: 10
             anchors.verticalCenter: parent.verticalCenter
+            Network {}
             Bluetooth {}
-            Text {
-              text: "NET GOOD TRUST ME"
-              color: "white"
-              font: root.fontPixel
-            }
-            //Network {}
           }
         }
         Rectangle {
@@ -91,7 +86,6 @@ PanelWindow {
           radius: 50
           height: root.height
           width: childrenRect.width
-
           Row {
             padding: 10
             anchors.verticalCenter: parent.verticalCenter

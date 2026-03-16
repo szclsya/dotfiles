@@ -1,6 +1,7 @@
 import QtQuick
 
 Item {
+  id: marquee
   property string text: ""
   property string spacing: "      "
   property int max_len: 16
@@ -39,7 +40,7 @@ Item {
 
   TextMetrics {
     id: tm
-    font: parent.font
-    text: parent.text
+    font: marquee.font
+    text: marquee.text
   }
 }
