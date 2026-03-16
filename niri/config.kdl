@@ -1,3 +1,4 @@
+include "output.kdl"
 input {
     mod-key "Alt"
     focus-follows-mouse max-scroll-amount="0%"
@@ -16,18 +17,6 @@ input {
         accel-speed 0.5
         accel-profile "flat"
     }
-}
-
-output "LG Electronics LG Ultra HD 0x00079BFA" {
-    //variable-refresh-rate
-    scale 2
-    position x=0 y=0
-}
-
-output "LG Electronics LG ULTRAFINE 204NTEP8Q684" {
-    //variable-refresh-rate
-    scale 2
-    position x=0 y=1080
 }
 
 layout {
@@ -65,10 +54,8 @@ animations {
     slowdown 0.8
 }
 
-window-rule {
-    exclude app-id=".*telegram.*"
-    exclude app-id=".*cord"
-    open-maximized true
+gestures {
+    hot-corners { off; }
 }
 
 window-rule {

@@ -1,0 +1,10 @@
+output "DP-1" {
+    //variable-refresh-rate
+    scale 1.75
+    position x=0 y=1080
+}
+
+output "DP-2" {
+    scale 2
+    position x=150 y=0
+}
