@@ -21,7 +21,7 @@ Item {
 
   Timer {
     interval: 500
-    running: tm.tightBoundingRect.width < font.pixelSize * max_len
+    running: tm.tightBoundingRect.width > font.pixelSize * max_len / 2
     repeat: true
     onTriggered: parent.step = (parent.step + 1) % parent.combined.length
   }
@@ -29,7 +29,7 @@ Item {
   Text {
     id: innertext
     anchors.verticalCenter: parent.verticalCenter
-    text: tm.tightBoundingRect.width < font.pixelSize * max_len ? parent.display : parent.text
+    text: tm.tightBoundingRect.width > font.pixelSize * max_len / 2 ? parent.display : parent.text
     font: parent.font
     color: parent.color
 
