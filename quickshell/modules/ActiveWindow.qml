@@ -1,8 +1,10 @@
 import QtQuick
 import QtQuick.Layouts
 
+import qs.services
+
 Row {
-  property var max_len: 10
+  property var max_len: Config.modules["ActiveWindow"] ? Config.modules["ActiveWindow"]["max_len"] : 20
 
   spacing: 4
   height: parent.height
@@ -19,7 +21,7 @@ Row {
     text: niri.focusedWindow?.title ?? "Empty Workspace"
     color: "white"
     font: root.font
-    width: max_len * font.pixelSize
+    width: parent.max_len * font.pixelSize
     elide: Text.ElideRight
   }
 

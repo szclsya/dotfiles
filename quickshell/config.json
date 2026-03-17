@@ -1,3 +1,12 @@
 {
   "networks": ["wlan0", "enp17s0f1np1"]
+  "backlight": "intel_backlight",
+  "modules": {
+    "ActiveWindow": {
+      "max_len": 16
+    },
+    "Player": {
+      "max_len": 20
+    }
+  }
 }

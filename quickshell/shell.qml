@@ -16,7 +16,7 @@ Scope {
   })
   property font fontPixel: Qt.font({
     family: "Ark Pixel 12px Mono zh_cn",
-    pixelSize: 14,
+    pixelSize: 15,
     color: "white"
   })
   property font fontSymbol: Qt.font({

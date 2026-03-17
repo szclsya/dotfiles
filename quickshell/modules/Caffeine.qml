@@ -7,9 +7,9 @@ WrapperMouseArea {
   onClicked: CaffeineService.toggle()
 
   Text {
-    anchors.verticalCenter: parent.verticalCenter
     text: CaffeineService.enabled() ? "\udb81\udeca" : "\udb83\udfab"
-    font: root.fontSymbol
+    font.family: root.fontSymbol.family
+    font.pixelSize: 15
     color: "white"
   }
 }

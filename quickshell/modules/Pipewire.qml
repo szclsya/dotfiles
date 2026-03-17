@@ -18,12 +18,13 @@ RowLayout {
   WrapperMouseArea {
     hoverEnabled: true
     onClicked: source.audio.muted = !source.audio.muted
-    onEntered: sourceTooltip.show(source.name)
+    onEntered: sourceTooltip.show(source.nickname)
+    onExited: sourceTooltip.hide()
     Text {
       visible: source !== null
       text: source.audio.muted ? "\udb80\udf6d" : "\udb80\udf6c"
       font.family: root.fontSymbol.family
-      font.pixelSize: sink.audio.muted ? 14 : 16
+      font.pixelSize: source.audio.muted ? 14 : 16
       color: "white"
     }
     ToolTip {
@@ -36,7 +37,7 @@ RowLayout {
         color: "white"
       }
       background: Rectangle {
-        color: "green"
+        color: "#3b3a39"
         radius: 5
       }
     }
@@ -45,7 +46,8 @@ RowLayout {
   WrapperMouseArea {
     hoverEnabled: true
     onClicked: sink.audio.muted = !sink.audio.muted
-    onEntered: sinkTooltip.show(sink.name)
+    onEntered: sinkTooltip.show(sink.nickname)
+    onExited: sinkTooltip.hide()
     width: font.pixelSize
     Text {
       visible: sink
@@ -64,7 +66,7 @@ RowLayout {
         color: "white"
       }
       background: Rectangle {
-        color: "green"
+        color: "#3b3a39"
         radius: 5
       }
     }
@@ -80,7 +82,6 @@ RowLayout {
       }
     }
     Text {
-      //visible: !sink.audio.muted
       text: Math.round(sink.audio.volume * 100).toString().padStart(3, " ") + "%"
       font: root.fontPixel
       width: root.font.pixelSize * 2

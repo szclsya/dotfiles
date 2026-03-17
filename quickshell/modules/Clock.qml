@@ -1,14 +1,15 @@
 import QtQuick
 import Quickshell
+import qs.services
 
 Rectangle {
   width: childrenRect.width
   height: root.height
   color: "transparent"
-  //color: "green"
   anchors.verticalCenter: parent.verticalCenter
 
   property var font: root.font
+  property var format: Config.modules["Clock"] ? Config.modules["Clock"]["format"] : "MM-dd ddd hh:mm:ss"
 
   SystemClock {
     id: clock
@@ -17,13 +18,14 @@ Rectangle {
 
   Text {
     id: clockText
-    text: Qt.formatDateTime(clock.date, "MM-dd ddd hh:mm:ss")
+    text: Qt.formatDateTime(clock.date, format)
+    Component.onCompleted: console.log("Clock format" + format)
     font.pixelSize: 15
     font.family: root.fontPixel.family
     anchors.verticalCenter: parent.verticalCenter
     padding: 8
     color: {
-      if (clock.minutes === 59 && clock.seconds > 50 && clock.seconds % 2 === 0) {
+      if (clock.minutes === 59 && clock.seconds > 45 && clock.seconds % 2 === 0) {
         "transparent"
       } else {
         "white"

@@ -11,21 +11,7 @@ Rectangle {
 
   property var player_blacklist: ["firefox", "playerctl"]
   property var player: Mpris.players.values[0]
-  /*
-  Component.onCompleted: {
-    findSuitablePlayer()
-    Mpris.players.onChange.connect(findSuitablePlayer)
-  }
-  function findSuitablePlayer() {
-    console.log("Hey finding players")
-    for (p of Mpris.players.values) {
-      if (player_blacklist.some(sub => player.dbusName.includes(sub))) {
-        console.err("Picking up new player " + player.dbusName)
-        player = p
-      }
-    }
-  }
-  */
+  property var max_len: Config.modules["Player"] ? Config.modules["Player"]["max_len"] : 36
 
   RowLayout {
     id: row
@@ -74,7 +60,7 @@ Rectangle {
         color: "transparent"
         Marquee {
           anchors.verticalCenter: parent.verticalCenter
-          max_len: 36
+          max_len: Config.modules.Player.max_len ? Config.modules.Player.max_len : 36
           text: {
             if (!player) {
               "No Player"

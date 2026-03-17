@@ -8,8 +8,6 @@ import qs.services
 Row {
   spacing: 8
   Repeater {
-    //model: root.networks
-    //model: [ { name: "wlan0" }, { name: "enp17s0f1np1" }]
     model: Config.networks
 
     Row {

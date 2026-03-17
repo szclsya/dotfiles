@@ -9,7 +9,6 @@ PanelWindow {
   implicitHeight: 24
   color: "transparent"
   anchors {
-    //top: true
     right: true
     bottom: true
     left: true
@@ -30,7 +29,7 @@ PanelWindow {
         Layout.alignment: Qt.AlignLeft
 
         Workspace {}
-        ActiveWindow { max_len: 24 }
+        ActiveWindow {}
       }
     }
     // Right
@@ -38,14 +37,13 @@ PanelWindow {
       height: parent.height
       width: childrenRect.width
       radius: 50
-      //color: "#553b3a39"
       color: "transparent"
       anchors {
         right: parent.right
         verticalCenter: parent.verticalCenter
       }
 
-      RowLayout {
+      Row {
         id: right
         height: parent.height
         spacing: 2
@@ -76,9 +74,10 @@ PanelWindow {
           //width: 265
           Row {
             padding: 10
+	        spacing: 8
             anchors.verticalCenter: parent.verticalCenter
-            Network {}
             Bluetooth {}
+            Network {}
           }
         }
         Rectangle {
@@ -88,8 +87,11 @@ PanelWindow {
           width: childrenRect.width
           Row {
             padding: 10
+	        spacing: 8
             anchors.verticalCenter: parent.verticalCenter
             Caffeine {}
+	        Backlight {}
+	        Battery {}
           }
         }
         Rectangle {

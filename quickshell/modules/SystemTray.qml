@@ -30,7 +30,7 @@ RowLayout {
           color: "white"
         }
         background: Rectangle {
-          color: "green"
+          color: "#3b3a39"
           radius: 5
         }
       }
