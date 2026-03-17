@@ -1,11 +1,13 @@
 import QtQuick
+import QtQuick.Layouts
 import qs.services
 
-Row {
+RowLayout {
   visible: BacklightService.enabled
   readonly property int brightness: Math.round(BacklightService.brightness * 100)
 
   spacing: 4
+  height: parent.height
   Text {
     text: {
       switch (true) {
@@ -35,6 +37,7 @@ Row {
     font.family: root.fontSymbol.family
     font.pixelSize: 14
     width: 10
+    bottomPadding: 2
   }
   Text {
     text: (brightness + "%").padStart(4, " ")

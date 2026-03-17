@@ -5,8 +5,9 @@ import Quickshell.Io
 import qs.services
 
 // TODO: quickshell don't support systemd-networkd and IWD yet, using a primitive way to do things
-Row {
+RowLayout {
   spacing: 8
+  height: parent.height
   Repeater {
     model: Config.networks
 

@@ -1,10 +1,12 @@
 import QtQuick
+import QtQuick.Layouts
 import QtQuick.Controls
 import Quickshell.Services.UPower
 import Quickshell.Widgets
 
-Row {
+RowLayout {
   spacing: 8
+  height: parent.height
   Repeater {
     model: UPower.devices.values.filter(d => d.isLaptopBattery)
 
@@ -95,6 +97,7 @@ Row {
           font.family: root.fontSymbol.family
           font.pixelSize: 14
           width: 10
+          topPadding: 1
         }
         Text {
           text: percentage.toString().padStart(3, " ") + "%"

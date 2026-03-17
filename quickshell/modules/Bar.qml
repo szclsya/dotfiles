@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
+import Quickshell.Widgets
 
 PanelWindow {
   id: panel
@@ -19,86 +20,83 @@ PanelWindow {
     color: "transparent"
 
     // Left
-    Rectangle {
-      height: parent.height
-      width: childrenRect.width
+    WrapperRectangle {
       radius: 50
       color: "#661b1a19"
 
-      RowLayout {
-        Layout.alignment: Qt.AlignLeft
-
-        Workspace {}
-        ActiveWindow {}
+      Row {
+        height: 100
+        spacing: 8
+        WrapperRectangle {
+          color: "#991b1a19"
+          height: root.height
+          Workspace {}
+        }
+        WrapperRectangle {
+          color: "transparent"
+          height: root.height
+          ActiveWindow {}
+        }
       }
     }
     // Right
-    Rectangle {
-      height: parent.height
-      width: childrenRect.width
+    WrapperRectangle {
       radius: 50
       color: "transparent"
-      anchors {
-        right: parent.right
-        verticalCenter: parent.verticalCenter
-      }
+      anchors.right: parent.right
 
       Row {
         id: right
         height: parent.height
         spacing: 2
-        Rectangle {
+        WrapperRectangle {
           color: "#881b1a19"
           radius: 50
-          height: root.height
-          implicitWidth: childrenRect.width + root.height
-
-          Player { id: mprisPlayer; anchors.horizontalCenter: parent.horizontalCenter }
+          height: parent.height
+          Row {
+            leftPadding: 10
+            rightPadding: 10
+            Player {}
+          }
         }
-        Rectangle {
+        WrapperRectangle {
           color: "#7c1d21"
           radius: 50
-          height: root.height
-          implicitWidth: childrenRect.width
+          height: parent.height
           Row {
-            padding: 10
-            anchors.verticalCenter: parent.verticalCenter
+            leftPadding: 10
+            rightPadding: 10
             Pipewire {}
           }
         }
-        Rectangle {
+        WrapperRectangle {
           color: "#004e8c"
           radius: 50
-          height: root.height
-          implicitWidth: childrenRect.width
-          //width: 265
+          height: parent.height
           Row {
-            padding: 10
+            leftPadding: 10
+            rightPadding: 10
 	        spacing: 8
-            anchors.verticalCenter: parent.verticalCenter
             Bluetooth {}
             Network {}
           }
         }
-        Rectangle {
+        WrapperRectangle {
           color: "#986f0b"
           radius: 50
-          height: root.height
-          width: childrenRect.width
+          height: parent.height
           Row {
-            padding: 10
+            leftPadding: 10
+            rightPadding: 10
 	        spacing: 8
-            anchors.verticalCenter: parent.verticalCenter
             Caffeine {}
 	        Backlight {}
 	        Battery {}
           }
         }
-        Rectangle {
+        WrapperRectangle {
           color: "#661b1a19"
           radius: 50
-          height: root.height
-          implicitWidth: childrenRect.width
           Row {
             spacing: 6
             SystemTray {}

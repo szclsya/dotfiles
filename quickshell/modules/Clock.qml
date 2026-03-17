@@ -19,9 +19,7 @@ Rectangle {
   Text {
     id: clockText
     text: Qt.formatDateTime(clock.date, format)
-    Component.onCompleted: console.log("Clock format" + format)
-    font.pixelSize: 15
-    font.family: root.fontPixel.family
+    font: root.fontPixel
     anchors.verticalCenter: parent.verticalCenter
     padding: 8
     color: {

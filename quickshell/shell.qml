@@ -1,7 +1,6 @@
 //@ pragma UseQApplication
 import Quickshell
 import QtQuick
-import Niri 0.1
 import "./modules/"
 import "./services/"
 
@@ -16,7 +15,7 @@ Scope {
   })
   property font fontPixel: Qt.font({
     family: "Ark Pixel 12px Mono zh_cn",
-    pixelSize: 15,
+    pixelSize: 16,
     color: "white"
   })
   property font fontSymbol: Qt.font({
@@ -31,13 +30,4 @@ Scope {
     model: Quickshell.screens
     delegate: Bar {}
   }
-
-  Niri {
-    id: niri
-    Component.onCompleted: connect()
-    onConnected: console.log("Niri: Connected")
-    onErrorOccurred: function(error) { console.error("Niri error: ", error) }
-  }
-
-  //PipewireService {}
 }

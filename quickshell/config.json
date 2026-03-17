@@ -6,7 +6,7 @@
       "max_len": 16
     },
     "Player": {
-      "max_len": 20
+      "max_len": 30
     }
   }
 }

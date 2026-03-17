@@ -7,10 +7,10 @@ import qs.services
 
 // Using a rect here bc icons are not monospace
 RowLayout {
-  height: root.height
   width: root.font.pixelSize * 4.5
   visible: PipewireService.ready
   clip: true
+  height: parent.height
 
   property var source: Pipewire.defaultAudioSource
   property var sink: Pipewire.defaultAudioSink
@@ -29,7 +29,6 @@ RowLayout {
     }
     ToolTip {
       id: sourceTooltip
-      bottomMargin: root.height
       delay: 200
       popupType: Popup.Native
       contentItem: Text {
@@ -54,11 +53,9 @@ RowLayout {
       text: sink.audio.muted ? "\udb81\udd81" : "\udb81\udd7e"
       font: root.fontSymbol
       color: "white"
-      anchors.verticalCenter: parent.verticalCenter
     }
     ToolTip {
       id: sinkTooltip
-      bottomMargin: root.height
       delay: 200
       popupType: Popup.Native
       contentItem: Text {
@@ -86,7 +83,6 @@ RowLayout {
       font: root.fontPixel
       width: root.font.pixelSize * 2
       color: "white"
-      anchors.verticalCenter: parent.verticalCenter
     }
   }
 }
