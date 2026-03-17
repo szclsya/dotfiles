@@ -51,6 +51,7 @@ fi
 ln -sfv "$DOTFILES_PATH"/environment.d ~/.config/
 
 # systemd services
+mkdir -p ~/.config/systemd
 ln -sfv "$DOTFILES_PATH"/systemd/user ~/.config/systemd/
 systemctl --user daemon-reload
 
