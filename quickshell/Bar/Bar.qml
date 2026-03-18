@@ -107,7 +107,10 @@ PanelWindow {
             rightPadding: 10
 	        spacing: 8
             Caffeine {}
-	        Backlight {}
+            LazyLoader {
+              loading: BacklightService.enabled
+	          Backlight {}
+            }
 	        Battery {}
           }
         }
@@ -126,7 +129,6 @@ PanelWindow {
             }
           }
         }
-        // TODO wifi/ethernet, brightness, power
       }
     }
   }
