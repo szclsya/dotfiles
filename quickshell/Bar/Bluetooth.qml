@@ -12,7 +12,7 @@ Row {
   Text {
     visible: connected.length === 0
     text: adapter && adapter.enabled ? "\uf294" : "\udb80\udcb2"
-    font: root.fontSymbol
+    font: bar.fontSymbol
     color: "white"
   }
 
@@ -20,7 +20,7 @@ Row {
     model: connected
     Text {
       text: model.batteryAvailable ? "\udb82\udd49" : "\udb80\udcb1"
-      font: root.fontSymbol
+      font: bar.fontSymbol
       color: "white"
     }
   }

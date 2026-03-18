@@ -1,14 +1,14 @@
 import QtQuick
 import Quickshell
-import qs.services
+import qs.Services
 
 Rectangle {
   width: childrenRect.width
-  height: root.height
+  height: bar.height
   color: "transparent"
   anchors.verticalCenter: parent.verticalCenter
 
-  property var font: root.font
+  property var font: bar.font
   property var format: Config.modules["Clock"] ? Config.modules["Clock"]["format"] : "MM-dd ddd hh:mm:ss"
 
   SystemClock {
@@ -19,7 +19,7 @@ Rectangle {
   Text {
     id: clockText
     text: Qt.formatDateTime(clock.date, format)
-    font: root.fontPixel
+    font: bar.fontPixel
     anchors.verticalCenter: parent.verticalCenter
     padding: 8
     color: {

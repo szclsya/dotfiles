@@ -1,6 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
-import qs.services
+import qs.Services
 
 RowLayout {
   visible: BacklightService.enabled
@@ -34,7 +34,7 @@ RowLayout {
       }
     }
     color: "white"
-    font.family: root.fontSymbol.family
+    font.family: bar.fontSymbol.family
     font.pixelSize: 14
     width: 10
     bottomPadding: 2
@@ -42,6 +42,6 @@ RowLayout {
   Text {
     text: (brightness + "%").padStart(4, " ")
     color: "white"
-    font: root.fontPixel
+    font: bar.fontPixel
   }
 }

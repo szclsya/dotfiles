@@ -10,7 +10,7 @@ Item {
     ? combined.substring(step) + combined.substring(0, step + max_len - combined.length)
     : combined.substring(step, step + max_len)
   property int step: 0
-  property font font: root.font
+  property font font: bar.font
   property color color: "white"
 
   implicitWidth: innertext.width

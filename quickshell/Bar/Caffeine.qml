@@ -1,7 +1,7 @@
 import QtQuick
 import Quickshell.Wayland
 import Quickshell.Widgets
-import qs.services
+import qs.Services
 
 WrapperRectangle {
   height: parent.height
@@ -11,7 +11,7 @@ WrapperRectangle {
     resizeChild: false
     Text {
       text: CaffeineService.enabled() ? "\udb81\udeca" : "\udb83\udfab"
-      font.family: root.fontSymbol.family
+      font.family: bar.fontSymbol.family
       font.pixelSize: 15
       color: "white"
       height: parent.height

@@ -30,7 +30,6 @@ RowLayout {
       onExited: batteryTooltip.hide()
       ToolTip {
         id: batteryTooltip
-        //bootomMargin: root.height
         delay: 200
         popupType: Popup.Native
         contentItem: Text {
@@ -45,7 +44,13 @@ RowLayout {
       Row {
         Text {
           text: {
-            if (modelData.state === UPowerDeviceState.Charging || modelData.state === UPowerDeviceState.PendingCharge) {
+            if (modelData.state === UPowerDeviceState.PendingCharge) {
+              if (percentage > 95) { // Fully charged
+                "\udb85\udfe2"
+              } else { // Battery care
+                "\udb84\ude0f"
+              }
+            } else if (modelData.state === UPowerDeviceState.Charging) {
               switch (true) {
               case (percentage <= 10):
                 "\udb82\udc9c"; break
@@ -94,7 +99,7 @@ RowLayout {
             }
           }
           color: "white"
-          font.family: root.fontSymbol.family
+          font.family: bar.fontSymbol.family
           font.pixelSize: 14
           width: 10
           topPadding: 1
@@ -102,15 +107,15 @@ RowLayout {
         Text {
           text: percentage.toString().padStart(3, " ") + "%"
           color: "white"
-          font: root.fontPixel
-          width: root.fontPixel.pixelSize * 2
+          font: bar.fontPixel
+          width: bar.fontPixel.pixelSize * 2
         }
         Text {
           visible: modelData.state === UPowerDeviceState.Discharging
           text: " " + toHrMinStr(modelData.timeToEmpty)
           color: "white"
-          font: root.fontPixel
-          width: root.fontPixel.pixelSize * 3
+          font: bar.fontPixel
+          width: bar.fontPixel.pixelSize * 3
         }
       }
     }

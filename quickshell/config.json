@@ -1,5 +1,5 @@
 {
-  "networks": ["wlan0", "enp17s0f1np1"]
+  "networks": ["wlan0"],
   "backlight": "intel_backlight",
   "modules": {
     "ActiveWindow": {

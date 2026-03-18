@@ -3,11 +3,11 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 import Quickshell.Widgets
-import qs.services
+import qs.Services
 
 // Using a rect here bc icons are not monospace
 RowLayout {
-  width: root.font.pixelSize * 4.5
+  width: bar.font.pixelSize * 4.5
   visible: PipewireService.ready
   clip: true
   height: parent.height
@@ -23,7 +23,7 @@ RowLayout {
     Text {
       visible: source !== null
       text: source.audio.muted ? "\udb80\udf6d" : "\udb80\udf6c"
-      font.family: root.fontSymbol.family
+      font.family: bar.fontSymbol.family
       font.pixelSize: source.audio.muted ? 14 : 16
       color: "white"
     }
@@ -51,7 +51,7 @@ RowLayout {
     Text {
       visible: sink
       text: sink.audio.muted ? "\udb81\udd81" : "\udb81\udd7e"
-      font: root.fontSymbol
+      font: bar.fontSymbol
       color: "white"
     }
     ToolTip {
@@ -80,8 +80,8 @@ RowLayout {
     }
     Text {
       text: Math.round(sink.audio.volume * 100).toString().padStart(3, " ") + "%"
-      font: root.fontPixel
-      width: root.font.pixelSize * 2
+      font: bar.fontPixel
+      width: bar.font.pixelSize * 2
       color: "white"
     }
   }

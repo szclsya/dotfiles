@@ -4,10 +4,26 @@ import Quickshell
 import Quickshell.Widgets
 
 PanelWindow {
-  id: panel
+  id: bar
   required property var modelData
   screen: modelData
   implicitHeight: 24
+  property font font: Qt.font({
+    family: "monospace",
+    pixelSize: 15,
+    color: "white",
+  })
+  property font fontPixel: Qt.font({
+    family: "Ark Pixel 12px Mono zh_cn",
+    pixelSize: 16,
+    color: "white"
+  })
+  property font fontSymbol: Qt.font({
+    family: "Symbols Nerd Font",
+    pixelSize: 16,
+    color: "white"
+  })
+
   color: "transparent"
   anchors {
     right: true
@@ -29,12 +45,13 @@ PanelWindow {
         spacing: 8
         WrapperRectangle {
           color: "#991b1a19"
-          height: root.height
+          radius: 50
+          height: bar.height
           Workspace {}
         }
         WrapperRectangle {
           color: "transparent"
-          height: root.height
+          height: bar.height
           ActiveWindow {}
         }
       }
@@ -101,7 +118,7 @@ PanelWindow {
             spacing: 6
             SystemTray {}
             Rectangle {
-              height: root.height
+              height: bar.height
               implicitWidth: childrenRect.width
               color: "#881b1a19"
               radius: 50

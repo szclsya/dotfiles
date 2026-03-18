@@ -17,12 +17,12 @@ RowLayout {
       required property SystemTrayItem modelData
 
       source: modelData.icon
-      implicitSize: root.height * 0.67
+      implicitSize: bar.height * 0.67
       smooth: true
 
       ToolTip {
         id: tooltip
-        bottomMargin: root.height
+        bottomMargin: bar.height
         delay: 200
         popupType: Popup.Native
         contentItem: Text {
