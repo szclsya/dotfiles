@@ -24,11 +24,10 @@ if [[ $ARCH_INSTALL == "y" ]]; then
     echo -e "$INFO_PREFIX Installing login manager (greetd)"
     sudo pacman -S seatd greetd greetd-tuigreet
     echo -e "$INFO_PREFIX Installing Sway and related services and applications"
-    sudo pacman -S niri xdg-desktop-portal-gtk xdg-desktop-portal-gnome brightnessctl wl-clipboard swayidle swaybg mako gnome-keyring fuzzel wlsunset
-    "$AUR_HELPER" swaylock-effects
+    sudo pacman -S niri xdg-desktop-portal-gtk xdg-desktop-portal-gnome brightnessctl wl-clipboard swayidle swaybg mako gnome-keyring fuzzel wlsunset waybar hyprlock
     echo -e "$INFO_PREFIX Installing Fcitx5 and RIME"
     sudo pacman -S fcitx5-im fcitx5-rime rime-pinyin-zhwiki
-    "$AUR_HELPER" -S rime-aurora-pinyin-git
+    #"$AUR_HELPER" -S rime-aurora-pinyin-git
     echo -e "$INFO_PREFIX Install Email tools"
     sudo pacman -S isync msmtp notmuch
     echo -e "$INFO_PREFIX Installing fonts"
@@ -60,6 +59,7 @@ ln -sfv "$DOTFILES_PATH"/niri ~/.config/
 ln -sfv "$DOTFILES_PATH"/foot ~/.config/
 ln -sfv "$DOTFILES_PATH"/mako ~/.config/
 ln -sfv "$DOTFILES_PATH"/fuzzel ~/.config/
+ln -sfv "$DOTFILES_PATH"/hypr ~/.config/
 systemctl --user enable mako.service
 ln -sfv "$DOTFILES_PATH"/waybar ~/.config/
 systemctl --user enable waybar.service

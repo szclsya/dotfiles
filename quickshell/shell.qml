@@ -11,5 +11,4 @@ Scope {
     model: Quickshell.screens
     delegate: Bar {}
   }
-  Wallpaper {}
 }
