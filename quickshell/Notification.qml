@@ -89,14 +89,14 @@ PanelWindow {
           running: false
           repeat: false
           interval: 100
-          onTriggered: { modelData.expire() }
+          onTriggered: { if (modelData) { modelData.expire() } }
         }
         Connections {
           target: modelData
-          onImageChanged: expire.restart()
-          onSummaryChanged: expire.restart()
-          onBodyChanged: expire.restart()
-          onActionsChanged: expire.restart()
+          function onImageChanged() { expire.restart() }
+          function onSummaryChanged() { expire.restart() }
+          function onBodyChanged() { expire.restart() }
+          function onActionsChanged() { expire.restart() }
         }
 
         // Graphics starts here
@@ -106,19 +106,25 @@ PanelWindow {
           Row {
             spacing: 6
             Layout.fillWidth: true
-            topPadding: 8
+            topPadding: 6
             leftPadding: 8
             height: childrenRect.height
-            IconImage {
+            WrapperRectangle {
               visible: modelData.image
-              implicitSize: parent.width * 0.2
-              mipmap: true
-              source: {
-                let icon = modelData.image
-                if (icon.startsWith('/')) {
-                  "file://" + icon
-                } else {
-                  icon
+              width: parent.width * 0.2
+              height: parent.width * 0.2
+              topMargin: 2
+              color: "transparent"
+              IconImage {
+                implicitSize: parent.width * 0.2
+                mipmap: true
+                source: {
+                  let icon = modelData.image
+                  if (icon.startsWith('/')) {
+                    "file://" + icon
+                  } else {
+                    icon
+                  }
                 }
               }
             }
@@ -157,8 +163,7 @@ PanelWindow {
             height: 24
             Layout.topMargin: 4
             Layout.leftMargin: 8
-            Layout.bottomMargin: 4
-
+            Layout.bottomMargin: 6
             IconImage {
               implicitSize: 18
               visible: modelData.appIcon

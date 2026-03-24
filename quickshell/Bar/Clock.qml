@@ -9,7 +9,7 @@ Rectangle {
   anchors.verticalCenter: parent.verticalCenter
 
   property var font: bar.font
-  property var format: Config.modules["Clock"] ? Config.modules["Clock"]["format"] : "MM-dd ddd hh:mm:ss"
+  property var format: Config.clock_format
 
   SystemClock {
     id: clock

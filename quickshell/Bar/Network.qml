@@ -117,19 +117,21 @@ RowLayout {
             netinfo.address = res["AddressState"] === "routable"
             netinfo.online = res["OnlineState"] === "online"
             netinfo.ssid = res["SSID"]
-            var ipv4s = res["Addresses"].filter((x) => x["Family"] === 2)
-            if (ipv4s[0]) {
-              netinfo.ipv4 = ipv4s[0]["Address"].join(".")
-              netinfo.ipv4 += "/" + ipv4s[0]["PrefixLength"]
-            } else {
-              netinfo.ipv4 = ""
-            }
-            var ipv6s = res["Addresses"].filter((x) => x["Family"] == 10)
-            if (ipv6s[0]) {
-              netinfo.ipv6 = ipv6s[0]["Address"].join("::")
-              netinfo.ipv6 += "/" + ipv6s[0]["PrefixLength"]
-            } else {
-              netinfo.ipv6 = ""
+            if (res["Addresses"]) {
+              var ipv4s = res["Addresses"].filter((x) => x["Family"] === 2)
+              if (ipv4s[0]) {
+                netinfo.ipv4 = ipv4s[0]["Address"].join(".")
+                netinfo.ipv4 += "/" + ipv4s[0]["PrefixLength"]
+              } else {
+                netinfo.ipv4 = ""
+              }
+              var ipv6s = res["Addresses"].filter((x) => x["Family"] == 10)
+              if (ipv6s[0]) {
+                netinfo.ipv6 = ipv6s[0]["Address"].join("::")
+                netinfo.ipv6 += "/" + ipv6s[0]["PrefixLength"]
+              } else {
+                netinfo.ipv6 = ""
+              }
             }
           }
         }
