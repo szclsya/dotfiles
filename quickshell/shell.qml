@@ -11,4 +11,9 @@ Scope {
     model: Quickshell.screens
     delegate: Bar {}
   }
+
+  Variants {
+    model: Quickshell.screens
+    delegate: Notification {}
+  }
 }

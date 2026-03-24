@@ -9,8 +9,6 @@ RowLayout {
   height: parent.height
   Repeater {
     model: UPower.devices.values.filter(d => d.isLaptopBattery)
-
-
     WrapperMouseArea {
       readonly property int percentage: Math.round(modelData.percentage * 100)
       hoverEnabled: true

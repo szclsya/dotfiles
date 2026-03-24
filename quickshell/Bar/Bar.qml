@@ -1,12 +1,14 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
+import Quickshell.Wayland
 import Quickshell.Widgets
 
 PanelWindow {
   id: bar
   required property var modelData
   screen: modelData
+  WlrLayershell.namespace: "qs-bar-" + (screen?.name || "unknown")
   implicitHeight: 24
   property font font: Qt.font({
     family: "monospace",
