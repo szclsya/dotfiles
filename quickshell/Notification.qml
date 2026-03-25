@@ -4,6 +4,7 @@ import QtQuick.Controls
 import Quickshell
 import Quickshell.Widgets
 import Quickshell.Wayland
+import Quickshell.Services.Notifications
 import qs.Services
 
 PanelWindow {
@@ -15,185 +16,212 @@ PanelWindow {
   readonly property int height: width * 0.4
 
   WlrLayershell.namespace: "qs-notifications-" + (screen?.name || "unknown")
-  color: "transparent"
   visible: NotificationService.notifications.values.length > 0
+  color: "transparent"
   implicitHeight: column.implicitHeight
   implicitWidth: layer.width
   anchors {
     right: true
     bottom: true
   }
+  margins.bottom: 4
+  margins.right: 4
 
   ListView {
     id: column
     implicitWidth: layer.width
     implicitHeight: contentHeight
     model: NotificationService.notifications
+
     delegate: Item {
-      implicitWidth: notificationPanel.width
-      implicitHeight: notificationPanel.height
+      id: notification
+      required property var modelData
+      required property var index
+
+      visible: nstate
+      // Global states
+      property var nstate: NotificationService.states.objectAt(index) ?? null
+      property bool closing: nstate ? nstate.closing : true
+      property int closingDelay: nstate ? nstate.closingDelay : 200
+      property int timeout: nstate ? nstate.timeout : 5000
+      property bool expiring: nstate ? nstate.expiring : true
+
+      implicitWidth: box.width
+      implicitHeight: box.height
       clip: true
-      ClippingWrapperRectangle {
-        id: notificationPanel
+      WrapperMouseArea {
+
+        id: box
+        acceptedButtons: Qt.RightButton
+        onClicked: nstate.dismiss()
+        hoverEnabled: true
+        onEntered: nstate.expiring = false
+        onExited: nstate.expiring = true
         width: 16 * 22
-        color: "#323130"
-        //margin: 16
-        radius: 10
-        border {
-          color: "transparent"
-          width: 6
-        }
         // slide in-out animation
-        property bool show: false
-        Component.onCompleted: notificationPanel.show = true
-        x: 200
+        x: width
+        property bool show: !closing
         states: [
           State {
             name: "show"
-            when: notificationPanel.show
-            PropertyChanges { target: notificationPanel; x: 0 }
+            when: box.show
+            PropertyChanges { target: box; x: 0 }
           },
           State {
             name: "hide"
-            when: !notificationPanel.show
-            PropertyChanges { target: notificationPanel; x: notificationPanel.width }
+            when: !box.show
+            PropertyChanges { target: box; x: box.width }
           }
         ]
         transitions: [
           Transition {
             from: "*"; to: "*"
-            NumberAnimation { properties: "x"; duration: 150; easing.type: Easing.OutCubic }
+            NumberAnimation { properties: "x"; duration: closingDelay * 0.5; easing.type: Easing.OutCubic }
           },
           Transition {
             from: "show"; to: "hide"
-            NumberAnimation { properties: "x"; duration: 200; easing.type: Easing.InCubic }
+            NumberAnimation { properties: "x"; duration: closingDelay; easing.type: Easing.InCubic }
           }
         ]
-        // auto-expire
-        Timer {
-          id: expire
-          running: true
-          repeat: false
-          interval: modelData.expireTimeout > 0 ? modelData.expireTimeout : 5000
-          onTriggered: { notificationPanel.show = false; expireAnimation.running = true }
-        }
-        Timer {
-          id: expireAnimation
-          running: false
-          repeat: false
-          interval: 200
-          onTriggered: { notificationPanel.implicitHeight = 1; expireFinal.running = true }
-        }
-        Timer {
-          id: expireFinal
-          running: false
-          repeat: false
-          interval: 100
-          onTriggered: { if (modelData) { modelData.expire() } }
-        }
-        Connections {
-          target: modelData
-          function onImageChanged() { expire.restart() }
-          function onSummaryChanged() { expire.restart() }
-          function onBodyChanged() { expire.restart() }
-          function onActionsChanged() { expire.restart() }
-        }
 
-        // Graphics starts here
-        ColumnLayout {
-          anchors.fill: parent
-          spacing: 2
-          Row {
-            spacing: 6
-            Layout.fillWidth: true
-            topPadding: 6
-            leftPadding: 8
-            height: childrenRect.height
-            WrapperRectangle {
-              visible: modelData.image
-              width: parent.width * 0.2
-              height: parent.width * 0.2
-              topMargin: 2
-              color: "transparent"
-              IconImage {
-                implicitSize: parent.width * 0.2
-                mipmap: true
-                source: {
-                  let icon = modelData.image
-                  if (icon.startsWith('/')) {
-                    "file://" + icon
-                  } else {
-                    icon
+        ClippingWrapperRectangle {
+          width: parent.width
+          color: "#323130"
+          radius: 10
+          border {
+            color: "transparent"
+            width: 6
+          }
+
+          // Graphics starts here
+          ColumnLayout {
+            anchors.fill: parent
+            spacing: 2
+            Row {
+              spacing: 6
+              Layout.fillWidth: true
+              topPadding: 6
+              leftPadding: 8
+              height: childrenRect.height
+              WrapperRectangle {
+                visible: modelData.image
+                width: textCol.height
+                height: textCol.height
+                topMargin: 2
+                color: "transparent"
+                IconImage {
+                  implicitSize: textCol.height
+                  mipmap: true
+                  source: {
+                    let icon = modelData.image
+                    if (icon.startsWith('/')) {
+                      "file://" + icon
+                    } else {
+                      icon
+                    }
                   }
                 }
               }
-            }
-            Column {
-              width: parent.width * 0.75
-              clip: true
-              spacing: 2
-              Text {
-                visible: modelData.summary
-                text: modelData.summary
-                color: "white"
-                font.pixelSize: 14
-                font.bold: true
-                // Plz wrap text!
-                width: parent.width
-                wrapMode: Text.WordWrap
-                elide: Text.ElideRight
-                maximumLineCount: 1
-              }
-              Text {
-                visible: modelData.body
-                text: modelData.body.replace(/\n/g, "<br>")
-                color: "white"
-                textFormat: Text.StyledText
-                // Plz wrap text!
-                width: parent.width
-                wrapMode: Text.WordWrap
-                elide: Text.ElideRight
-                font.pixelSize: 14
-                maximumLineCount: 3
-              }
-            }
-          }
-          RowLayout {
-            spacing: 4
-            height: 24
-            Layout.topMargin: 4
-            Layout.leftMargin: 8
-            Layout.bottomMargin: 6
-            IconImage {
-              implicitSize: 18
-              visible: modelData.appIcon
-              source: {
-                let icon = modelData.appIcon
-                if (icon.startsWith('/')) {
-                  "file://" + icon
-                } else {
-                  icon
+              Column {
+                id: textCol
+                width: parent.width * 0.75
+                clip: true
+                spacing: 2
+                Text {
+                  visible: modelData.summary
+                  text: modelData.summary
+                  color: "white"
+                  font.pixelSize: 14
+                  font.bold: true
+                  // Plz wrap text!
+                  width: parent.width
+                  wrapMode: Text.WordWrap
+                  elide: Text.ElideRight
+                  maximumLineCount: 1
+                }
+                Text {
+                  visible: modelData.body
+                  text: modelData.body.replace(/\n/g, "<br>")
+                  color: "white"
+                  textFormat: Text.StyledText
+                  // Plz wrap text!
+                  width: parent.width
+                  wrapMode: Text.WordWrap
+                  elide: Text.ElideRight
+                  font.pixelSize: 14
+                  maximumLineCount: 3
                 }
               }
             }
-            Text {
-              visible: !modelData.appIcon
-              text: "from"
-              color: "white"
-            }
-            Text {
-              text: modelData.appName
-              color: "white"
-            }
-            Item { Layout.fillWidth: true }
-            Repeater {
-              model: modelData.actions
-              delegate: Button {
-                flat: true
-                implicitHeight: 24
-                icon: modelData.identifier
-                text: modelData.text
-                onClicked: modelData.invoke()
+            // A rectangle that wraps both the underlying progress bar and the actual contents
+            Rectangle {
+              height: 24 + 2
+              Layout.fillWidth: true
+              Layout.topMargin: 6
+              color: modelData.urgency == NotificationUrgency.Critical ? "#750b1c" : "#292827"
+              Rectangle {
+                id: progress
+                height: parent.height
+                width: 0
+                color: "#55000000"
+                Component.onCompleted: {
+                  state = "end"
+                  state = Qt.binding(function() { return expiring ? "end" : "begin" })
+                }
+                states: [
+                  State { name: "begin"; PropertyChanges { target: progress; width: 0 } },
+                  State { name: "end"; PropertyChanges { target: progress; width: parent.width } },
+                ]
+                transitions: [
+                  Transition {
+                    to: "end"
+                    NumberAnimation { target: progress; properties: "width"; duration: timeout }
+                  },
+                  Transition {
+                    to: "begin"
+                    NumberAnimation { target: progress; properties: "width"; duration: 50 }
+                  },
+                ]
+              }
+              RowLayout {
+                spacing: 4
+                height: 24
+                anchors.fill: parent
+                anchors.leftMargin: 10
+                anchors.rightMargin: 4
+                anchors.bottomMargin: 2
+                IconImage {
+                  implicitSize: 18
+                  visible: modelData.appIcon
+                  source: {
+                    let icon = modelData.appIcon
+                    if (icon.startsWith('/')) {
+                      "file://" + icon
+                    } else {
+                      icon
+                    }
+                  }
+                }
+                Text {
+                  visible: !modelData.appIcon
+                  text: "from"
+                  color: "white"
+                }
+                Text {
+                  text: modelData.appName
+                  color: "white"
+                }
+                Item { Layout.fillWidth: true }
+                Repeater {
+                  model: modelData.actions
+                  delegate: Button {
+                    flat: true
+                    implicitHeight: 24
+                    icon: modelData.identifier
+                    text: modelData.text
+                    onClicked: modelData.invoke()
+                  }
+                }
               }
             }
           }
