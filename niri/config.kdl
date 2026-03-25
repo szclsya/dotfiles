@@ -85,7 +85,7 @@ binds {
 
     Mod+Return { spawn "footclient"; }
     Mod+D { spawn "fuzzel"; }
-    Mod+Super+L { spawn "swaylock"; }
+    Mod+Ctrl+L { spawn "hyprlock"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
