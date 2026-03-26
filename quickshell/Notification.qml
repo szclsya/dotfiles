@@ -36,31 +36,21 @@ PanelWindow {
     delegate: Item {
       id: notification
       required property var modelData
-      required property var index
-
-      visible: nstate
-      // Global states
-      property var nstate: NotificationService.states.objectAt(index) ?? null
-      property bool closing: nstate ? nstate.closing : true
-      property int closingDelay: nstate ? nstate.closingDelay : 200
-      property int timeout: nstate ? nstate.timeout : 5000
-      property bool expiring: nstate ? nstate.expiring : true
 
       implicitWidth: box.width
       implicitHeight: box.height
       clip: true
       WrapperMouseArea {
-
         id: box
         acceptedButtons: Qt.RightButton
-        onClicked: nstate.dismiss()
+        onClicked: modelData.dismiss()
         hoverEnabled: true
-        onEntered: nstate.expiring = false
-        onExited: nstate.expiring = true
+        onEntered: modelData.expiring = false
+        onExited: modelData.expiring = true
         width: 16 * 22
         // slide in-out animation
         x: width
-        property bool show: !closing
+        property bool show: !modelData.closing
         states: [
           State {
             name: "show"
@@ -76,11 +66,11 @@ PanelWindow {
         transitions: [
           Transition {
             from: "*"; to: "*"
-            NumberAnimation { properties: "x"; duration: closingDelay * 0.5; easing.type: Easing.OutCubic }
+            NumberAnimation { properties: "x"; duration: modelData.closingDelay * 0.5; easing.type: Easing.OutCubic }
           },
           Transition {
             from: "show"; to: "hide"
-            NumberAnimation { properties: "x"; duration: closingDelay; easing.type: Easing.InCubic }
+            NumberAnimation { properties: "x"; duration: modelData.closingDelay; easing.type: Easing.InCubic }
           }
         ]
 
@@ -104,7 +94,17 @@ PanelWindow {
               leftPadding: 8
               height: childrenRect.height
               WrapperRectangle {
-                visible: modelData.image
+                property var img: {
+                  let image = modelData.image
+                  if (modelData.appName === "niri") {
+                    modelData.appIcon
+                  } else if (image.startsWith('/')) {
+                    "file://" + image
+                  } else {
+                    image
+                  }
+                }
+                visible: img
                 width: textCol.height
                 height: textCol.height
                 topMargin: 2
@@ -112,14 +112,7 @@ PanelWindow {
                 IconImage {
                   implicitSize: textCol.height
                   mipmap: true
-                  source: {
-                    let icon = modelData.image
-                    if (icon.startsWith('/')) {
-                      "file://" + icon
-                    } else {
-                      icon
-                    }
-                  }
+                  source: parent.img
                 }
               }
               Column {
@@ -166,7 +159,7 @@ PanelWindow {
                 color: "#55000000"
                 Component.onCompleted: {
                   state = "end"
-                  state = Qt.binding(function() { return expiring ? "end" : "begin" })
+                  state = Qt.binding(function() { return modelData.expiring ? "end" : "begin" })
                 }
                 states: [
                   State { name: "begin"; PropertyChanges { target: progress; width: 0 } },
@@ -175,7 +168,7 @@ PanelWindow {
                 transitions: [
                   Transition {
                     to: "end"
-                    NumberAnimation { target: progress; properties: "width"; duration: timeout }
+                    NumberAnimation { target: progress; properties: "width"; duration: modelData.timeout }
                   },
                   Transition {
                     to: "begin"
