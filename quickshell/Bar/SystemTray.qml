@@ -17,7 +17,7 @@ RowLayout {
       required property SystemTrayItem modelData
 
       source: modelData.icon
-      implicitSize: bar.height * 0.67
+      implicitSize: bar.height * 0.7
       smooth: true
 
       ToolTip {

@@ -11,7 +11,6 @@ Rectangle {
 
   property var player_blacklist: ["firefox", "playerctl"]
   property var player: Mpris.players.values[0]
-  property var max_len: Config.modules["Player"] ? Config.modules["Player"]["max_len"] : 36
 
   RowLayout {
     id: row
@@ -62,7 +61,6 @@ Rectangle {
         color: "transparent"
         Marquee {
           anchors.verticalCenter: parent.verticalCenter
-          //max_len: Config.modules.Player.max_len ? Config.modules.Player.max_len : 36
           max_len: bar.width / font.pixelSize * 2 * 0.12
           text: {
             if (!player) {

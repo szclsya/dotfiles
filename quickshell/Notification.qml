@@ -16,7 +16,7 @@ PanelWindow {
   readonly property int height: width * 0.4
 
   WlrLayershell.namespace: "qs-notifications-" + (screen?.name || "unknown")
-  visible: NotificationService.notifications.values.length > 0
+  visible: NotificationService.notifications.count > 0
   color: "transparent"
   implicitHeight: column.implicitHeight
   implicitWidth: layer.width
@@ -168,7 +168,7 @@ PanelWindow {
                 transitions: [
                   Transition {
                     to: "end"
-                    NumberAnimation { target: progress; properties: "width"; duration: modelData.timeout }
+                    NumberAnimation { target: progress; properties: "width"; duration: modelData.timeout - 50 }
                   },
                   Transition {
                     to: "begin"

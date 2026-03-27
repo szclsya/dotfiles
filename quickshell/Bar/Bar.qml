@@ -109,10 +109,7 @@ PanelWindow {
             rightPadding: 10
 	        spacing: 8
             Caffeine {}
-            LazyLoader {
-              loading: BacklightService.enabled
-	          Backlight {}
-            }
+	        Backlight {}
 	        Battery {}
           }
         }

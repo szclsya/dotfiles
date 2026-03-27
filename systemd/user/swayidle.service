@@ -8,5 +8,6 @@ Requisite=graphical-session.target
 ExecStart=/usr/bin/swayidle -w \
     timeout 600 'hyprlock' \
     timeout 1200 'niri msg action power-off-monitors' \
-    before-sleep 'hyprlock'
+    before-sleep 'hyprlock' \
+    after-resume 'niri msg action power-on-monitors'
 Restart=on-failure

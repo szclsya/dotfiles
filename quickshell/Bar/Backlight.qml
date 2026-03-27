@@ -4,10 +4,9 @@ import qs.Services
 
 RowLayout {
   visible: BacklightService.enabled
+  height: bar.height
   readonly property int brightness: Math.round(BacklightService.brightness * 100)
-
   spacing: 4
-  height: parent.height
   Text {
     text: {
       switch (true) {
