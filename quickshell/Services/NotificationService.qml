@@ -42,8 +42,6 @@ Singleton {
   component NotificationModel: QtObject {
     id: nm
     required property Notification notification
-
-    property var id: notification.id
     property bool expiring: true
     property bool userDismiss: false
     readonly property int closingDelay: 200
@@ -52,6 +50,11 @@ Singleton {
     signal closed()
     function dismiss() {
       nm.closing = true || notification.dismiss()
+    }
+
+    property RetainableLock lock: RetainableLock {
+      object: notification
+      locked: true
     }
     property Connections c: Connections {
       target: nm.notification
@@ -70,12 +73,12 @@ Singleton {
       onTriggered: nm.closed()
     }
     // Re-exports
-    property var summary: notification.summary ?? ""
-    property var body: notification.body ?? ""
-    property var urgency: notification.urgency ?? 0
-    property var image: notification.image ?? ""
-    property var appIcon: notification.appIcon ?? ""
-    property var appName: notification.appName ?? ""
-    property var actions: notification.actions ?? ""
+    property var summary: notification.summary
+    property var body: notification.body
+    property var urgency: notification.urgency
+    property var image: notification.image
+    property var appIcon: notification.appIcon
+    property var appName: notification.appName
+    property var actions: notification.actions
   }
 }
