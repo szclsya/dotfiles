@@ -13,7 +13,7 @@ RowLayout {
       readonly property int percentage: Math.round(modelData.percentage * 100)
       hoverEnabled: true
       function toHrMinStr(i) {
-        return Math.floor(i / 3600).toString().padStart(2, "0") + ":" + Math.floor(i % 3600 / 60).toString().padStart(2, "0")
+        return Math.min(99, Math.floor(i / 3600)).toString().padStart(2, "0") + ":" + Math.floor(i % 3600 / 60).toString().padStart(2, "0")
       }
       property string tooltipText: {
         if (modelData.state === UPowerDeviceState.Discharging) {

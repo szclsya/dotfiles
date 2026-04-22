@@ -6,8 +6,13 @@ Requisite=graphical-session.target
 
 [Service]
 ExecStart=/usr/bin/swayidle -w \
-    timeout 600 'hyprlock' \
-    timeout 1200 'niri msg action power-off-monitors' \
-    before-sleep 'hyprlock' \
+    lock 'pidof hyprlock || hyprlock' \
+    timeout 240 'brightnessctl -s set 5%' resume 'brightnessctl -r' \
+    timeout 300 'pidof hyprlock || hyprlock' \
+    timeout 600 'niri msg action power-off-monitors' \
+    before-sleep 'pidof hyprlock || hyprlock' \
     after-resume 'niri msg action power-on-monitors'
 Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
