@@ -5,13 +5,12 @@ After=graphical-session.target
 Requisite=graphical-session.target
 
 [Service]
-ExecStart=/usr/bin/swayidle -w \
+ExecStart=/usr/bin/swayidle \
     lock 'pidof hyprlock || hyprlock' \
-    timeout 240 'brightnessctl -s set 5%' resume 'brightnessctl -r' \
+    timeout 270 'brightnessctl -s set 5%' resume 'brightnessctl -r' \
     timeout 300 'pidof hyprlock || hyprlock' \
     timeout 600 'niri msg action power-off-monitors' \
-    before-sleep 'pidof hyprlock || hyprlock' \
-    after-resume 'niri msg action power-on-monitors'
+    before-sleep 'pidof hyprlock || hyprlock'
 Restart=on-failure
 
 [Install]

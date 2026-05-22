@@ -47,7 +47,8 @@ PanelWindow {
         spacing: 8
         WrapperRectangle {
           color: "#991b1a19"
-          radius: 50
+          topRightRadius: 50
+          bottomRightRadius: 50
           height: bar.height
           Workspace {}
         }
@@ -60,7 +61,8 @@ PanelWindow {
     }
     // Right
     WrapperRectangle {
-      radius: 50
+      topLeftRadius: 50
+      bottomLeftRadius: 50
       color: "transparent"
       anchors.right: parent.right
 
@@ -115,7 +117,8 @@ PanelWindow {
         }
         WrapperRectangle {
           color: "#661b1a19"
-          radius: 50
+          topLeftRadius: 50
+          bottomLeftRadius: 50
           Row {
             spacing: 6
             SystemTray {}
@@ -123,7 +126,9 @@ PanelWindow {
               height: bar.height
               implicitWidth: childrenRect.width
               color: "#881b1a19"
-              radius: 50
+              //color: "transparent"
+              topLeftRadius: 50
+              bottomLeftRadius: 50
               Clock {}
             }
           }

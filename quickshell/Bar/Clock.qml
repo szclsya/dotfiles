@@ -21,7 +21,8 @@ Rectangle {
     text: Qt.formatDateTime(clock.date, format)
     font: bar.fontPixel
     anchors.verticalCenter: parent.verticalCenter
-    padding: 8
+    leftPadding: 10
+    rightPadding: 4
     color: {
       if (clock.minutes === 59 && clock.seconds > 45 && clock.seconds % 2 === 0) {
         "transparent"
