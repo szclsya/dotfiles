@@ -29,7 +29,7 @@ Singleton {
         }
       })
 
-      root.notifications.append({ modelData: model })
+      root.notifications.insert(0, { modelData: model })
     }
   }
 
