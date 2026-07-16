@@ -63,7 +63,9 @@ Rectangle {
           anchors.verticalCenter: parent.verticalCenter
           max_len: bar.width / font.pixelSize * 2 * 0.12
           text: {
-            if (!player) {
+            if (Config.redact) {
+              "REDACTED"
+            } else if (!player) {
               "No Player"
             } else if (player.trackTitle == "") {
               "No Disc"

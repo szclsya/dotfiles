@@ -46,7 +46,7 @@ Singleton {
     property bool userDismiss: false
     readonly property int closingDelay: 200
     property bool closing: false
-    property int timeout: notification.expireTimeout > 0 ? notification.expireTimeout : 5000
+    property int timeout: Math.min(notification.expireTimeout > 0 ? notification.expireTimeout : 5000, 10000)
     signal closed()
     function dismiss() {
       nm.closing = true || notification.dismiss()

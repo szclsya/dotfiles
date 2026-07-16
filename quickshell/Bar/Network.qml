@@ -3,7 +3,6 @@ import QtQuick.Layouts
 import QtQuick.Controls
 import Quickshell.Io
 import Quickshell.Widgets
-
 import qs.Services
 
 // TODO: quickshell don't support systemd-networkd and IWD yet, using a primitive way to do things
