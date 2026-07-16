@@ -1,0 +1,16 @@
+(
+  wrap_navigation: true,
+  keybinds: (
+    global: {
+      "-": VolumeDown,
+      "+": VolumeUp
+    },
+    navigation: {
+      "y": Confirm,
+      "<Enter>": AddOptions(kind: Action(AddOpts(all: false, autoplay: HoveredOrFirst, position: EndOfQueue)))
+    },
+    queue: {
+      "<Enter>": Play
+    }
+  )
+)
