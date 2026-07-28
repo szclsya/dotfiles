@@ -10,6 +10,7 @@ Singleton {
   readonly property var networks: config["networks"].map(n => { return { interface: n }})
   readonly property string clock_format: config["clock_format"] ?? "MM-dd ddd hh:mm:ss"
   readonly property var backlight: config["backlight"]
+  readonly property var player_blacklist: config["player_blacklist"]
 
   FileView {
     id: configJson

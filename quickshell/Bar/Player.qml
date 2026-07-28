@@ -9,8 +9,15 @@ Rectangle {
   height: bar.height
   color: "transparent"
 
-  property var player_blacklist: ["firefox", "playerctl"]
-  property var player: Mpris.players.values[0]
+  property var player_blacklist: Config.player_blacklist ?? ["firefox", "playerctl", "chromium"]
+  function filter_blacklist(p) {
+    for (var nope of player_blacklist) {
+      if (p.dbusName.includes(nope)) { return false }
+    }
+	console.log("Using player " + p.dbusName)
+    return true
+  }
+  property var player: Mpris.players.values.filter((p) => filter_blacklist(p))[0]
 
   RowLayout {
     id: row
