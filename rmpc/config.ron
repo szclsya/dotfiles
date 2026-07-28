@@ -1,16 +1,150 @@
+#![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+#![enable(unwrap_variant_newtypes)]
 (
-  wrap_navigation: true,
-  keybinds: (
-    global: {
-      "-": VolumeDown,
-      "+": VolumeUp
-    },
-    navigation: {
-      "y": Confirm,
-      "<Enter>": AddOptions(kind: Action(AddOpts(all: false, autoplay: HoveredOrFirst, position: EndOfQueue)))
-    },
-    queue: {
-      "<Enter>": Play
-    }
-  )
+    theme: "compact",
+    wrap_navigation: true,
+    keybinds: (
+        global: {
+            "I":       ShowCurrentSongInfo,
+            "o":       ShowOutputs,
+            "u":       Update,
+            "U":       Rescan,
+            "-":       VolumeDown,
+            "+":       VolumeUp,
+            "1":       SwitchToTab("[1] Queue"),
+            "2":       SwitchToTab("[2] Directories"),
+            "3":       SwitchToTab("[3] Search"),
+            "4":       SwitchToTab("[4] Artists"),
+            "5":       SwitchToTab("[5] Album Artists"),
+            "6":       SwitchToTab("[6] Albums"),
+            "7":       SwitchToTab("[7] Playlists"),
+        },
+        navigation: {
+            "y":          Confirm,
+            "<Enter>":    AddOptions(kind: Action(all: false, autoplay: HoveredOrFirst, position: EndOfQueue)),
+        },
+        queue: {
+            "<Enter>": Play,
+            "<Del>": Delete,
+        }
+    ),
+    cava: (
+        framerate: 30,
+        input: (
+            method: Fifo,
+            source: "/tmp/mpd.fifo",
+            sample_rate: 44100,
+            channels: 2,
+            sample_bits: 16,
+        )
+    ),
+    tabs: [(
+            name: "[1] Queue",
+            pane: Split(
+                direction: Horizontal,
+                panes: [(
+                        size: "35%",
+                        pane: Split(
+                            direction: Vertical,
+                            panes: [(
+                                    size: "100%",
+                                    borders: "TOP | RIGHT",
+                                    border_symbols: Inherited(parent: Rounded, top_right: "┬"),
+                                    pane: Pane(AlbumArt)
+                                ),(
+                                    size: "12",
+                                    borders: "TOP | RIGHT | BOTTOM",
+                                    border_symbols: Inherited(parent: Plain, top_right: "┤", bottom_right: "┴"),
+                                    border_title: [(kind: Text(" Spectrum Analyzer "))],
+                                    border_title_alignment: Right,
+                                    pane: Pane(Cava)
+                                )],
+                        ),
+                    ),(
+                        size: "65%",
+                        borders: "BOTTOM",
+                        border_title: [(kind: Text(" ")),
+                            (kind: Property(Status(QueueLength()))), (kind: Text(" songs / ")),
+                            (kind: Property(Status(QueueTimeTotal()))), (kind: Text(" total time ─"))],
+                        border_title_alignment: Right,
+                        border_title_position: Bottom,
+                        pane: Split(
+                            direction: Vertical,
+                            panes: [(
+                                    size: "2",
+                                    borders: "TOP",
+                                    pane: Split(
+                                        direction: Horizontal,
+                                        panes: [(size: "1", pane: Pane(Empty())),
+                                            (size: "100%",pane: Pane(QueueHeader())),]
+                                    )
+                                ),(
+                                    size: "100%",
+                                    pane: Split(
+                                        direction: Horizontal,
+                                        panes: [(size: "1", pane: Pane(Empty())), (size: "100%", pane: Pane(Queue))]
+                                    )
+                                ),
+                            ],
+                        )
+                    ),
+                ],
+            ),
+        ),
+        (
+            name: "[2] Directories",
+            borders: "NONE",
+            pane: Split(
+                size: "100%",
+                borders: "TOP | BOTTOM",
+                direction: Vertical,
+                panes: [(pane: Pane(Directories), size: "100%", borders: "NONE")],
+            )
+        ),
+        (
+            name: "[3] Search",
+            pane: Split(
+                size: "100%",
+                direction: Vertical,
+                panes: [(pane: Pane(Search), size: "100%", borders: "TOP | BOTTOM")],
+            )
+        ),
+        (
+            name: "[4] Artists",
+            pane: Split(
+                size: "100%",
+                direction: Vertical,
+                borders: "TOP | BOTTOM",
+                panes: [(pane: Pane(Artists), size: "100%", borders: "NONE", border_symbols: Rounded)],
+            )
+        ),
+        (
+            name: "[5] Album Artists",
+            pane: Split(
+                size: "100%",
+                direction: Vertical,
+                borders: "TOP | BOTTOM",
+                panes: [(pane: Pane(AlbumArtists), size: "100%", borders: "NONE", border_symbols: Rounded)],
+            )
+        ),
+        (
+            name: "[6] Albums",
+            pane: Split(
+                size: "100%",
+                direction: Vertical,
+                borders: "TOP | BOTTOM",
+                panes: [(pane: Pane(Albums), size: "100%", borders: "NONE", border_symbols: Rounded)],
+            )
+        ),
+        (
+            name: "[7] Playlists",
+            pane: Split(
+                size: "100%",
+                direction: Vertical,
+                borders: "TOP | BOTTOM",
+                panes: [(pane: Pane(Playlists), size: "100%", borders: "NONE", border_symbols: Rounded)],
+            )
+        ),
+    ],
 )
