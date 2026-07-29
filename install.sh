@@ -24,14 +24,13 @@ if [[ $ARCH_INSTALL == "y" ]]; then
     echo -e "$INFO_PREFIX Installing login manager (greetd)"
     sudo pacman -S seatd greetd greetd-tuigreet
     echo -e "$INFO_PREFIX Installing Sway and related services and applications"
-    sudo pacman -S niri xdg-desktop-portal-gtk xdg-desktop-portal-gnome brightnessctl wl-clipboard swayidle swaybg mako gnome-keyring fuzzel wlsunset waybar hyprlock
+    sudo pacman -S niri xdg-desktop-portal-gtk brightnessctl wl-clipboard swayidle swaybg mako gnome-keyring fuzzel wlsunset waybar hyprlock
     echo -e "$INFO_PREFIX Installing Fcitx5 and RIME"
     sudo pacman -S fcitx5-im fcitx5-rime rime-pinyin-zhwiki
     #"$AUR_HELPER" -S rime-aurora-pinyin-git
-    echo -e "$INFO_PREFIX Install Email tools"
-    sudo pacman -S isync msmtp notmuch
     echo -e "$INFO_PREFIX Installing fonts"
-    sudo pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-sarasa-gothic ttf-nerd-fonts-symbols
+    sudo pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji adobe-source-serif-fonts ttf-sarasa-gothic ttf-nerd-fonts-symbols
+    "$AUR_HELPER" -S ark-pixel-font-12px-monospaced
 fi
 
 if [[ $SYSTEM == "y" ]]; then

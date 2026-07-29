@@ -16,7 +16,7 @@ PanelWindow {
     color: "white",
   })
   property font fontPixel: Qt.font({
-    family: "Ark Pixel 12px Mono zh_cn",
+    family: "Ark Pixel 12px M zh_cn",
     pixelSize: 16,
     color: "white"
   })
