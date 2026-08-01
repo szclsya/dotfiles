@@ -28,7 +28,8 @@ Item {
 
   Text {
     id: innertext
-    anchors.verticalCenter: parent.verticalCenter
+    height: bar.height
+    verticalAlignment: Text.AlignVCenter
     text: tm.tightBoundingRect.width > font.pixelSize * max_len / 2 ? parent.display : parent.text
     font: parent.font
     color: parent.color

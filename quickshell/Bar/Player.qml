@@ -27,7 +27,8 @@ Rectangle {
       onClicked: player.previous()
       Text {
         id: prevButton
-        anchors.verticalCenter: parent.verticalCenter
+        height: bar.height
+        verticalAlignment: Text.AlignVCenter
         text: "\udb81\udcae"
         font.family: bar.fontSymbol.family
         font.pixelSize: bar.fontSymbol.pixelSize + 1
@@ -39,7 +40,8 @@ Rectangle {
       onClicked: player.togglePlaying()
       Text {
         id: playButton
-        anchors.verticalCenter: parent.verticalCenter
+        height: bar.height
+        verticalAlignment: Text.AlignVCenter
         text: player && player.isPlaying ? "\udb80\udfe4" : "\udb81\udc0a"
         font.family: bar.fontSymbol.family
         font.pixelSize: player && player.isPlaying ? 17 : 18
@@ -51,7 +53,8 @@ Rectangle {
       onClicked: player.next()
       Text {
         id: nextButton
-        anchors.verticalCenter: parent.verticalCenter
+        height: bar.height
+        verticalAlignment: Text.AlignVCenter
         text: "\udb81\udcad"
         font.family: bar.fontSymbol.family
         font.pixelSize: bar.fontSymbol.pixelSize + 1
@@ -67,7 +70,7 @@ Rectangle {
         implicitWidth: childrenRect.width
         color: "transparent"
         Marquee {
-          anchors.verticalCenter: parent.verticalCenter
+          height: bar.height
           max_len: bar.width / font.pixelSize * 2 * 0.12
           text: {
             if (Config.redact) {

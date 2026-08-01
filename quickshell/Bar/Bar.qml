@@ -39,24 +39,23 @@ PanelWindow {
 
     // Left
     WrapperRectangle {
-      radius: 50
-      color: "#661b1a19"
+      topRightRadius: 50
+      bottomRightRadius: 50
+      color: "transparent"
 
       Row {
         height: 100
-        spacing: 8
+        spacing: -bar.height/2
         WrapperRectangle {
-          color: "#991b1a19"
+          color: "#1b1a19"
+
           topRightRadius: 50
           bottomRightRadius: 50
           height: bar.height
+          z: 1
           Workspace {}
         }
-        WrapperRectangle {
-          color: "transparent"
-          height: bar.height
-          ActiveWindow {}
-        }
+        ActiveWindow {}
       }
     }
     // Right
