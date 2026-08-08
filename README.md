@@ -42,11 +42,10 @@ And enable them just like any other systemd user services.
 # fuzzel: application launcher
 # swayidle && swaylock: idle management and screen lock
 # swaybg: wallpaper management
-# waybar: status bar
-# mako: notification daemon
-# gnome-keyring: stores secrets
+# quickshell: status bar and notification panel
+# oo7: stores secrets
 # wlsunset: Day/night gamma adjustments
-sudo pacman -S niri xdg-desktop-portal-gtk xdg-desktop-portal-gnome fcitx5-im brightnessctl wl-clipboard swayidle swaylock swaybg mako gnome-keyring wlsunset
+sudo pacman -S niri xdg-desktop-portal-gtk xdg-desktop-portal-gtk fcitx5-im brightnessctl wl-clipboard swayidle swaylock swaybg quickshell oo7 wlsunset
 ```
 
 Then install configs:
@@ -55,23 +54,14 @@ ln -s $DOTFILES_PATH/niri ~/.config/
 ```
 
 ## Fontconfig
-This fontconfig requires `inter-font`, `noto-fonts`, `noto-fonts-cjk`, `noto-fonts-emoji` and `ttf-sarasa-gothic`.
+This fontconfig requires `inter-font`, `adobe-source-serif-fonts`, `noto-fonts-cjk`, `noto-fonts-emoji` and `ttf-sarasa-gothic`.
+
+Also needs Ark Pixel 12px monospaced from AUR for quickshell's status bar.
 
 ```bash
-sudo pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-sarasa-gothic
+sudo pacman -S inter-font adobe-source-serif-fonts noto-fonts-cjk noto-fonts-emoji ttf-sarasa-gothic
+paru -S ark-pixel-font-12px-monospaced
 ln -s $DOTFILES_PATH/fontconfig ~/.config/
-```
-
-## Email
-`isync` for IMAP syncing, `msmtp` for SMTP sending, and `notmuch` for indexing. Viewing email in Emacs.
-
-Password is stored in system keyring (for Sway I use gnome-keyring). Check msmtp config on how to enroll keys.
-
-```bash
-sudo pacman -S isync notmuch msmtp
-ln -sf "$DOTFILES_PATH"/{isync, msmtp, notmuch} ~/.config/
-mkdir -p ~/.mail/{lecs,csc,gmail}
-systemctl --user enable --now notmuch.timer
 ```
 
 ## Git
@@ -81,9 +71,8 @@ ln -sf "$DOTFILES_PATH"/.gitconfig ~
 
 ## Everything else
 ```bash
-ln -s $DOTFILES_PATH/i3status-rust ~/.config/
-ln -s $DOTFILES_PATH/wezterm ~/.config/
-ln -s $DOTFILES_PATH/mako ~/.config/
+ln -s $DOTFILES_PATH/quickshell ~/.config/
+ln -s $DOTFILES_PATH/foot ~/.config/
 ln -s $DOTFILES_PATH/fish ~/.config/
 ln -s $DOTFILES_PATH/tmux ~/.config/
 # mpd won't automatically create state folder, so do it manually
@@ -91,4 +80,5 @@ mkdir -p ~/.local/share/mpd
 ln -s $DOTFILES_PATH/mpd ~/.config/
 ln -s $DOTFILES_PATH/mpv ~/.config/
 ln -s $DOTFILES_PATH/ncmpcpp ~/.config/
+ln -s $DOTFILES_PATH/rmpc ~/.config/
 ```

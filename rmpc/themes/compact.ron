@@ -23,6 +23,9 @@
             width: "7%", alignment: Right,
         ),
     ],
+    progress_bar: (
+      symbols: ["⣿", "⣿", "⠟", "⣉", "⣿"],
+    ),
     layout: Split(
         direction: Vertical,
         panes: [
@@ -39,7 +42,7 @@
             (size: "1", pane: Split(
                     direction: Horizontal,
                     panes: [(size: "100%", border_symbols: Rounded,
-                            border_title_alignment: Right, pane: Component("progress_bar"))]))
+                            border_title_alignment: Right, pane: Pane(ProgressBar))]))
         ]
     ),
     components: {
@@ -62,13 +65,6 @@
             panes: [
                 (size: "1", pane: Component("volume")),
                 (size: "1", pane: Component("states")),
-            ]
-        ),
-        "progress_bar": Split(
-            direction: Horizontal,
-            panes: [(size: "1", pane: Pane(Empty())),
-                (size: "100%", pane: Pane(ProgressBar)),
-                (size: "1", pane: Pane(Empty())),
             ]
         ),
         "state": Pane(Property(
