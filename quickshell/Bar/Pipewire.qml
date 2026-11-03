@@ -17,14 +17,14 @@ RowLayout {
 
   WrapperMouseArea {
     hoverEnabled: true
-    onClicked: source.audio.muted = !source.audio.muted
-    onEntered: sourceTooltip.show(source.nickname)
+    onClicked: if (source) source.audio.muted = !source.audio.muted
+    onEntered: if (source) sourceTooltip.show(source.nickname)
     onExited: sourceTooltip.hide()
     Text {
       visible: source !== null
-      text: source.audio.muted ? "\udb80\udf6d" : "\udb80\udf6c"
+      text: source?.audio.muted ? "\udb80\udf6d" : "\udb80\udf6c"
       font.family: bar.fontSymbol.family
-      font.pixelSize: source.audio.muted ? 14 : 16
+      font.pixelSize: source?.audio.muted ? 14 : 16
       color: "white"
     }
     ToolTip {
@@ -44,13 +44,13 @@ RowLayout {
 
   WrapperMouseArea {
     hoverEnabled: true
-    onClicked: sink.audio.muted = !sink.audio.muted
-    onEntered: sinkTooltip.show(sink.nickname)
+    onClicked: if (sink) sink.audio.muted = !sink.audio.muted
+    onEntered: if (sink) sinkTooltip.show(sink.nickname)
     onExited: sinkTooltip.hide()
     width: font.pixelSize
     Text {
       visible: sink
-      text: sink.audio.muted ? "\udb81\udd81" : "\udb81\udd7e"
+      text: sink?.audio.muted ? "\udb81\udd81" : "\udb81\udd7e"
       font: bar.fontSymbol
       color: "white"
     }
@@ -71,7 +71,9 @@ RowLayout {
 
   WrapperMouseArea {
     width: font.pixelSize * 2
+    implicitHeight: parent.height
     onWheel: wheel => {
+      if (!sink) return
       if (wheel.angleDelta.y > 0) {
         sink.audio.volume += 0.05
       } else {
@@ -79,10 +81,11 @@ RowLayout {
       }
     }
     Text {
-      text: Math.round(sink.audio.volume * 100).toString().padStart(3, " ") + "%"
+      text: sink ? Math.round(sink.audio.volume * 100).toString().padStart(3, " ") + "%" : ""
       font: bar.fontPixel
       width: bar.font.pixelSize * 2
       color: "white"
+      verticalAlignment: Text.AlignVCenter
     }
   }
 }

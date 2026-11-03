@@ -5,6 +5,7 @@ After=graphical-session.target
 Requisite=graphical-session.target
 
 [Service]
+Environment=MALLOC_CONF=narenas:4
 ExecStart=/usr/bin/quickshell
 Restart=on-failure
 

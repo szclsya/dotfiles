@@ -1,4 +1,6 @@
 //@ pragma UseQApplication
+//@ pragma Env QT_QUICK_BACKEND = software
+//@ pragma NativeTextRendering
 import Quickshell
 import QtQuick
 import "./Services/"

@@ -14,10 +14,13 @@ Rectangle {
     for (var nope of player_blacklist) {
       if (p.dbusName.includes(nope)) { return false }
     }
-	console.log("Using player " + p.dbusName)
     return true
   }
-  property var player: Mpris.players.values.filter((p) => filter_blacklist(p))[0]
+  readonly property var player: Mpris.players.values.filter((p) => filter_blacklist(p))[0] ?? null
+  Connections {
+    target: player
+    function onTrackChanged() { marquee.reset() }
+  }
 
   RowLayout {
     id: row
@@ -70,7 +73,9 @@ Rectangle {
         implicitWidth: childrenRect.width
         color: "transparent"
         Marquee {
+          id: marquee
           height: bar.height
+          active: player?.isPlaying ?? false
           max_len: bar.width / font.pixelSize * 2 * 0.12
           text: {
             if (Config.redact) {
@@ -89,9 +94,6 @@ Rectangle {
           }
           font: bar.fontPixel
           color: "white"
-          Component.onCompleted: {
-            player.trackChanged.connect(reset)
-          }
         }
       }
     }

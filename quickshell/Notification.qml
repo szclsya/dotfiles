@@ -90,13 +90,13 @@ PanelWindow {
             }
           ]
 
-          ClippingWrapperRectangle {
+          WrapperRectangle { // ClippingWrapperRectangle uses ShaderEffect: invisible on software renderer
             width: parent.width
             color: "#323130"
-            radius: 10
+            radius: 8
             border {
               color: "transparent"
-              width: 6
+              width: 0 // transparent border only inset content (dead band at edges); clipping is faked per-corner now
             }
 
             // Graphics starts here
@@ -164,15 +164,19 @@ PanelWindow {
               }
               // A rectangle that wraps both the underlying progress bar and the actual contents
               Rectangle {
-                height: 24 + 2
+                height: 24
                 Layout.fillWidth: true
                 Layout.topMargin: 6
                 color: modelData.urgency == NotificationUrgency.Critical ? "#750b1c" : "#292827"
+                // flush with card edge => match card radius
+                bottomLeftRadius: 8
+                bottomRightRadius: 8
                 Rectangle {
                   id: progress
                   height: parent.height
                   width: 0
                   color: "#55000000"
+                  bottomLeftRadius: 8
                   Component.onCompleted: {
                     state = "end"
                     state = Qt.binding(function() { return modelData.expiring ? "end" : "begin" })
@@ -226,7 +230,6 @@ PanelWindow {
                     delegate: Button {
                       flat: true
                       implicitHeight: 24
-                      icon: modelData.identifier
                       text: modelData.text
                       onClicked: modelData.invoke()
                     }

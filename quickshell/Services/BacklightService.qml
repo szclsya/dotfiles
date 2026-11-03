@@ -7,26 +7,27 @@ import qs.Services
 
 Singleton {
   id: backlightService
-  readonly property bool enabled: Config.backlight
-  readonly property int brightness_raw: parseInt(current.data())
-  readonly property int max_brightness_raw: parseInt(max.data())
-  readonly property real brightness: brightness_raw / max_brightness_raw
+  readonly property bool enabled: Config.backlight !== ""
+  readonly property int brightness_raw: enabled ? (parseInt(current.data()) || 0) : 0
+  readonly property int max_brightness_raw: enabled ? (parseInt(max.data()) || 0) : 0
+  readonly property real brightness: max_brightness_raw > 0 ? brightness_raw / max_brightness_raw : 0
 
-  Component.onCompleted: enabled ? loader.active = true : loader.active = false
-  Loader {
-    id: loader
-    FileView {
-      id: current
-      path: "/sys/class/backlight/" + Config.backlight +"/brightness"
-      watchChanges: true
-      onFileChanged: this.reload()
-    }
+  FileView {
+    id: current
+    path: "/sys/class/backlight/" + Config.backlight + "/brightness"
+    watchChanges: true
+    preload: backlightService.enabled
+    onFileChanged: this.reload()
+    // when backlight gets enabled at runtime (Config reload), kick a load
+    onPreloadChanged: if (preload) reload()
+  }
 
-    FileView {
-      id: max
-      path: "/sys/class/backlight/" + Config.backlight +"/max_brightness"
-      watchChanges: true
-      onFileChanged: this.reload()
-    }
+  FileView {
+    id: max
+    path: "/sys/class/backlight/" + Config.backlight + "/max_brightness"
+    watchChanges: true
+    preload: backlightService.enabled
+    onFileChanged: this.reload()
+    onPreloadChanged: if (preload) reload()
   }
 }

@@ -9,11 +9,11 @@ WrapperRectangle {
   topRightRadius: 50
   bottomRightRadius: 50
   height: bar.height
-  property int activeWindowId: Niri.niri.activeWindowId(bar.screen.name)
+  property int activeWindowId: Niri.niri.activeWindowId(bar.screen.name) ?? 0
 
   Connections {
     target: Niri.niri
-    onFocusedWindowChanged: activeWindowId = Niri.niri.activeWindowId(bar.screen.name)
+    function onFocusedWindowChanged() { activeWindowId = Niri.niri.activeWindowId(bar.screen.name) ?? 0 }
   }
 
   SortFilterProxyModel {
@@ -33,7 +33,7 @@ WrapperRectangle {
       id: activeWindow
       model: activeWindowProxy
       delegate: WrapperRectangle {
-        color: activeWindowId === Niri.niri.focusedWindow.id ? "#ff017371" : "#551b1a19"
+        color: activeWindowId === (Niri.niri.focusedWindow?.id ?? -1) ? "#ff017371" : "#551b1a19"
         Behavior on color {
             ColorAnimation { duration: 100 }
         }

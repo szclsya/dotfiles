@@ -3,6 +3,7 @@ import QtQuick
 Item {
   id: marquee
   property string text: ""
+  property bool active: true // scroll only when caller says so (e.g. player isPlaying)
   property string spacing: "      "
   property int max_len: 16
   property string combined: text + spacing
@@ -21,7 +22,7 @@ Item {
 
   Timer {
     interval: 500
-    running: tm.tightBoundingRect.width > font.pixelSize * max_len / 2
+    running: active && tm.tightBoundingRect.width > font.pixelSize * max_len / 2
     repeat: true
     onTriggered: parent.step = (parent.step + 1) % parent.combined.length
   }
